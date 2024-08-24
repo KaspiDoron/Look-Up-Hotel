@@ -1,3 +1,259 @@
 /*****************************************************************************************/
 /* NAV SECTION */
 /*****************************************************************************************/
+.navbar {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 1.8rem 12.8rem;
+  background-color: #fff;
+  color: #6e6e6e;
+  width: 100vw;
+  top: 0;
+  z-index: 5;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  color: #a61e4d;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  justify-self: flex-start;
+  text-wrap: nowrap;
+  font-size: 2.4rem;
+  font-weight: 800;
+  padding: 1rem 2rem;
+  border-radius: 10rem;
+  transition: all 0.2s;
+}
+
+.navbar-logo span {
+  font-family: "DM Serif Text";
+  color: #e64980;
+}
+
+.logo-img {
+  width: 3rem;
+  height: auto;
+}
+
+.navbar-logo:hover {
+  background-color: #fff0f6;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  gap: 1.6rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.nav-link:link,
+.nav-link:visited {
+  font-size: 1.8rem;
+  padding: 1.2rem 2rem;
+  border-radius: 10rem;
+  transition: all 0.2s;
+}
+
+.nav-link:hover,
+.nav-link:active {
+  color: #2e2e2e;
+  background-color: #f2f2f2;
+}
+
+.user-login {
+  cursor: pointer;
+  position: relative;
+  justify-self: flex-end;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0 2rem;
+  border-radius: 10rem;
+  border: 1px solid #ddd;
+
+  transition: all 0.2s;
+}
+
+.user-login:hover {
+  color: #4e4e4e;
+  background-color: #f7f7f7;
+}
+
+.user-login-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.user-login-dropdown {
+  position: absolute;
+  right: 0;
+  bottom: -1rem;
+  transform: translateY(100%);
+
+  list-style: none;
+  background-color: #fff;
+  box-shadow: 0 0 3rem rgb(0, 0, 0, 0.1);
+  padding: 0.8rem 0;
+  border-radius: 1rem;
+  width: 20rem;
+  overflow: hidden;
+
+  z-index: 20;
+}
+
+.user-login-dropdown a {
+  display: block;
+  font-size: 1.8rem;
+  padding: 1.4rem 2rem;
+  text-wrap: nowrap;
+
+  transition: all 0.2s ease-in;
+  position: relative;
+}
+
+.user-login-dropdown a:hover,
+.user-login-dropdown a:active {
+  background-color: #f7f7f7;
+  font-weight: 600;
+  border-left: 1rem solid #ddd;
+}
+
+.user-login-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 40%;
+
+  width: 100%;
+  padding: 0.1rem 0;
+  background-color: #ddd;
+}
+
+.sign-in-dropdown {
+  font-weight: 600;
+}
+
+/*****************************************************************************************/
+/* HERO SECTION */
+/*****************************************************************************************/
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("/landing-page/img/hero-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.hero::before {
+  /* Corrected selector */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* Black overlay with 30% opacity */
+  backdrop-filter: blur(5px); /* Adjust the blur strength here */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative; /* Ensure it's above the overlay */
+  z-index: 2;
+  max-width: 70rem;
+}
+
+.hero-title {
+  font-family: "DM Serif Text", serif;
+  font-size: 4.8rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+  max-width: 1000px;
+  margin: 0 auto;
+  z-index: 2; /* Ensure the search bar is above the overlay */
+}
+
+.search-field {
+  flex: 1;
+  padding: 10px 15px;
+  border-right: 1px solid #ddd;
+}
+
+.search-field:last-child {
+  border-right: none;
+}
+
+.search-field label {
+  display: block;
+  font-weight: 600;
+  color: #6e6e6e;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.search-field input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #000;
+}
+
+.search-button {
+  background-color: #e64980;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  margin-left: 15px;
+  cursor: pointer;
+  z-index: 2; /* Ensure the button is above the overlay */
+}
+
+.search-button ion-icon {
+  color: #fff;
+  font-size: 20px;
+}
+
+.search-button:hover {
+  background-color: #d6336c;
+}

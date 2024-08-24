@@ -9,8 +9,11 @@
       name="description"
       content="Look Up Hotel is a friendly ui project."
     />
-    <link rel="icon" href="" />
-    <link rel="apple-touch-icon" href="" />
+    <link rel="icon" href="/landing-page/img/lookup-hotel-logo.png" />
+    <link
+      rel="apple-touch-icon"
+      href="/landing-page/img/lookup-hotel-logo.png"
+    />
     <link rel="manifest" href="/landing-page/manifestweb.json" />
 
     <!-- Link style and script -->
@@ -35,7 +38,132 @@
       src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
     ></script>
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Moderustic:wght@300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    />
+
     <title>LookUp Hotel &mdash; Just Relax</title>
   </head>
-  <body></body>
+  <body>
+    <!-- NAVBAR SECTION -->
+    <nav class="navbar" aria-label="Main Navigation">
+      <a class="navbar-logo" href="#" aria-label="Home">
+        <img
+          src="/landing-page/img/lookup-hotel-logo.png"
+          class="logo-img"
+          alt="LookUp Hotel Logo"
+        />
+        LookUp<span>Hotel</span>
+      </a>
+
+      <ul class="nav-links">
+        <li>
+          <a class="nav-link" href="#" aria-label="Home"
+            ><ion-icon class="icon" name="home-outline"></ion-icon> Home</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#" aria-label="About Us"
+            ><ion-icon class="icon" name="book-outline"></ion-icon> About</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#" aria-label="Rentals"
+            ><ion-icon class="icon" name="business-outline"></ion-icon>
+            Rentals</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#" aria-label="Features"
+            ><ion-icon class="icon" name="sparkles-outline"></ion-icon>
+            Features</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="#" aria-label="Services"
+            ><ion-icon class="icon" name="bulb-outline"></ion-icon> Services</a
+          >
+        </li>
+      </ul>
+
+      <div class="user-login" aria-label="User Menu">
+        <ion-icon
+          class="icon user-login-icon"
+          name="menu"
+          aria-label="Menu"
+        ></ion-icon>
+        <ion-icon
+          class="icon user-login-icon"
+          name="person-circle"
+          aria-label="User Profile"
+        ></ion-icon>
+
+        <ul class="user-login-dropdown hidden" aria-label="User Options">
+          <li>
+            <a class="sign-in-dropdown" href="#" aria-label="Sign up"
+              >Sign up</a
+            >
+          </li>
+          <li>
+            <a class="log-in-dropdown" href="#" aria-label="Log in">Log in</a>
+          </li>
+          <li>
+            <a class="about-us-dropdown" href="#" aria-label="About Us"
+              >About us</a
+            >
+          </li>
+          <li>
+            <a class="terms-dropdown" href="#" aria-label="Our Terms"
+              >Our terms</a
+            >
+          </li>
+          <li>
+            <a class="help-center-dropdown" href="#" aria-label="Help Center"
+              >Help center</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="overlay hidden"></div>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Find Your Perfect Stay</h1>
+        <p class="hero-subtitle">
+          Discover the best hotels and rentals tailored to your needs.
+        </p>
+        <div class="search-bar">
+          <div class="search-field where">
+            <label for="where">Where</label>
+            <input type="text" id="where" placeholder="Search destinations" />
+          </div>
+
+          <div class="search-field check-in">
+            <label for="check-in">Check in</label>
+            <input type="text" id="check-in" placeholder="Add dates" />
+          </div>
+
+          <div class="search-field check-out">
+            <label for="check-out">Check out</label>
+            <input type="text" id="check-out" placeholder="Add dates" />
+          </div>
+
+          <div class="search-field who">
+            <label for="who">Who</label>
+            <input type="text" id="who" placeholder="Add guests" />
+          </div>
+
+          <button class="search-button">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
