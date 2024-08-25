@@ -16,11 +16,10 @@
     />
     <link rel="manifest" href="/landing-page/manifestweb.json" />
 
-    <!-- Link style and script -->
+    <!-- STYLES-->
+    <link rel="stylesheet" href="/landing-page/css/style.css" />
     <link rel="stylesheet" href="/landing-page/css/general.css" />
     <link rel="stylesheet" href="/landing-page/css/queries.css" />
-    <link rel="stylesheet" href="/landing-page/css/style.css" />
-    <script defer src="/landing-page/script.js"></script>
 
     <!-- ION-ICONS -->
     <script
@@ -50,8 +49,13 @@
     <title>LookUp Hotel &mdash; Just Relax</title>
   </head>
   <body>
+    <!--  -->
     <!-- NAVBAR SECTION -->
+    <!--  -->
     <nav class="navbar" aria-label="Main Navigation">
+      <div class="overlay hidden"></div>
+
+      <!-- NAVBAR LOGO -->
       <a class="navbar-logo" href="#" aria-label="Home">
         <img
           src="/landing-page/img/lookup-hotel-logo.png"
@@ -61,9 +65,10 @@
         LookUp<span>Hotel</span>
       </a>
 
+      <!-- NAV LINKS -->
       <ul class="nav-links">
         <li>
-          <a class="nav-link" href="#" aria-label="Home"
+          <a class="nav-link home-link" href="#" aria-label="Home"
             ><ion-icon class="icon" name="home-outline"></ion-icon> Home</a
           >
         </li>
@@ -91,79 +96,152 @@
         </li>
       </ul>
 
-      <div class="user-login" aria-label="User Menu">
-        <ion-icon
-          class="icon user-login-icon"
-          name="menu"
-          aria-label="Menu"
-        ></ion-icon>
-        <ion-icon
-          class="icon user-login-icon"
-          name="person-circle"
-          aria-label="User Profile"
-        ></ion-icon>
+      <!-- NAV USER INTER -->
+      <div class="user-inter">
+        <!-- USER POPUP LAN -->
+        <div class="lan-popup-section" aria-label="User Langauge Bar">
+          <ion-icon
+            class="icon globe-lan-icon"
+            name="globe-outline"
+            aria-label="Globe Icon"
+          ></ion-icon>
 
-        <ul class="user-login-dropdown hidden" aria-label="User Options">
-          <li>
-            <a class="sign-in-dropdown" href="#" aria-label="Sign up"
-              >Sign up</a
-            >
-          </li>
-          <li>
-            <a class="log-in-dropdown" href="#" aria-label="Log in">Log in</a>
-          </li>
-          <li>
-            <a class="about-us-dropdown" href="#" aria-label="About Us"
-              >About us</a
-            >
-          </li>
-          <li>
-            <a class="terms-dropdown" href="#" aria-label="Our Terms"
-              >Our terms</a
-            >
-          </li>
-          <li>
-            <a class="help-center-dropdown" href="#" aria-label="Help Center"
-              >Help center</a
-            >
-          </li>
-        </ul>
+          <ul class="lan-popup hidden">
+            <li>
+              <img
+                class="flag-lan"
+                src="/landing-page/img/flags/us.svg"
+                aria-label="USA Flag"
+              />
+              <span>US</span>
+            </li>
+            <li>
+              <img
+                class="flag-lan"
+                src="/landing-page/img/flags/it.svg"
+                aria-label="Italy Flag"
+              />
+              <span>IT</span>
+            </li>
+            <li>
+              <img
+                class="flag-lan"
+                src="/landing-page/img/flags/il.svg"
+                aria-label="Israel Flag"
+              />
+              <span>IL</span>
+            </li>
+            <li>
+              <img
+                class="flag-lan"
+                src="/landing-page/img/flags/fr.svg"
+                aria-label="France Flag"
+              />
+              <span>FR</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- USER DROPDOWN MENU -->
+        <div class="user-login" aria-label="User Menu">
+          <ion-icon
+            class="icon user-login-icon"
+            name="menu"
+            aria-label="Menu"
+          ></ion-icon>
+          <ion-icon
+            class="icon user-login-icon"
+            name="person-circle"
+            aria-label="User Profile"
+          ></ion-icon>
+
+          <ul class="user-login-dropdown hidden" aria-label="User Options">
+            <li>
+              <a class="sign-in-dropdown" href="#" aria-label="Sign up"
+                >Sign up</a
+              >
+            </li>
+            <li>
+              <a class="log-in-dropdown" href="#" aria-label="Log in">Log in</a>
+            </li>
+            <li>
+              <a class="about-us-dropdown" href="#" aria-label="About Us"
+                >About us</a
+              >
+            </li>
+            <li>
+              <a class="terms-dropdown" href="#" aria-label="Our Terms"
+                >Our terms</a
+              >
+            </li>
+            <li>
+              <a class="help-center-dropdown" href="#" aria-label="Help Center"
+                >Help center</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
-    <div class="overlay hidden"></div>
 
+    <!--  -->
+    <!-- HERO SECTION -->
+    <!--  -->
     <section class="hero">
       <div class="hero-content">
-        <h1 class="hero-title">Find Your Perfect Stay</h1>
+        <!-- HERO TITLES -->
+        <h2 class="hero-title">
+          <span>LookUp</span> For Your Perfect <span>Hotel</span>
+        </h2>
         <p class="hero-subtitle">
           Discover the best hotels and rentals tailored to your needs.
         </p>
+
+        <!-- HERO SEARCH BAR -->
         <div class="search-bar">
           <div class="search-field where">
             <label for="where">Where</label>
-            <input type="text" id="where" placeholder="Search destinations" />
+            <input
+              type="text"
+              class="where"
+              placeholder="Search locations"
+              required
+            />
           </div>
 
           <div class="search-field check-in">
             <label for="check-in">Check in</label>
-            <input type="text" id="check-in" placeholder="Add dates" />
+            <input
+              type="text"
+              class="check-in"
+              placeholder="Add dates"
+              required
+            />
           </div>
 
           <div class="search-field check-out">
             <label for="check-out">Check out</label>
-            <input type="text" id="check-out" placeholder="Add dates" />
+            <input
+              type="text"
+              class="check-out"
+              placeholder="Add dates"
+              required
+            />
           </div>
 
           <div class="search-field who">
             <label for="who">Who</label>
-            <input type="text" id="who" placeholder="Add guests" />
+            <input type="text" class="who" placeholder="Add guests" required />
           </div>
 
           <button class="search-button">
-            <ion-icon name="search-outline"></ion-icon>
+            <ion-icon class="icon" name="search-outline"></ion-icon>
           </button>
         </div>
       </div>
     </section>
+
+    <!-- SCRIPT -->
+    <script defer src="/landing-page/script.js"></script>
   </body>
 </html>

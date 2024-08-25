@@ -19,7 +19,7 @@ Bold: 800
 
 - Line hieght:
 Default: 1
-Small: 
+Small: 1.2
 Medium: 
 Large: 
 Pragraph default: 
@@ -29,15 +29,16 @@ Pragraph default:
 --- 02 COLORS 
  #fff0f6 #fcc2d7 #faa2c1 #f783ac #f06595 #e64980 #d6336c #c2255c #a61e4d #741738
 - Primary: #e64980
-- Grays: #ddd #f7f7f7
-#8e8e8e #6e6e6e #4e4e4e #2e2e2e
+- Grays: #ddd #f7f7f7 #f2f2f2 #ebebeb
+#8e8e8e #6e6e6e #4e4e4e #2e2e2e #272326
 
 --- 03 SACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 
 ---- 04 z-index tracking
 5: navigation bar
-15: login dropdown navigation
+10: login overlay, lan overlay
+15: login dropdown navigation, login icons
 */
 
 /*****************************************************************************************/
@@ -61,6 +62,8 @@ body {
   line-height: 1;
   font-weight: 400;
   color: #000;
+
+  position: relative;
 }
 
 /*****************************************************************************************/
@@ -74,8 +77,6 @@ a {
 }
 
 .icon {
-  height: 2rem;
-  width: 2rem;
   color: inherit;
 }
 
@@ -84,17 +85,18 @@ a {
 }
 
 .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 10;
 }
 
 /* Focus state for links and buttons */
 .nav-link:focus,
 .user-login:focus,
-.navbar-logo:focus {
+.navbar-logo:focus,
+.globe-lan-icon:focus {
   outline: 0.2rem solid #ddd;
 }
 /*****************************************************************************************/

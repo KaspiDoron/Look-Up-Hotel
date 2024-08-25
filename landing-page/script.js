@@ -1,32 +1,80 @@
 /*****************************************************************************************/
 /* NAV SECTION */
 /*****************************************************************************************/
-// title Dropdown Navigation
+// title Declaring Elements
 const overlay = document.querySelector(".overlay");
+
 const userDropdownIcons = document.querySelector(".user-login");
 const navbarDropdown = document.querySelector(".user-login-dropdown");
-let isDropdownOpen = false;
+let isUserDropdownOpen = false;
 
+const iconGlobe = document.querySelector(".globe-lan-icon");
+const lanPopup = document.querySelector(".lan-popup");
+let isLanPopupOpen = false;
+
+// title Helper Functions
+function openLan() {
+  isLanPopupOpen = true;
+  lanPopup.classList.remove("hidden");
+}
+
+function closeLan() {
+  isLanPopupOpen = false;
+  lanPopup.classList.add("hidden");
+}
+
+function openDropdownUser() {
+  isUserDropdownOpen = true;
+  navbarDropdown.classList.remove("hidden");
+}
+
+function closeDropdownUser() {
+  isUserDropdownOpen = false;
+  navbarDropdown.classList.add("hidden");
+}
+
+function addOverlayCntrl() {
+  overlay.classList.remove("hidden");
+}
+
+function removeOverlayCntrl() {
+  overlay.classList.add("hidden");
+}
+
+// title Handling Dropdown & Popup
 userDropdownIcons.addEventListener("click", function () {
   // Activate dropdown if it's close
-  if (!isDropdownOpen) {
-    isDropdownOpen = true;
-    navbarDropdown.classList.remove("hidden");
-    overlay.classList.remove("hidden");
+  if (!isUserDropdownOpen) {
+    openDropdownUser();
+    addOverlayCntrl();
+
+    closeLan(); // Close popup if it's open
   }
-  // Disable dropdown if it's open
+  // Close dropdown if it's open
   else {
-    isDropdownOpen = false;
-    navbarDropdown.classList.add("hidden");
-    overlay.classList.add("hidden");
+    closeDropdownUser();
+    removeOverlayCntrl();
   }
 });
 
-// Close the dropdown when clicking on screen
-overlay.addEventListener("click", function () {
-  if (isDropdownOpen) {
-    isDropdownOpen = false;
-    navbarDropdown.classList.add("hidden");
-    overlay.classList.add("hidden");
+iconGlobe.addEventListener("click", function () {
+  // Activate popup if it's close
+  if (!isLanPopupOpen) {
+    openLan();
+    addOverlayCntrl();
+
+    closeDropdownUser(); // Close dropdown if it's open
   }
+  // Close dropdown if it's open
+  else {
+    closeLan();
+    removeOverlayCntrl();
+  }
+});
+
+overlay.addEventListener("click", function () {
+  // If we able to click overlay that means the dropdown or the popup are open and the overlay applies
+  closeLan();
+  closeDropdownUser();
+  removeOverlayCntrl();
 });
