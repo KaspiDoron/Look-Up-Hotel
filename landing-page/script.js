@@ -12,6 +12,11 @@ const iconGlobe = document.querySelector(".globe-lan-icon");
 const lanPopup = document.querySelector(".lan-popup");
 let isLanPopupOpen = false;
 
+const navLinks = document.querySelector(".nav-links");
+const openMobileMenu = document.querySelector(".open-mobile-menu");
+const closeMobileMenu = document.querySelector(".close-mobile-menu");
+let isMobileMenuOpen = false;
+
 // title Helper Functions
 function openLan() {
   isLanPopupOpen = true;
@@ -39,6 +44,20 @@ function addOverlayCntrl() {
 
 function removeOverlayCntrl() {
   overlay.classList.add("hidden");
+}
+
+function openMobileMenuFn() {
+  isMobileMenuOpen = true;
+  openMobileMenu.classList.add("hidden-opacity");
+  closeMobileMenu.classList.remove("hidden-opacity");
+  navLinks.classList.add("opens-mobile-menu");
+}
+
+function closeMobileMenuFn() {
+  isMobileMenuOpen = false;
+  openMobileMenu.classList.remove("hidden-opacity");
+  closeMobileMenu.classList.add("hidden-opacity");
+  navLinks.classList.remove("opens-mobile-menu");
 }
 
 // title Handling Dropdown & Popup
@@ -73,8 +92,27 @@ iconGlobe.addEventListener("click", function () {
 });
 
 overlay.addEventListener("click", function () {
-  // If we able to click overlay that means the dropdown or the popup are open and the overlay applies
+  // If we able to click overlay that means dropdown/popup/mobile menu are open and the overlay applies
   closeLan();
   closeDropdownUser();
+  closeMobileMenuFn();
+
   removeOverlayCntrl();
+});
+
+// title Handling Mobile Menu
+openMobileMenu.addEventListener("click", function () {
+  // Clickinng on the open menu btn, open only if it's closed
+  if (!isMobileMenuOpen) {
+    openMobileMenuFn();
+    addOverlayCntrl();
+  }
+});
+
+closeMobileMenu.addEventListener("click", function () {
+  // Clickinng on the close menu btn, close only if it's open
+  if (isMobileMenuOpen) {
+    closeMobileMenuFn();
+    removeOverlayCntrl();
+  }
 });

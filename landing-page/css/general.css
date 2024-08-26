@@ -36,9 +36,9 @@ Pragraph default:
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 
 ---- 04 z-index tracking
-5: navigation bar
-10: login overlay, lan overlay
-15: login dropdown navigation, login icons
+5:  navigation bar, the borders in the search bar
+10: overlay
+15: login dropdown navigation, login icons, mobile menu
 */
 
 /*****************************************************************************************/
@@ -76,12 +76,21 @@ a {
   color: inherit;
 }
 
+button {
+  border: none;
+  background: none;
+}
+
 .icon {
   color: inherit;
 }
 
 .hidden {
   display: none;
+}
+
+.hidden-opacity {
+  opacity: 0;
 }
 
 .overlay {

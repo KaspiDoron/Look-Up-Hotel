@@ -2,7 +2,7 @@
 /* NAV SECTION */
 /*****************************************************************************************/
 .navbar {
-  position: sticky; /* temp */
+  position: fixed;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.4rem;
@@ -10,6 +10,7 @@
   background-color: #fff;
   color: #6e6e6e;
   width: 100vw;
+  width: 100svw;
   top: 0;
   z-index: 5;
   border-bottom: 1px solid #ddd;
@@ -27,7 +28,7 @@
   text-wrap: nowrap;
   font-size: 2.4rem;
   font-weight: 800;
-  padding: 1rem 2rem;
+  padding: 1.6rem 2.4rem;
   border-radius: 10rem;
   transition: all 0.2s;
 }
@@ -85,7 +86,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr;
-  gap: 2.4rem;
+  column-gap: 2.4rem;
 
   align-items: center;
   justify-items: end;
@@ -213,25 +214,96 @@
   position: relative;
 }
 
-.user-login-dropdown a:hover,
-.user-login-dropdown a:active {
+.user-login-dropdown li:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+
+  transition: all 0.15s ease-in;
+  position: relative;
+}
+
+.dropdown-link:hover,
+.dropdown-link:active {
   background-color: #f7f7f7;
   font-weight: 600;
   border-left: 1rem solid #ddd;
 }
 
+.social-icon {
+  font-size: 2.2rem;
+}
+
+.dropdown-social:link,
+.dropdown-social:visited {
+  transition: all 0.15s;
+}
+
+.dropdown-social:hover,
+.dropdown-social:active {
+  background-color: #f2f2f2;
+  color: #2e2e2e;
+  border-radius: 1rem;
+  border: none;
+}
+
 .user-login-dropdown::after {
   content: "";
   position: absolute;
-  top: 40%;
+  top: 33%;
 
   width: 100%;
   padding: 0.1rem 0;
   background-color: #ddd;
 }
 
-.sign-in-dropdown {
+.sign-in-dropdown:link,
+.sign-in-dropdown:visited {
   font-weight: 600;
+  color: #2e2e2e;
+  background-color: #fcc2d7;
+}
+
+.sign-in-dropdown:hover,
+.sign-in-dropdown:active {
+  border-left: 1rem solid #272326;
+  background-color: #faa2c1;
+}
+
+/* Menu Mobile */
+.menu-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.icon-mobile-menu {
+  font-size: 4.4rem;
+  color: #4e4e4e;
+
+  transition: all 0.2s;
+  display: none;
+}
+
+.icon-mobile-menu:hover,
+.icon-mobile-menu:active {
+  color: #2e2e2e;
+}
+
+.open-mobile-menu {
+  cursor: pointer;
+}
+
+.close-mobile-menu {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /*****************************************************************************************/
@@ -241,7 +313,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 70vh;
+  min-height: 90vh;
+  min-height: 90svh;
 
   /* Background Image */
   background-image: url("/landing-page/img/hero-background.jpg");
@@ -290,6 +363,7 @@
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: 800;
   font-size: 9.6rem;
+  text-shadow: 0 0 1rem rgba(252, 194, 215, 0.1);
 }
 
 .hero-title span:nth-child(2) {
@@ -312,6 +386,7 @@
   justify-content: center;
 
   background-color: #fff;
+  border: 1px solid #ddd;
   border-radius: 10rem;
   overflow: hidden;
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.3);
@@ -325,15 +400,10 @@
   flex: 1;
   padding: 2rem 2.4rem;
   padding-left: 3.2rem;
-  /* border-right: 0.01rem solid #ddd; */
+  border-radius: 10rem;
 
   position: relative;
-}
-
-.search-field:hover,
-.search-field:active {
-  background-color: #d9d9d9;
-  border-radius: 10rem;
+  transition: all 0.15s;
 }
 
 .search-field label::after {
@@ -344,6 +414,8 @@
   background-color: #bbb;
   right: 0;
   bottom: 1.4rem;
+
+  z-index: 5;
 }
 
 .search-field:last-child {
@@ -361,7 +433,7 @@
   margin-bottom: 1.4rem;
 }
 
-.search-field input {
+.input {
   cursor: pointer;
 
   width: 100%;
@@ -369,21 +441,20 @@
   outline: none;
   font-size: 16px;
   color: #000;
-}
+  background-color: #fff;
 
-.search-field:hover input {
-  background-color: #d9d9d9;
+  transition: all 0.15s;
 }
 
 .search-button {
-  background-color: #ff0059;
+  background-color: #ff004c;
   border: none;
   border-radius: 50%;
   padding: 1.6rem;
   margin-left: 15px;
 
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s;
   z-index: 2; /* Ensure the button is above the overlay */
 }
 
@@ -395,4 +466,45 @@
 
 .search-button:hover {
   background-color: #d6336c;
+}
+
+/* title Interactive Search Bar*/
+/* The choosen search field handling */
+.choosing-search-field {
+  background-color: #fff;
+  border-radius: 10rem;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+}
+
+.choosing-search-field:hover {
+  background-color: #fff;
+  border-radius: 10rem;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+}
+
+.choosing-input:hover input {
+  background-color: #fff;
+}
+
+.choosing-input:hover {
+  background-color: #fff;
+}
+
+/* Rest of the search bar when in choose mode handling*/
+.search-bar-choose-mode {
+  background-color: #d9d9d9;
+}
+
+/* handleing background of the rest the search bar in choose mode */
+.input-background-in-choose-mode {
+  background-color: #d9d9d9;
+}
+
+.search-field:hover .input-background-in-choose-mode {
+  background-color: #ccc;
+}
+
+.search-background-choosing-mode:hover,
+.search-background-choosing-mode:active {
+  background-color: #ccc;
 }

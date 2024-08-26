@@ -162,25 +162,73 @@
               >
             </li>
             <li>
-              <a class="log-in-dropdown" href="#" aria-label="Log in">Log in</a>
+              <a
+                class="log-in-dropdown dropdown-link"
+                href="#"
+                aria-label="Log in"
+                >Log in</a
+              >
             </li>
             <li>
-              <a class="about-us-dropdown" href="#" aria-label="About Us"
+              <a
+                class="about-us-dropdown dropdown-link"
+                href="#"
+                aria-label="About Us"
                 >About us</a
               >
             </li>
             <li>
-              <a class="terms-dropdown" href="#" aria-label="Our Terms"
+              <a
+                class="terms-dropdown dropdown-link"
+                href="#"
+                aria-label="Our Terms"
                 >Our terms</a
               >
             </li>
             <li>
-              <a class="help-center-dropdown" href="#" aria-label="Help Center"
+              <a
+                class="help-center-dropdown dropdown-link"
+                href="#"
+                aria-label="Help Center"
                 >Help center</a
               >
             </li>
+
+            <li>
+              <a
+                class="instagram dropdown-social"
+                href="https://www.instagram.com/"
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
+              <a
+                class="whatsapp dropdown-social"
+                href="https://web.whatsapp.com/"
+                ><ion-icon class="social-icon" name="logo-whatsapp"></ion-icon
+              ></a>
+              <a
+                class="facebook dropdown-social"
+                href="https://www.facebook.com/?locale=he_IL"
+                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+              ></a>
+            </li>
           </ul>
         </div>
+
+        <!-- USER MENU MOBILE -->
+        <aside class="menu-mobile" aria-label="User Mobile Menu">
+          <button>
+            <ion-icon
+              class="icon-mobile-menu close-mobile-menu hidden-opacity"
+              name="grid"
+            ></ion-icon>
+          </button>
+          <button>
+            <ion-icon
+              class="icon-mobile-menu open-mobile-menu"
+              name="square"
+            ></ion-icon>
+          </button>
+        </aside>
       </div>
     </nav>
 
@@ -198,40 +246,47 @@
         </p>
 
         <!-- HERO SEARCH BAR -->
-        <div class="search-bar">
-          <div class="search-field where">
-            <label for="where">Where</label>
+        <div class="search-bar search-bar-choose-mode">
+          <div class="search-field where search-background-choosing-mode">
+            <label for="where">Where to?</label>
             <input
               type="text"
-              class="where"
+              class="input where input-background-in-choose-mode"
               placeholder="Search locations"
               required
             />
           </div>
 
-          <div class="search-field check-in">
-            <label for="check-in">Check in</label>
+          <div
+            class="search-field arrive-by search-background search-background-choosing-mode"
+          >
+            <label for="check-in">Arrive by</label>
             <input
               type="text"
-              class="check-in"
+              class="input check-in input-background-in-choose-mode"
               placeholder="Add dates"
               required
             />
           </div>
 
-          <div class="search-field check-out">
+          <div class="search-field check-out choosing-search-field">
             <label for="check-out">Check out</label>
             <input
-              type="text"
-              class="check-out"
+              type="date"
+              class="input check-out choosing-input"
               placeholder="Add dates"
               required
             />
           </div>
 
-          <div class="search-field who">
-            <label for="who">Who</label>
-            <input type="text" class="who" placeholder="Add guests" required />
+          <div class="search-field travelers search-background-choosing-mode">
+            <label for="who">Travelers</label>
+            <input
+              type="text"
+              class="input who input-background input-background-in-choose-mode"
+              placeholder="Add guests"
+              required
+            />
           </div>
 
           <button class="search-button">
