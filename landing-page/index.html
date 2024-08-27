@@ -246,53 +246,51 @@
         </p>
 
         <!-- HERO SEARCH BAR -->
-        <div class="search-bar search-bar-choose-mode">
-          <div class="search-field where search-background-choosing-mode">
+        <form class="search-bar">
+          <div class="search-field where search-field-regular-mode">
             <label for="where">Where to?</label>
             <input
               type="text"
-              class="input where input-background-in-choose-mode"
+              class="input where-input input-background-regular-mode"
               placeholder="Search locations"
               required
             />
           </div>
 
-          <div
-            class="search-field arrive-by search-background search-background-choosing-mode"
-          >
+          <div class="search-field arrive-by search-field-regular-mode">
             <label for="check-in">Arrive by</label>
             <input
               type="text"
-              class="input check-in input-background-in-choose-mode"
+              class="input arrive-by-input input-background-regular-mode"
               placeholder="Add dates"
               required
             />
           </div>
 
-          <div class="search-field check-out choosing-search-field">
+          <div class="search-field check-out search-field-regular-mode">
             <label for="check-out">Check out</label>
             <input
-              type="date"
-              class="input check-out choosing-input"
+              type="text"
+              class="input check-out-input input-background-regular-mode"
               placeholder="Add dates"
               required
             />
           </div>
 
-          <div class="search-field travelers search-background-choosing-mode">
+          <div class="search-field travelers search-field-regular-mode">
             <label for="who">Travelers</label>
             <input
-              type="text"
-              class="input who input-background input-background-in-choose-mode"
+              type="number"
+              class="input travelers-input input-background-regular-mode"
               placeholder="Add guests"
               required
             />
           </div>
 
-          <button class="search-button">
+          <button class="search-button" input="submit">
             <ion-icon class="icon" name="search-outline"></ion-icon>
           </button>
-        </div>
+        </form>
       </div>
     </section>
 

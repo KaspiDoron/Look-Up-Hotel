@@ -345,7 +345,8 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 90rem; /* Determines the hero width */
+  width: 90rem; /* Determines the hero width */
+  max-width: 95svw; /* Determines the hero width */
 }
 
 .hero-title {
@@ -363,7 +364,7 @@
   font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: 800;
   font-size: 9.6rem;
-  text-shadow: 0 0 1rem rgba(252, 194, 215, 0.1);
+  text-shadow: 0 0 0.2rem rgba(252, 194, 215, 0.6);
 }
 
 .hero-title span:nth-child(2) {
@@ -376,7 +377,7 @@
   text-wrap: nowrap;
   font-size: 3rem;
   color: #fff;
-  margin-bottom: 4.8rem;
+  margin-bottom: 8rem;
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 
@@ -391,7 +392,7 @@
   overflow: hidden;
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.3);
   padding-right: 2.4rem;
-  z-index: 2; /* Ensure the search bar is above the overlay */
+  z-index: 15; /* Ensure the search bar is above the overlay */
 }
 
 .search-field {
@@ -495,7 +496,7 @@
   background-color: #d9d9d9;
 }
 
-/* handleing background of the rest the search bar in choose mode */
+/* Handleing background of the rest the search bar in choose mode */
 .input-background-in-choose-mode {
   background-color: #d9d9d9;
 }
@@ -507,4 +508,21 @@
 .search-background-choosing-mode:hover,
 .search-background-choosing-mode:active {
   background-color: #ccc;
+}
+
+/* Remove those classes on "choose" mode */
+.input-background-regular-mode,
+.search-field-regular-mode {
+  transition: all 0.2s;
+}
+
+.search-field-regular-mode:hover .input-background-regular-mode {
+  background-color: #d9d9d9;
+}
+
+.input-background-regular-mode:hover,
+.input-background-regular-mode:active,
+.search-field-regular-mode:hover,
+.search-field-regular-mode:active {
+  background-color: #d9d9d9;
 }
