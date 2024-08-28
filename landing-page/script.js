@@ -4,7 +4,7 @@
 /* NAV SECTION */
 /*****************************************************************************************/
 // title Declaring Elements
-const overlay = document.querySelector(".overlay");
+const navBarOverlay = document.querySelector(".navbar-overlay");
 
 const userDropdownIcons = document.querySelector(".user-login");
 const navbarDropdown = document.querySelector(".user-login-dropdown");
@@ -40,12 +40,12 @@ function closeDropdownUser() {
   navbarDropdown.classList.add("hidden");
 }
 
-function addOverlayCntrl() {
-  overlay.classList.remove("hidden");
+function addNabarOverlayCntrl() {
+  navBarOverlay.classList.remove("hidden");
 }
 
-function removeOverlayCntrl() {
-  overlay.classList.add("hidden");
+function removeNabarOverlayCntrl() {
+  navBarOverlay.classList.add("hidden");
 }
 
 function openMobileMenuFn() {
@@ -67,7 +67,7 @@ userDropdownIcons.addEventListener("click", function () {
   // Activate dropdown if it's close
   if (!isUserDropdownOpen) {
     openDropdownUser();
-    addOverlayCntrl();
+    addNabarOverlayCntrl();
 
     closeLan(); // Close popup if it's open
     closeMobileMenuFn(); // Close menuMobile if it's open
@@ -75,7 +75,7 @@ userDropdownIcons.addEventListener("click", function () {
   // Close dropdown if it's open
   else {
     closeDropdownUser();
-    removeOverlayCntrl();
+    removeNabarOverlayCntrl();
   }
 });
 
@@ -83,7 +83,7 @@ iconGlobe.addEventListener("click", function () {
   // Activate popup if it's close
   if (!isLanPopupOpen) {
     openLan();
-    addOverlayCntrl();
+    addNabarOverlayCntrl();
 
     closeDropdownUser(); // Close dropdown if it's open
     closeMobileMenuFn(); // Close menuMobile if it's open
@@ -91,17 +91,17 @@ iconGlobe.addEventListener("click", function () {
   // Close dropdown if it's open
   else {
     closeLan();
-    removeOverlayCntrl();
+    removeNabarOverlayCntrl();
   }
 });
 
-overlay.addEventListener("click", function () {
+navBarOverlay.addEventListener("click", function () {
   // If we able to click overlay that means dropdown/popup/mobile menu are open and the overlay applies
   closeLan();
   closeDropdownUser();
   closeMobileMenuFn();
 
-  removeOverlayCntrl();
+  removeNabarOverlayCntrl();
 });
 
 // title Handling Mobile Menu
@@ -109,7 +109,7 @@ openMobileMenu.addEventListener("click", function () {
   // Clickinng on the open menu btn, open only if it's closed
   if (!isMobileMenuOpen) {
     openMobileMenuFn();
-    addOverlayCntrl();
+    addNabarOverlayCntrl();
   }
 });
 
@@ -117,7 +117,7 @@ closeMobileMenu.addEventListener("click", function () {
   // Clickinng on the close menu btn, close only if it's open
   if (isMobileMenuOpen) {
     closeMobileMenuFn();
-    removeOverlayCntrl();
+    removeNabarOverlayCntrl();
   }
 });
 
@@ -129,13 +129,42 @@ const searchBar = document.querySelector(".search-bar");
 const searchField = document.querySelectorAll(".search-field");
 const inputField = document.querySelectorAll(".input");
 
+const heroOverlay = document.querySelector("hero-overlay");
+
 let chosenSearchField = 0,
   chosenInputField = 0;
 
-let isSearchFieldChooseNow = false; // Creating a boolean to handle clicking and UNclicking
+let isASearchFieldChooseNow = false; // Creating a boolean to handle clicking and UNclicking
 
 // title Helper Functions
-// todo MAKING HELPER CLASSES THAT ADDS AND REMOVE THE "REGULAR MDOE" AND THE "CHOSE MODE"
+function searchBarRemoveStylesRegularMode() {
+  searchField.forEach((element) => {
+    element.classList.remove("search-field-regular-mode");
+  });
+  inputField.forEach((element) => {
+    element.classList.remove("input-background-regular-mode");
+  });
+}
+
+function searchBarAddStylesChooseMode() {
+  searchField.forEach((element) => {
+    element.classList.add("search-background-choosing-mode");
+  });
+  inputField.forEach((element) => {
+    element.classList.add("input-background-in-choose-mode");
+  });
+  searchBar.classList.add("search-bar-choose-mode");
+}
+
+function addHeroOverlayCntrl() {
+  heroOverlay.classList.remove("hidden");
+}
+
+function removeHeroOverlayCntrl() {
+  heroOverlay.classList.add("hidden");
+}
+
+// todo find a way to make the doc qs with chosen elements shorter DRY
 
 // title Handling the search bar "chose mode"
 
@@ -143,15 +172,16 @@ let isSearchFieldChooseNow = false; // Creating a boolean to handle clicking and
 function activateElement(event) {
   const clickedElement = event.target; // Get the clicked element
 
-  // Condition that distinguish between "choose mode" and "regular mode"
-  if (!isSearchFieldChooseNow) {
-    isSearchFieldChooseNow = true; //Once it clicked when it was false, now it's true
+  // Condition that distinguish between first time clicking and a second/third.. time while there is a clicked field
+  if (
+    chosenInputField !== clickedElement ||
+    chosenSearchField !== clickedElement
+  ) {
+    // Checking if there is already chosen field
+    if (!isASearchFieldChooseNow) {
+      // Enter only if none field is choosen
+      isASearchFieldChooseNow = true;
 
-    // Condition that distinguish between first time clicking and a second/third.. time while there is a clicked field
-    if (
-      chosenInputField !== clickedElement ||
-      chosenSearchField !== clickedElement
-    ) {
       // Set the chosenSearchField && chosenInputField to the QS
       if (
         clickedElement.classList.contains("where") ||
@@ -182,34 +212,63 @@ function activateElement(event) {
       }
 
       // Removing all the css classes from the regular mode
-      searchField.forEach((element) => {
-        element.classList.remove("search-field-regular-mode");
-      });
-      inputField.forEach((element) => {
-        element.classList.remove("input-background-regular-mode");
-      });
+      searchBarRemoveStylesRegularMode();
 
       // Adding all the right css classes to the chosen search field and the search bar
-      searchBar.classList.add("search-bar-choose-mode");
-      searchField.forEach((element) => {
-        element.classList.add("search-background-choosing-mode");
-      });
-      inputField.forEach((element) => {
-        element.classList.remove("input-background-in-choose-mode");
-      });
-    }
-    // If it's second time clicking and there is already clicked element
-    else {
-    }
-  }
+      searchBarAddStylesChooseMode();
+      chosenInputField.classList.add("choosing-input");
+      chosenSearchField.classList.add("choosing-search-field");
 
-  // When the user clicked a second time he want
-  else {
+      // Add overlay CNTRL
+      addHeroOverlayCntrl();
+    }
+    // If there is a field choosen now
+    else {
+      // Remove all the "choosing" CSS styles from the current chosen input & the currrent chosen search
+      chosenInputField.classList.remove("choosing-input");
+      chosenSearchField.classList.remove("choosing-search-field");
+
+      // Add the right CSS styles to the rest of the search bar
+      searchBarAddStylesChooseMode();
+
+      // Add the QS to the new chosen fields
+      if (
+        clickedElement.classList.contains("where") ||
+        clickedElement.classList.contains("where-input")
+      ) {
+        chosenSearchField = document.querySelector(".where");
+        chosenInputField = document.querySelector(".where-input");
+      } else if (
+        clickedElement.classList.contains("arrive-by") ||
+        clickedElement.classList.contains("arrive-by-input")
+      ) {
+        chosenSearchField = document.querySelector(".arrive-by");
+        chosenInputField = document.querySelector(".arrive-by-input");
+      } else if (
+        clickedElement.classList.contains("check-out") ||
+        clickedElement.classList.contains("check-out-input")
+      ) {
+        chosenSearchField = document.querySelector(".check-out");
+        chosenInputField = document.querySelector(".check-out-input");
+      } else if (
+        clickedElement.classList.contains("travelers") ||
+        clickedElement.classList.contains("travelers-input")
+      ) {
+        chosenSearchField = document.querySelector(".travelers");
+        chosenInputField = document.querySelector(".travelers-input");
+      } else {
+        console.log("there is a bug");
+      }
+
+      // And add the right css classes to the new chosens fields
+      chosenInputField.classList.add("choosing-input");
+      chosenSearchField.classList.add("choosing-search-field");
+    }
   }
 }
 
 // Add event listeners to all elements with the desired classes
-const elementsWithClasses = document.querySelectorAll(".input, .search-field");
-elementsWithClasses.forEach((element) => {
+const searchbarClasses = document.querySelectorAll(".input, .search-field");
+searchbarClasses.forEach((element) => {
   element.addEventListener("click", activateElement);
 });

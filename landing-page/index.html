@@ -53,7 +53,7 @@
     <!-- NAVBAR SECTION -->
     <!--  -->
     <nav class="navbar" aria-label="Main Navigation">
-      <div class="overlay hidden"></div>
+      <div class="navbar-overlay hidden"></div>
 
       <!-- NAVBAR LOGO -->
       <a class="navbar-logo" href="#" aria-label="Home">
@@ -237,6 +237,7 @@
     <!--  -->
     <section class="hero">
       <div class="hero-content">
+        <div class="hero-overlay hidden"></div>
         <!-- HERO TITLES -->
         <h2 class="hero-title">
           <span>LookUp</span> For Your Perfect <span>Hotel</span>
@@ -250,6 +251,7 @@
           <div class="search-field where search-field-regular-mode">
             <label for="where">Where to?</label>
             <input
+              id="where"
               type="text"
               class="input where-input input-background-regular-mode"
               placeholder="Search locations"
@@ -258,8 +260,9 @@
           </div>
 
           <div class="search-field arrive-by search-field-regular-mode">
-            <label for="check-in">Arrive by</label>
+            <label for="arrive-by">Arrive by</label>
             <input
+              id="arrive-by"
               type="text"
               class="input arrive-by-input input-background-regular-mode"
               placeholder="Add dates"
@@ -270,6 +273,7 @@
           <div class="search-field check-out search-field-regular-mode">
             <label for="check-out">Check out</label>
             <input
+              id="check-out"
               type="text"
               class="input check-out-input input-background-regular-mode"
               placeholder="Add dates"
@@ -280,6 +284,7 @@
           <div class="search-field travelers search-field-regular-mode">
             <label for="who">Travelers</label>
             <input
+              id="who"
               type="number"
               class="input travelers-input input-background-regular-mode"
               placeholder="Add guests"

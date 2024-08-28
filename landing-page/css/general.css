@@ -37,7 +37,7 @@ Pragraph default:
 
 ---- 04 z-index tracking
 5:  navigation bar, the borders in the search bar
-10: overlay
+10: hero overlay, navbar overlay
 15: login dropdown navigation, login icons, mobile menu, search bar
 */
 
@@ -93,7 +93,15 @@ button {
   opacity: 0;
 }
 
-.overlay {
+.navbar-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 10;
+}
+
+.hero-overlay {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -105,8 +113,11 @@ button {
 .nav-link:focus,
 .user-login:focus,
 .navbar-logo:focus,
-.globe-lan-icon:focus {
-  outline: 0.2rem solid #ddd;
+.globe-lan-icon:focus,
+.dropdown-link:focus,
+.sign-in-dropdown:focus,
+.dropdown-social:focus {
+  outline: 0.4rem solid #fcc2d7;
 }
 /*****************************************************************************************/
 /*  Fixing Safari flexbox gap */
