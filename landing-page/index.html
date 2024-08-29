@@ -249,7 +249,7 @@
         <!-- HERO SEARCH BAR -->
         <form class="search-bar">
           <div class="search-field where search-field-regular-mode">
-            <label for="where">Where to?</label>
+            <label class="label-field" for="where">Where to?</label>
             <input
               id="where"
               type="text"
@@ -260,10 +260,10 @@
           </div>
 
           <div class="search-field arrive-by search-field-regular-mode">
-            <label for="arrive-by">Arrive by</label>
+            <label class="label-field" for="arrive-by">Arrive by</label>
             <input
               id="arrive-by"
-              type="text"
+              type="date"
               class="input arrive-by-input input-background-regular-mode"
               placeholder="Add dates"
               required
@@ -271,10 +271,10 @@
           </div>
 
           <div class="search-field check-out search-field-regular-mode">
-            <label for="check-out">Check out</label>
+            <label class="label-field" for="check-out">Check out</label>
             <input
               id="check-out"
-              type="text"
+              type="date"
               class="input check-out-input input-background-regular-mode"
               placeholder="Add dates"
               required
@@ -282,7 +282,7 @@
           </div>
 
           <div class="search-field travelers search-field-regular-mode">
-            <label for="who">Travelers</label>
+            <label class="label-field" for="who">Travelers</label>
             <input
               id="who"
               type="number"
@@ -294,6 +294,7 @@
 
           <button class="search-button" input="submit">
             <ion-icon class="icon" name="search-outline"></ion-icon>
+            <p class="mobile">Sumbit</p>
           </button>
         </form>
       </div>

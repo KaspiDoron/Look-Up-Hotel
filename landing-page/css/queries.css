@@ -111,9 +111,64 @@
 }
 
 /*****************************************************************************************/
-/* BELOW 704px (smaller tablets) */
+/* BELOW 752px (smaller tablets) */
 /*****************************************************************************************/
-@media (max-width: 44em) {
+@media (max-width: 47em) {
+  .hero-title {
+    margin-top: 12.8rem;
+  }
+
+  .search-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 1.2rem;
+
+    border-radius: 5rem;
+    padding: 1.8rem 0.4rem 0 0.4rem;
+  }
+
+  .search-field {
+    grid-column: 1/3;
+
+    border-radius: 3rem;
+  }
+
+  .search-button {
+    grid-row: 5/6;
+    grid-column: 1/3;
+
+    border-radius: 10rem;
+    margin-left: 0;
+    width: 100%;
+    height: 80%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .search-button ion-icon {
+    display: none;
+  }
+
+  .search-button .mobile {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 3.6rem;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: -0.2rem;
+
+    transform: translateX(-0.4rem);
+  }
+
+  .search-field label::after {
+    height: 0.02rem;
+    width: 90%;
+    bottom: -0.6rem;
+    right: auto;
+  }
 }
 
 /*****************************************************************************************/

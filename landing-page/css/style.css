@@ -392,6 +392,7 @@
   overflow: hidden;
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.3);
   padding-right: 2.4rem;
+
   z-index: 15; /* Ensure the search bar is above the overlay */
 }
 
@@ -405,6 +406,8 @@
 
   position: relative;
   transition: all 0.15s;
+
+  z-index: 15; /* Ensure the search bar is above the overlay */
 }
 
 .search-field label::after {
@@ -416,7 +419,7 @@
   right: 0;
   bottom: 1.4rem;
 
-  z-index: 5;
+  z-index: 15;
 }
 
 .search-field:last-child {
@@ -432,6 +435,8 @@
   color: #4e4e4e;
   font-size: 1.4rem;
   margin-bottom: 1.4rem;
+
+  z-index: 15; /* Ensure the search bar is above the overlay */
 }
 
 .input {
@@ -445,6 +450,8 @@
   background-color: #fff;
 
   transition: all 0.15s;
+
+  z-index: 15; /* Ensure the search bar is above the overlay */
 }
 
 .search-button {
@@ -452,11 +459,11 @@
   border: none;
   border-radius: 50%;
   padding: 1.6rem;
-  margin-left: 15px;
+  margin-left: 1.5rem;
 
   cursor: pointer;
   transition: all 0.15s;
-  z-index: 2; /* Ensure the button is above the overlay */
+  z-index: 15; /* Ensure the button is above the overlay */
 }
 
 .search-button ion-icon {
