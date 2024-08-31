@@ -4,11 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Link web and mobile icons -->
+    <!-- Meta Descriptions -->
     <meta
       name="description"
-      content="Look Up Hotel is a friendly ui project."
+      content="Look Up Hotel is a friendly UI project."
     />
+    <meta
+      name="keywords"
+      content="Hotel, Rentals, Booking, Stay, Vacation, Travel"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#e64980" />
+
+    <!-- Icons -->
     <link rel="icon" href="/landing-page/img/lookup-hotel-logo.png" />
     <link
       rel="apple-touch-icon"
@@ -59,7 +67,7 @@
       <a class="navbar-logo" href="#" aria-label="Home">
         <img
           src="/landing-page/img/lookup-hotel-logo.png"
-          class="logo-img"
+          class="logo-img-lookuphotel"
           alt="LookUp Hotel Logo"
         />
         LookUp<span>Hotel</span>
@@ -97,7 +105,7 @@
       </ul>
 
       <!-- NAV USER INTER -->
-      <div class="user-inter">
+      <aside class="user-inter" aria-label="User Interaction">
         <!-- USER POPUP LAN -->
         <div class="lan-popup-section" aria-label="User Langauge Bar">
           <ion-icon
@@ -229,7 +237,7 @@
             ></ion-icon>
           </button>
         </aside>
-      </div>
+      </aside>
     </nav>
 
     <!--  -->
@@ -247,7 +255,7 @@
         </p>
 
         <!-- HERO SEARCH BAR -->
-        <form class="search-bar">
+        <form class="search-bar" role="search">
           <div class="search-field where search-field-regular-mode">
             <label class="label-field" for="where">Where to?</label>
             <input
@@ -292,15 +300,41 @@
             />
           </div>
 
-          <button class="search-button" input="submit">
+          <button input="submit" class="search-button">
             <ion-icon class="icon" name="search-outline"></ion-icon>
-            <p class="mobile">Sumbit</p>
+            <p class="sumnbit-searchbar-mobile">Sumbit</p>
           </button>
         </form>
       </div>
     </section>
 
+    <!--  -->
+    <!-- LOGOS SECTION -->
+    <!--  -->
+    <section class="section-logos">
+      <header class="headers-container">
+        <h2 class="prime-header">Collaborating for the Future</h2>
+        <h3 class="sub-header">Meet the innovators powering our platform.</h3>
+      </header>
+
+      <div class="logos-container">
+        <div class="logo logos-scroll-left delay1"></div>
+        <div class="logo logos-scroll-left delay2"></div>
+        <div class="logo logos-scroll-left delay3"></div>
+        <div class="logo logos-scroll-left delay4"></div>
+        <div class="logo logos-scroll-left delay5"></div>
+        <div class="logo logos-scroll-left delay6"></div>
+        <div class="logo logos-scroll-left delay7"></div>
+        <div class="logo logos-scroll-left delay8"></div>
+      </div>
+    </section>
+
+    <!--  -->
+    <!-- FEATURED HOTELS SECTION -->
+    <!--  -->
+
     <!-- SCRIPT -->
     <script defer src="/landing-page/script.js"></script>
+    <script src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"></script>
   </body>
 </html>

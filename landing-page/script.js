@@ -134,117 +134,114 @@ const heroOverlay = document.querySelector(".hero-overlay");
 
 let chosenSearchField = null,
   chosenInputField = null,
-  chsoenLabelField = null;
+  chosenLabelField = null;
 
-let isASearchFieldChooseNow = false; // Creating a boolean to handle clicking and UNclicking
+let isFieldChosen = false; // Tracks if a search field is currently selected
 
 // title Helper Functions
-function searchBarRemoveStylesRegularMode() {
-  searchField.forEach((element) => {
-    element.classList.remove("search-field-regular-mode");
-  });
-  inputField.forEach((element) => {
-    element.classList.remove("input-background-regular-mode");
-  });
+function removeStylesRegularMode() {
+  // Remove regular mode styles
+  searchField.forEach((element) =>
+    element.classList.remove("search-field-regular-mode")
+  );
+  inputField.forEach((element) =>
+    element.classList.remove("input-background-regular-mode")
+  );
 }
 
-function searchBarAddStylesChooseMode() {
-  searchField.forEach((element) => {
-    element.classList.add("search-background-choosing-mode");
-  });
-  inputField.forEach((element) => {
-    element.classList.add("input-background-in-choose-mode");
-  });
+function addStylesChooseMode() {
+  // Apply styles for "choose mode"
+  searchField.forEach((element) =>
+    element.classList.add("search-background-choosing-mode")
+  );
+  inputField.forEach((element) =>
+    element.classList.add("input-background-in-choose-mode")
+  );
   searchBar.classList.add("search-bar-choose-mode");
 }
 
-function searchBarResetStylesChooseMode() {
-  // Removing the special backgrounds "choose mode"
-  searchField.forEach((element) => {
-    element.classList.remove("search-background-choosing-mode");
-  });
-  inputField.forEach((element) => {
-    element.classList.remove("input-background-in-choose-mode");
-  });
+function resetStylesChooseMode() {
+  // Remove "choose mode" styles
+  searchField.forEach((element) =>
+    element.classList.remove("search-background-choosing-mode")
+  );
+  inputField.forEach((element) =>
+    element.classList.remove("input-background-in-choose-mode")
+  );
   searchBar.classList.remove("search-bar-choose-mode");
 
-  // Add the regular backgrounds
-  searchField.forEach((element) => {
-    element.classList.add("search-field-regular-mode");
-  });
-  inputField.forEach((element) => {
-    element.classList.add("input-background-regular-mode");
-  });
+  // Reapply regular mode styles
+  searchField.forEach((element) =>
+    element.classList.add("search-field-regular-mode")
+  );
+  inputField.forEach((element) =>
+    element.classList.add("input-background-regular-mode")
+  );
 }
 
 function deactivateChoosingMode() {
-  if (isASearchFieldChooseNow) {
+  // Remove styles from the currently chosen field
+  if (isFieldChosen) {
     chosenSearchField.classList.remove("choosing-search-field");
     chosenInputField.classList.remove("choosing-input");
-    isASearchFieldChooseNow = false;
+    isFieldChosen = false;
   }
 }
 
 function activateChoosingMode() {
-  // Add the "choosing" classes to the chosen search field and input
+  // Apply styles to the currently chosen field
   chosenSearchField.classList.add("choosing-search-field");
   chosenInputField.classList.add("choosing-input");
-  isASearchFieldChooseNow = true;
+  isFieldChosen = true;
 }
 
-function addHeroOverlayCntrl() {
+function showHeroOverlay() {
   heroOverlay.classList.remove("hidden");
 }
 
-function removeHeroOverlayCntrl() {
+function hideHeroOverlay() {
   heroOverlay.classList.add("hidden");
 }
 
-// todo find a way to make the doc qs with chosen elements shorter DRY
+// todo to understand how can make all the elif qs shorter as a function to apply the DRY rule
+// title Handling the search bar "choose mode"
 
-// title Handling the search bar "chose mode"
-
-// Taking the info about the clicked search field
-function activateElement(event) {
+// Handle click events on search fields and labels
+function handleElementClick(event) {
   const clickedElement = event.target; // Get the clicked element
 
-  // Check if clicked element is a label
   if (clickedElement.tagName === "LABEL") {
     const associatedInputId = clickedElement.getAttribute("for");
     const associatedInputField = document.getElementById(associatedInputId);
 
-    // If associated input found, handle choosing mode activation
     if (associatedInputField) {
-      // Deactivate any existing choosing mode
+      // Deactivate any previously chosen fields
       deactivateChoosingMode();
-      searchBarRemoveStylesRegularMode();
+      removeStylesRegularMode();
 
       chosenSearchField = associatedInputField.parentElement; // Get parent search-field
       chosenInputField = associatedInputField;
-      chsoenLabelField = clickedElement;
-      // After deactivated the previous fields, activate the new ones
-      searchBarAddStylesChooseMode();
+      chosenLabelField = clickedElement;
+
+      // Apply styles to the new chosen field
+      addStylesChooseMode();
       activateChoosingMode();
-      addHeroOverlayCntrl(); // Add overlay cntrl
+      showHeroOverlay(); // Show overlay
     } else {
-      console.error("Could not find associated input field for label");
+      console.error("Associated input field not found for label");
     }
-  }
-
-  // Existing logic for clicking directly on search-field or input
-  else {
-    // Condition that distinguish between first time clicking and a second/third.. time while there is a clicked field
+  } else {
+    // Handle click on search field or input
     if (
-      chosenInputField !== clickedElement ||
-      chosenSearchField !== clickedElement ||
-      chsoenLabelField != clickedElement
+      chosenInputField !== clickedElement &&
+      chosenSearchField !== clickedElement &&
+      chosenLabelField !== clickedElement
     ) {
-      // Checking if there is already chosen field
-      if (!isASearchFieldChooseNow) {
-        // Enter only if none field is choosen
-        isASearchFieldChooseNow = true;
+      if (!isFieldChosen) {
+        // No field is currently chosen
+        isFieldChosen = true;
 
-        // Set the chosenSearchField && chosenInputField to the QS
+        // Determine which field was clicked
         if (
           clickedElement.classList.contains("where") ||
           clickedElement.classList.contains("where-input")
@@ -270,73 +267,74 @@ function activateElement(event) {
           chosenSearchField = document.querySelector(".travelers");
           chosenInputField = document.querySelector(".travelers-input");
         } else {
-          console.log("there is a bug");
+          console.log("Unexpected element clicked");
         }
-        // Removing all the css classes from the regular mode
-        searchBarRemoveStylesRegularMode();
 
-        // Adding all the right css classes to the chosen search field and the search bar
-        searchBarAddStylesChooseMode();
+        // Apply styles to the new chosen field
+        removeStylesRegularMode();
+        addStylesChooseMode();
         activateChoosingMode();
-        addHeroOverlayCntrl(); // Add overlay CNTRL
-      }
-      // If there is a field choosen now
-      else {
-        // Remove all the "choosing" CSS styles from the current chosen input & the currrent chosen search
+        showHeroOverlay(); // Show overlay
+      } else {
+        // A field is already chosen
         deactivateChoosingMode();
 
-        // Add the right CSS styles to the rest of the search bar
-        searchBarAddStylesChooseMode();
-
-        // Add the QS to the new chosen fields
-        if (
-          clickedElement.classList.contains("where") ||
-          clickedElement.classList.contains("where-input")
-        ) {
-          chosenSearchField = document.querySelector(".where");
-          chosenInputField = document.querySelector(".where-input");
-        } else if (
-          clickedElement.classList.contains("arrive-by") ||
-          clickedElement.classList.contains("arrive-by-input")
-        ) {
-          chosenSearchField = document.querySelector(".arrive-by");
-          chosenInputField = document.querySelector(".arrive-by-input");
-        } else if (
-          clickedElement.classList.contains("check-out") ||
-          clickedElement.classList.contains("check-out-input")
-        ) {
-          chosenSearchField = document.querySelector(".check-out");
-          chosenInputField = document.querySelector(".check-out-input");
-        } else if (
-          clickedElement.classList.contains("travelers") ||
-          clickedElement.classList.contains("travelers-input")
-        ) {
-          chosenSearchField = document.querySelector(".travelers");
-          chosenInputField = document.querySelector(".travelers-input");
-        } else {
-          console.log("there is a bug");
-        }
-
-        // And add the right css classes to the new chosens fields
+        // Apply styles to the new field
+        addStylesChooseMode();
+        determineChosenField(clickedElement);
         activateChoosingMode();
-        addHeroOverlayCntrl();
+        showHeroOverlay(); // Show overlay
       }
     }
   }
 }
 
-// Add event listeners to all elements with the desired classes
+function determineChosenField(clickedElement) {
+  // Determine the new chosen field based on the clicked element
+  if (
+    clickedElement.classList.contains("where") ||
+    clickedElement.classList.contains("where-input")
+  ) {
+    chosenSearchField = document.querySelector(".where");
+    chosenInputField = document.querySelector(".where-input");
+  } else if (
+    clickedElement.classList.contains("arrive-by") ||
+    clickedElement.classList.contains("arrive-by-input")
+  ) {
+    chosenSearchField = document.querySelector(".arrive-by");
+    chosenInputField = document.querySelector(".arrive-by-input");
+  } else if (
+    clickedElement.classList.contains("check-out") ||
+    clickedElement.classList.contains("check-out-input")
+  ) {
+    chosenSearchField = document.querySelector(".check-out");
+    chosenInputField = document.querySelector(".check-out-input");
+  } else if (
+    clickedElement.classList.contains("travelers") ||
+    clickedElement.classList.contains("travelers-input")
+  ) {
+    chosenSearchField = document.querySelector(".travelers");
+    chosenInputField = document.querySelector(".travelers-input");
+  } else {
+    console.log("Unexpected element clicked");
+  }
+}
+
+// Attach click event listeners to search bar elements
 const searchbarClasses = document.querySelectorAll(
   ".input, .search-field, .label-field"
 );
-searchbarClasses.forEach((element) => {
-  element.addEventListener("click", activateElement);
-});
+searchbarClasses.forEach((element) =>
+  element.addEventListener("click", handleElementClick)
+);
 
+// Hide the overlay and reset styles when overlay is clicked
 heroOverlay.addEventListener("click", function () {
-  // If we able to click overlay that means that the search bar in chose mode and the overlay applies
   deactivateChoosingMode();
-  searchBarResetStylesChooseMode();
-
-  removeNabarOverlayCntrl(); // Remove the cntrl at last
+  resetStylesChooseMode();
+  hideHeroOverlay(); // Hide overlay
 });
+
+/*****************************************************************************************/
+/* FEATURED HOTELS SECTION */
+/*****************************************************************************************/
