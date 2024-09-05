@@ -15,8 +15,8 @@ const lanPopup = document.querySelector(".lan-popup");
 let isLanPopupOpen = false;
 
 const navLinks = document.querySelector(".nav-links");
-const openMobileMenu = document.querySelector(".open-mobile-menu");
-const closeMobileMenu = document.querySelector(".close-mobile-menu");
+const openMobileMenu = document.querySelector(".close-mobile-menu");
+const closeMobileMenu = document.querySelector(".open-mobile-menu");
 let isMobileMenuOpen = false;
 
 // title Helper Functions
@@ -242,33 +242,7 @@ function handleElementClick(event) {
         isFieldChosen = true;
 
         // Determine which field was clicked
-        if (
-          clickedElement.classList.contains("where") ||
-          clickedElement.classList.contains("where-input")
-        ) {
-          chosenSearchField = document.querySelector(".where");
-          chosenInputField = document.querySelector(".where-input");
-        } else if (
-          clickedElement.classList.contains("arrive-by") ||
-          clickedElement.classList.contains("arrive-by-input")
-        ) {
-          chosenSearchField = document.querySelector(".arrive-by");
-          chosenInputField = document.querySelector(".arrive-by-input");
-        } else if (
-          clickedElement.classList.contains("check-out") ||
-          clickedElement.classList.contains("check-out-input")
-        ) {
-          chosenSearchField = document.querySelector(".check-out");
-          chosenInputField = document.querySelector(".check-out-input");
-        } else if (
-          clickedElement.classList.contains("travelers") ||
-          clickedElement.classList.contains("travelers-input")
-        ) {
-          chosenSearchField = document.querySelector(".travelers");
-          chosenInputField = document.querySelector(".travelers-input");
-        } else {
-          console.log("Unexpected element clicked");
-        }
+        changeInptElementStyle(clickedElement);
 
         // Apply styles to the new chosen field
         removeStylesRegularMode();
@@ -289,8 +263,7 @@ function handleElementClick(event) {
   }
 }
 
-function determineChosenField(clickedElement) {
-  // Determine the new chosen field based on the clicked element
+const changeInptElementStyle = (clickedElement) => {
   if (
     clickedElement.classList.contains("where") ||
     clickedElement.classList.contains("where-input")
@@ -318,6 +291,11 @@ function determineChosenField(clickedElement) {
   } else {
     console.log("Unexpected element clicked");
   }
+};
+
+function determineChosenField(clickedElement) {
+  // Determine the new chosen field based on the clicked element
+  changeInptElementStyle(clickedElement);
 }
 
 // Attach click event listeners to search bar elements

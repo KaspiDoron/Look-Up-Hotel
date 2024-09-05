@@ -66,6 +66,13 @@ body {
   position: relative;
 }
 
+.page-contaier {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  padding: 6.4rem 4.8rem;
+}
+
 /*****************************************************************************************/
 /*  REUSABLE COMPONENTS */
 /*****************************************************************************************/
@@ -125,12 +132,11 @@ button {
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  align-items: start;
+  justify-content: start;
 
   font-family: "DM Serif Text", sans-serif;
-  color: #741738;
+  color: #42081c;
 
   margin-bottom: 4.2rem;
 }
@@ -145,6 +151,11 @@ button {
   font-weight: 500;
 }
 
+.align-text {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
 /* Focus state for links and buttons */
 .nav-link:focus,
 .user-login:focus,

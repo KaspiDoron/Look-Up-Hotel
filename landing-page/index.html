@@ -74,52 +74,77 @@
       </a>
 
       <!-- NAV LINKS -->
-      <ul class="nav-links">
+      <ul class="nav-links" aria-label="Primary Navigation">
         <li>
-          <a class="nav-link home-link" href="#" aria-label="Home"
-            ><ion-icon class="icon" name="home-outline"></ion-icon> Home</a
-          >
+          <a class="nav-link home-link" href="#" aria-label="Home">
+            <ion-icon
+              class="icon"
+              name="home-outline"
+              aria-label="Home Icon"
+            ></ion-icon>
+            Home
+          </a>
         </li>
         <li>
-          <a class="nav-link" href="#" aria-label="About Us"
-            ><ion-icon class="icon" name="book-outline"></ion-icon> About</a
-          >
+          <a class="nav-link" href="#" aria-label="About Us">
+            <ion-icon
+              class="icon"
+              name="book-outline"
+              aria-label="About Icon"
+            ></ion-icon>
+            About
+          </a>
         </li>
         <li>
-          <a class="nav-link" href="#" aria-label="Rentals"
-            ><ion-icon class="icon" name="business-outline"></ion-icon>
-            Rentals</a
-          >
+          <a class="nav-link" href="#" aria-label="Rentals">
+            <ion-icon
+              class="icon"
+              name="business-outline"
+              aria-label="Rentals Icon"
+            ></ion-icon>
+            Rentals
+          </a>
         </li>
         <li>
-          <a class="nav-link" href="#" aria-label="Features"
-            ><ion-icon class="icon" name="sparkles-outline"></ion-icon>
-            Features</a
-          >
+          <a class="nav-link" href="#" aria-label="Features">
+            <ion-icon
+              class="icon"
+              name="sparkles-outline"
+              aria-label="Features Icon"
+            ></ion-icon>
+            Features
+          </a>
         </li>
         <li>
-          <a class="nav-link" href="#" aria-label="Services"
-            ><ion-icon class="icon" name="bulb-outline"></ion-icon> Services</a
-          >
+          <a class="nav-link" href="#" aria-label="Services">
+            <ion-icon
+              class="icon"
+              name="bulb-outline"
+              aria-label="Services Icon"
+            ></ion-icon>
+            Services
+          </a>
         </li>
       </ul>
 
       <!-- NAV USER INTER -->
       <aside class="user-inter" aria-label="User Interaction">
         <!-- USER POPUP LAN -->
-        <div class="lan-popup-section" aria-label="User Langauge Bar">
+        <!-- USER POPUP LAN -->
+        <div class="lan-popup-section" aria-label="User Language Bar">
           <ion-icon
             class="icon globe-lan-icon"
             name="globe-outline"
-            aria-label="Globe Icon"
+            aria-label="Language Options"
           ></ion-icon>
 
-          <ul class="lan-popup hidden">
+          <ul class="lan-popup hidden" aria-label="Available Languages">
             <li>
               <img
                 class="flag-lan"
                 src="/landing-page/img/flags/us.svg"
-                aria-label="USA Flag"
+                alt="USA Flag"
+                aria-hidden="true"
               />
               <span>US</span>
             </li>
@@ -127,7 +152,8 @@
               <img
                 class="flag-lan"
                 src="/landing-page/img/flags/it.svg"
-                aria-label="Italy Flag"
+                alt="Italy Flag"
+                aria-hidden="true"
               />
               <span>IT</span>
             </li>
@@ -135,7 +161,8 @@
               <img
                 class="flag-lan"
                 src="/landing-page/img/flags/il.svg"
-                aria-label="Israel Flag"
+                alt="Israel Flag"
+                aria-hidden="true"
               />
               <span>IL</span>
             </li>
@@ -143,7 +170,8 @@
               <img
                 class="flag-lan"
                 src="/landing-page/img/flags/fr.svg"
-                aria-label="France Flag"
+                alt="France Flag"
+                aria-hidden="true"
               />
               <span>FR</span>
             </li>
@@ -155,12 +183,12 @@
           <ion-icon
             class="icon user-login-icon"
             name="menu"
-            aria-label="Menu"
+            aria-label="Menu Button"
           ></ion-icon>
           <ion-icon
             class="icon user-login-icon"
             name="person-circle"
-            aria-label="User Profile"
+            aria-label="User Profile Button"
           ></ion-icon>
 
           <ul class="user-login-dropdown hidden" aria-label="User Options">
@@ -201,39 +229,58 @@
                 >Help center</a
               >
             </li>
-
             <li>
               <a
                 class="instagram dropdown-social"
                 href="https://www.instagram.com/"
-                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
-              ></a>
+                aria-label="Instagram"
+              >
+                <ion-icon
+                  class="social-icon"
+                  name="logo-instagram"
+                  aria-hidden="true"
+                ></ion-icon>
+              </a>
               <a
                 class="whatsapp dropdown-social"
                 href="https://web.whatsapp.com/"
-                ><ion-icon class="social-icon" name="logo-whatsapp"></ion-icon
-              ></a>
+                aria-label="WhatsApp"
+              >
+                <ion-icon
+                  class="social-icon"
+                  name="logo-whatsapp"
+                  aria-hidden="true"
+                ></ion-icon>
+              </a>
               <a
                 class="facebook dropdown-social"
                 href="https://www.facebook.com/?locale=he_IL"
-                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
-              ></a>
+                aria-label="Facebook"
+              >
+                <ion-icon
+                  class="social-icon"
+                  name="logo-facebook"
+                  aria-hidden="true"
+                ></ion-icon>
+              </a>
             </li>
           </ul>
         </div>
 
         <!-- USER MENU MOBILE -->
         <aside class="menu-mobile" aria-label="User Mobile Menu">
-          <button>
+          <button aria-label="Open Menu">
             <ion-icon
-              class="icon-mobile-menu close-mobile-menu hidden-opacity"
+              class="icon-mobile-menu open-mobile-menu hidden-opacity"
               name="grid"
+              aria-hidden="true"
             ></ion-icon>
           </button>
-          <button>
+          <button aria-label="Close Menu">
             <ion-icon
-              class="icon-mobile-menu open-mobile-menu"
+              class="icon-mobile-menu close-mobile-menu"
               name="square"
+              aria-hidden="true"
             ></ion-icon>
           </button>
         </aside>
@@ -243,9 +290,9 @@
     <!--  -->
     <!-- HERO SECTION -->
     <!--  -->
-    <section class="hero">
+    <section class="hero" aria-label="Hero Section">
       <div class="hero-content">
-        <div class="hero-overlay hidden"></div>
+        <div class="hero-overlay hidden" aria-hidden="true"></div>
         <!-- HERO TITLES -->
         <h2 class="hero-title">
           <span>LookUp</span> For Your Perfect <span>Hotel</span>
@@ -255,7 +302,7 @@
         </p>
 
         <!-- HERO SEARCH BAR -->
-        <form class="search-bar" role="search">
+        <form class="search-bar" role="search" aria-label="Hotel Search Form">
           <div class="search-field where search-field-regular-mode">
             <label class="label-field" for="where">Where to?</label>
             <input
@@ -264,6 +311,8 @@
               class="input where-input input-background-regular-mode"
               placeholder="Search locations"
               required
+              aria-required="true"
+              aria-label="Search Locations"
             />
           </div>
 
@@ -275,6 +324,8 @@
               class="input arrive-by-input input-background-regular-mode"
               placeholder="Add dates"
               required
+              aria-required="true"
+              aria-label="Arrival Date"
             />
           </div>
 
@@ -286,6 +337,8 @@
               class="input check-out-input input-background-regular-mode"
               placeholder="Add dates"
               required
+              aria-required="true"
+              aria-label="Checkout Date"
             />
           </div>
 
@@ -296,12 +349,24 @@
               type="number"
               class="input travelers-input input-background-regular-mode"
               placeholder="Add guests"
+              min="1"
+              max="10"
               required
+              aria-required="true"
+              aria-label="Number of Guests"
             />
           </div>
 
-          <button input="submit" class="search-button">
-            <ion-icon class="icon" name="search-outline"></ion-icon>
+          <button
+            type="submit"
+            class="search-button"
+            aria-label="Submit Search"
+          >
+            <ion-icon
+              class="icon"
+              name="search-outline"
+              aria-hidden="true"
+            ></ion-icon>
             <p class="sumnbit-searchbar-mobile">Sumbit</p>
           </button>
         </form>
@@ -312,8 +377,8 @@
     <!-- LOGOS SECTION -->
     <!--  -->
     <section class="section-logos">
-      <header class="headers-container">
-        <h2 class="prime-header">Collaborating for the Future</h2>
+      <header class="headers-container align-text">
+        <h2 class="header-logos">Collaborating for the Future</h2>
         <h3 class="sub-header">Meet the innovators powering our platform.</h3>
       </header>
 
@@ -332,6 +397,52 @@
     <!--  -->
     <!-- FEATURED HOTELS SECTION -->
     <!--  -->
+    <section
+      class="section-featured-hotels page-contaier"
+      aria-labelledby="featured-hotels-title"
+    >
+      <header class="headers-container">
+        <h2 class="prime-header">Top Picks for You</h2>
+        <h3 class="sub-header">
+          Created just for you, based on your preferences.
+        </h3>
+      </header>
+
+      <!-- Cards Line Warraper -->
+      <div class="cards-warpper">
+        <!-- Hotel Card 1 -->
+        <a class="hotel-card">
+          <div class="hotel-img-block" aria-label="Image of Hotel">
+            <img
+              class="hotel-img"
+              src="/landing-page/img/featured-hotels/B&B-Sapanca-3/chat-gpt-main.webp"
+            />
+
+            <spשan class="favorite-label">Guest favorite</spשan>
+            <ion-icon
+              class="add-to-favorite-icon"
+              name="heart-sharp"
+            ></ion-icon>
+          </div>
+          <div class="name-rating">
+            <h4 class="hotel-name">Hotel 1</h4>
+            <p class="rating">
+              <ion-icon class="rating-star-icon" name="star"></ion-icon> 4.87
+            </p>
+          </div>
+          <p class="hotel-location">New York, USA</p>
+          <p class="hotel-suggested-dates">Sep 29&mdash;Oct 4</p>
+
+          <p class="hotel-price" aria-label="Price per night">
+            <mark>$120</mark> night
+          </p>
+
+          <button class="view-details-btn" aria-label="View details of Hotel 1">
+            <ion-icon name="chevron-forward"></ion-icon>
+          </button>
+        </a>
+      </div>
+    </section>
 
     <!-- SCRIPT -->
     <script defer src="/landing-page/script.js"></script>

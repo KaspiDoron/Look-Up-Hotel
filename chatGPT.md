@@ -213,7 +213,7 @@ Here’s a breakdown of the content for each section:
 - **Section Header**:
   - "Top Picks for You"
 - **Subtext**:
-  - "Curated just for you, based on your preferences."
+  - "Created just for you, based on your preferences."
 
 #### **Popular Destinations**
 
