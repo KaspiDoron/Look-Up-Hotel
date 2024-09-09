@@ -7,9 +7,9 @@
 
 - Fonts: 
 Logo: "M PLUS Rounded 1c"
-Elegant/Titles: "DM Serif Text" 
+Elegant/Titles: "DM Serif Text" "SUSE"
 Body: "Poppins"
-Anchors: "Moderustic"
+Anchors: "Moderustic"  
 
 - Font weights:
 Default: 400
@@ -30,12 +30,13 @@ Pragraph default:
  #fff0f6 #ffdce9 #fcc2d7 #faa2c1 #f783ac #f06595 #e64980 #d6336c #c2255c #a61e4d #741738
 - Primary: #e64980
 - Grays: #ddd #f7f7f7 #f2f2f2 #ebebeb
-#8e8e8e #6e6e6e #4e4e4e #2e2e2e #272326
+#8e8e8e #6e6e6e #4e4e4e #2e2e2e #e1e1ee
 
 --- 03 SACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 
 ---- 04 z-index tracking
+-1: glowing search bar border
 5:  navigation bar, the borders in the search bar
 10: hero overlay, navbar overlay
 15: login dropdown navigation, login icons, mobile menu, search bar
@@ -58,23 +59,174 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-body-), sans-serif;
   line-height: 1;
   font-weight: 400;
-  color: #000;
+  color: var(--gray-primary-);
 
   position: relative;
 }
 
 .page-contaier {
   display: grid;
-  align-items: center;
-  justify-content: center;
-  padding: 6.4rem 4.8rem;
+  align-items: start;
+  justify-content: start;
+  padding: 6.4rem 12.8rem;
+}
+/*****************************************************************************************/
+/* @PROPERTIES CSS */
+/*****************************************************************************************/
+/* title Palette Colors */
+@property --pink-white- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #fff0f6;
+}
+
+@property --pink-light- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ffdce9;
+}
+
+@property --pink-primary- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e64980;
+}
+
+@property --pink-dark- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #a61e4d;
+}
+
+@property --pink-black- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #1a020a;
+}
+
+@property --pink-bright- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ff004c;
+}
+
+/* title Grays Colors */
+@property --gray-white- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f2f2f2;
+}
+
+@property --gray-light- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #9e9e9e;
+}
+
+@property --gray-primary- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #6e6e6e;
+}
+
+@property --gray-dark- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #3e3e3e;
+}
+
+@property --gray-black- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #1e1e1e;
+}
+
+@property --gray-border- {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ddd;
+}
+
+/* title Fonts */
+:root {
+  --font-logo-: "M PLUS Rounded 1c", sans-serif;
+  --font-body-: "Poppins", sans-serif;
+  --font-title-: "SUSE", sans-serif;
+  --font-titleE-: "DM serif Text", sans-serif; /* Using also for the logo */
+  --font-anchors-: "Moderustic", sans-serif;
+}
+
+/* title Transitions */
+:root {
+  --transition-fast-: all 0.15s;
+  --transition-normal-: all 0.25s;
+  --transition-slow-: all 0.4s;
+}
+
+/* title Icons */
+:root {
+  --icon-big-: 3rem;
+  --icon-default-: 2.4rem;
+  --icon-small-: 2rem;
+}
+
+/* title Font Weights */
+:root {
+  --weight-light-: 400;
+  --weight-normal-: 600;
+  --weight-bold-: 800;
 }
 
 /*****************************************************************************************/
-/*  REUSABLE COMPONENTS */
+/* @KEYFRAMES ANIMATION */
+/*****************************************************************************************/
+
+/* title Logo Sliding */
+@keyframes scrollAnimationRightLogo {
+  0%,
+  70% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(20rem);
+  }
+}
+
+@keyframes scrollAnimationLeftLogo {
+  0%,
+  60% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-20rem);
+  }
+}
+
+@keyframes scrollAnimationRightLogoMobile {
+  0%,
+  80% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(20rem);
+  }
+}
+
+@keyframes scrollAnimationLeftLogoMobile {
+  0%,
+  70% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-20rem);
+  }
+}
+
+/*****************************************************************************************/
+/* REUSABLE COMPONENTS */
 /*****************************************************************************************/
 :root {
   --logos-hero-seconds: 80s;
@@ -89,6 +241,10 @@ a {
 
 button {
   border: none;
+  background: none;
+}
+
+mark {
   background: none;
 }
 
@@ -131,19 +287,19 @@ button {
 .headers-container {
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
+  gap: 1.2rem;
   align-items: start;
   justify-content: start;
 
-  font-family: "DM Serif Text", sans-serif;
-  color: #42081c;
+  font-family: "SUSE", sans-serif;
+  color: #000;
 
   margin-bottom: 4.2rem;
 }
 
 .prime-header {
   font-size: 4.8rem;
-  letter-spacing: 0.2rem;
+  margin-left: 1.2rem;
 }
 
 .sub-header {

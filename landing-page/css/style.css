@@ -8,34 +8,31 @@
   gap: 0.4rem;
   padding: 1.8rem 12.8rem;
   background-color: #fff;
-  color: #6e6e6e;
-  width: 100vw;
+  color: var(--gray-primary-);
   width: 100svw;
   top: 0;
   z-index: 5;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--gray-border-);
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
 }
 
 .navbar-logo {
-  color: #a61e4d;
-  font-family: "M PLUS Rounded 1c", sans-serif;
+  color: var(--pink-dark-);
+  font: var(--weight-bold-) 2.4rem var(--font-logo-), sans-serif;
   display: flex;
   gap: 0.6rem;
   align-items: center;
   justify-content: center;
   justify-self: flex-start;
-  text-wrap: nowrap;
-  font-size: 2.4rem;
-  font-weight: 800;
+  white-space: nowrap;
   padding: 1.6rem 2.4rem;
   border-radius: 10rem;
-  transition: all 0.15s;
+  transition: var(--transition-fast-);
 }
 
 .navbar-logo span {
-  font-family: "DM Serif Text";
-  color: #e64980;
+  font-family: var(--font-titleE-);
+  color: var(--pink-primary-);
 }
 
 .logo-img-lookuphotel {
@@ -44,15 +41,15 @@
 }
 
 .navbar-logo:hover {
-  background-color: #fff0f6;
+  background-color: var(--pink-white-);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   justify-content: center;
-  list-style: none;
   gap: 1.6rem;
+  list-style: none;
 }
 
 .nav-link {
@@ -67,29 +64,30 @@
   font-size: 1.8rem;
   padding: 1.8rem 2rem;
   border-radius: 10rem;
-  transition: all 0.15s;
+  transition: var(--transition-fast-);
 }
 
 .nav-link:hover,
 .nav-link:active {
-  color: #272326;
-  background-color: #fff0f6;
+  color: var(--gray-black-);
+  background-color: var(--pink-white-);
 }
 
+/* The "choosing" page: */
 .home-link {
-  color: #272326;
-  background-color: #fff0f6;
+  color: var(--gray-black-);
+  background-color: var(--pink-white-);
 }
 
 /* title User Inter */
 .user-inter {
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 1fr;
+  grid: 1fr / 1fr auto;
   column-gap: 2.4rem;
-
   align-items: center;
-  justify-items: end;
+  justify-content: center;
+  max-width: min-content;
+  justify-self: flex-end;
 }
 
 /* Langauge Popup */
@@ -98,15 +96,14 @@
 }
 
 .globe-lan-icon {
-  width: 3.4rem;
-  height: 3.4rem;
-  transition: all 0.15s;
+  font-size: var(--icon-big-);
+  transition: var(--transition-fast-);
   cursor: pointer;
 }
 
 .globe-lan-icon:hover,
 .globe-lan-icon:active {
-  color: #2e2e2e;
+  color: var(--gray-black-);
 }
 
 .lan-popup {
@@ -127,8 +124,7 @@
 }
 
 .lan-popup li {
-  font-size: 2rem;
-  font-weight: 400;
+  font: var(--weight-light-) 2rem var(--font-anchors-);
   padding: 1.2rem 3.2rem;
 
   display: flex;
@@ -137,14 +133,14 @@
   gap: 1.2rem;
   cursor: pointer;
 
-  transition: all 0.15s;
+  transition: var(--transition-fast-);
 }
 
 .lan-popup li:hover,
 .lan-popup li:active {
-  background-color: #f1f1f1;
-  font-weight: 500;
-  color: #4e4e4e;
+  background-color: var(--gray-white-);
+  font-weight: var(--weight-normal-);
+  color: var(--gray-dark-);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
@@ -153,15 +149,13 @@
 }
 
 .flag-lan {
-  width: 3rem;
+  width: var(--icon-default-);
   height: auto;
-
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
 /* Dropdown Login */
 .user-login {
-  cursor: pointer;
   position: relative;
   justify-self: flex-end;
 
@@ -169,22 +163,24 @@
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
+
   padding: 0.8rem 2rem;
   border-radius: 10rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--gray-border-);
 
-  transition: all 0.15s;
+  cursor: pointer;
+  transition: var(--transition-fast-) ease-in-out;
   z-index: 15;
 }
 
 .user-login:hover {
-  color: #4e4e4e;
-  background-color: #f7f7f7;
+  color: var(--gray-dark-);
+  background-color: var(--gray-white-);
 }
 
 .user-login-icon {
-  width: 3rem;
-  height: 3rem;
+  width: var(--icon-big-);
+  height: var(--icon-big-);
 }
 
 .user-login-dropdown {
@@ -210,7 +206,7 @@
   padding: 1.4rem 2rem;
   text-wrap: nowrap;
 
-  transition: all 0.15s ease-in;
+  transition: var(--transition-fast-) ease-in;
   position: relative;
 }
 
@@ -218,34 +214,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
 
-  transition: all 0.15s ease-in;
+  font-size: 1.8rem;
+  transition: var(--transition-fast-) ease-in;
   position: relative;
 }
 
 .dropdown-link:hover,
 .dropdown-link:active {
-  background-color: #f7f7f7;
-  font-weight: 600;
-  border-left: 1rem solid #ddd;
+  background-color: var(--gray-white-);
+  font-weight: var(--weight-normal-);
+  border-left: 1rem solid var(--gray-border-);
 }
 
 .social-icon {
-  font-size: 2.2rem;
+  font-size: var(--icon-default-);
 }
 
 .dropdown-social:link,
 .dropdown-social:visited {
-  transition: all 0.15s;
+  transition: var(--transition-fast-);
 }
 
 .dropdown-social:hover,
 .dropdown-social:active {
-  background-color: #f2f2f2;
-  color: #2e2e2e;
+  background-color: var(--gray-white-);
+  color: var(--gray-black-);
   border-radius: 1rem;
-  border: none;
 }
 
 .user-login-dropdown::after {
@@ -255,20 +250,20 @@
 
   width: 100%;
   padding: 0.1rem 0;
-  background-color: #ddd;
+  background-color: var(--gray-border-);
 }
 
 .sign-in-dropdown:link,
 .sign-in-dropdown:visited {
-  font-weight: 600;
-  color: #2e2e2e;
-  background-color: #fcc2d7;
+  font-weight: var(--weight-normal-);
+  color: var(--gray-black-);
+  background-color: var(--pink-light-);
 }
 
 .sign-in-dropdown:hover,
 .sign-in-dropdown:active {
-  border-left: 1rem solid #272326;
-  background-color: #faa2c1;
+  border-left: 1rem solid var(--gray-black-);
+  background-color: var(--pink-primary-);
 }
 
 /* Menu Mobile */
@@ -282,15 +277,15 @@
 
 .icon-mobile-menu {
   font-size: 4.4rem;
-  color: #4e4e4e;
+  color: var(--gray-dark-);
 
-  transition: all 0.15s;
+  transition: var(--transition-fast-);
   display: none;
 }
 
 .icon-mobile-menu:hover,
 .icon-mobile-menu:active {
-  color: #2e2e2e;
+  color: var(--gray-black-);
 }
 
 .open-mobile-menu {
@@ -313,19 +308,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 85vh;
-  min-height: 85svh;
 
   /* Background Image */
-  background-image: url("/landing-page/img/hero-background.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url("/landing-page/img/hero-background.jpg") center/cover
+    no-repeat;
 
+  min-height: 85svh;
   color: #fff;
   text-align: center;
   padding: 0 2rem;
-
   position: relative;
 }
 
@@ -350,8 +341,8 @@
 }
 
 .hero-title {
-  font-family: "DM Serif Text", serif;
-  font-weight: 400;
+  font-family: var(--font-titleE-), serif;
+  font-weight: var(--weight-light-);
   font-size: 8.6rem;
   color: #fff;
   margin-bottom: 1.2rem;
@@ -359,22 +350,31 @@
   line-height: 1.2;
 }
 
-.hero-title span:nth-child(1) {
-  color: #a61e4d;
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  font-weight: 800;
+.lookup-title {
+  color: var(--pink-dark-);
+  font-family: var(--font-logo-), sans-serif;
+  font-weight: var(--weight-bold-);
   font-size: 9.6rem;
   text-shadow: 0 0 2rem rgba(0, 0, 0, 0.6);
 }
 
-.hero-title span:nth-child(2) {
-  color: #e64980;
+.hotel-title {
+  color: var(--pink-primary-);
   font-size: 9.6rem;
 }
 
+.scrollRightAnimationLogo {
+  animation: scrollAnimationRightLogo both;
+  animation-timeline: view();
+}
+
+.scrollLeftAnimationLogo {
+  animation: scrollAnimationLeftLogo both;
+  animation-timeline: view();
+}
+
 .hero-subtitle {
-  font-family: "Poppins", sans-serif;
-  text-wrap: nowrap;
+  white-space: nowrap;
   font-size: 3rem;
   color: #fff;
   margin-bottom: 8rem;
@@ -387,37 +387,36 @@
   justify-content: center;
 
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid var(--gray-border-);
   border-radius: 10rem;
-  overflow: hidden;
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.3);
   padding-right: 2.4rem;
 
-  z-index: 15; /* Ensure the search bar is above the overlay */
+  position: relative;
+  z-index: 15;
 }
 
 .search-field {
   cursor: pointer;
-
   flex: 1;
-  padding: 2rem 2.4rem;
-  padding-left: 3.2rem;
+  padding: 2rem 3.2rem 2rem 2.4rem;
   border-radius: 10rem;
 
   position: relative;
-  transition: all 0.15s;
+  transition: var(--transition-fast-);
 
-  z-index: 15; /* Ensure the search bar is above the overlay */
+  z-index: 15;
 }
 
 .search-field label::after {
   content: "";
   position: absolute;
-  width: 0.02rem;
-  height: 70%;
-  background-color: #bbb;
   right: 0;
   bottom: 1.4rem;
+
+  width: 0.02rem;
+  height: 70%;
+  background-color: var(--gray-light-);
 
   z-index: 15;
 }
@@ -428,53 +427,52 @@
 
 .search-field label {
   cursor: pointer;
-
   display: flex;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  color: #4e4e4e;
+  font-weight: var(--weight-normal-);
+  color: var(--gray-dark-);
   font-size: 1.4rem;
   margin-bottom: 1.4rem;
 
-  z-index: 15; /* Ensure the search bar is above the overlay */
+  z-index: 15;
 }
 
 .input {
   cursor: pointer;
-
+  font-family: var(--font-anchors-), sans-serif;
   width: 100%;
   border: none;
   outline: none;
-  font-size: 16px;
-  color: #000;
+  font-size: 1.6rem;
   background-color: #fff;
 
-  transition: all 0.15s;
+  transition: var(--transition-fast-);
 
-  z-index: 15; /* Ensure the search bar is above the overlay */
+  z-index: 15;
 }
 
 .search-button {
-  background-color: #ff004c;
+  background-color: var(--pink-bright-);
   border: none;
-  border-radius: 50%;
+  border-radius: 100%;
   padding: 1.6rem;
   margin-left: 1.5rem;
 
   cursor: pointer;
-  transition: all 0.15s;
-  z-index: 15; /* Ensure the button is above the overlay */
+  transition: var(--transition-fast-);
+  z-index: 15;
 }
 
 .search-button ion-icon {
   color: #fff;
-  width: 2.4rem;
-  height: 2.4rem;
+  font-size: var(--icon-default-);
 }
 
 .search-button:hover {
-  background-color: #d6336c;
+  background-color: var(--pink-primary-);
+  font-size: var(--icon-big-);
 }
+
+/* todo keep editng css variables */
 
 .sumnbit-searchbar-mobile {
   display: none;
@@ -554,7 +552,7 @@
   max-width: 153.6rem;
   width: 90%;
   margin-inline: auto;
-  height: 10rem; /* Same as the logo height */
+  height: 6rem; /* Same as the logo height */
   overflow: hidden;
 
   position: relative;
@@ -571,7 +569,7 @@
 
 @keyframes logosScrollLeft {
   to {
-    left: -30rem;
+    left: -10rem;
   }
 }
 
@@ -583,8 +581,8 @@
 }
 
 .logo {
-  width: 20rem;
-  height: 10rem;
+  width: 12rem;
+  height: 6rem;
 
   position: absolute;
   left: max(calc(20rem * 8), 100%);
@@ -602,7 +600,7 @@
   background-image: url(/landing-page/img/companies/aflac-logo-white.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 20rem 10rem;
+  background-size: 100%;
 }
 
 .delay2 {
@@ -610,7 +608,7 @@
   background-image: url(/landing-page/img/companies/facebook-logo-white-full-transparent.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 20rem auto;
+  background-size: 100%;
 }
 
 .delay3 {
@@ -618,7 +616,7 @@
   background-image: url(/landing-page/img/companies/fender-logo-white.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 20rem 10rem;
+  background-size: 100%;
 }
 
 .delay4 {
@@ -626,7 +624,7 @@
   background-image: url(/landing-page/img/companies/google-white-logo.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 20rem auto;
+  background-size: 100%;
 }
 
 .delay5 {
@@ -634,14 +632,14 @@
   background-image: url(/landing-page/img/companies/samsung-logo-white.webp);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 20rem auto;
+  background-size: 100%;
 }
 .delay6 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 6) * -1);
   background-image: url(/landing-page/img/companies/pngimg.com\ -\ adidas_PNG2.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 20rem auto;
+  background-size: 100%;
 }
 
 .delay7 {
@@ -650,6 +648,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20rem 10rem;
+  background-size: 100%;
 }
 
 .delay8 {
@@ -658,6 +657,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20rem 10rem;
+  background-size: 100%;
 }
 
 .header-logos {
@@ -674,9 +674,13 @@
 
 /* Hotel Card */
 .hotel-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-size: 1.6rem;
+
   width: 26rem;
-  height: auto;
+  color: #4e4e4e;
 }
 
 .hotel-img-block {
@@ -702,8 +706,8 @@
   top: 1.2rem;
   left: 1.2rem;
 
-  font-weight: 600;
-  font-size: 1.2rem;
+  font-weight: 500;
+  font-size: 1.6rem;
   color: #2e2e2e;
   padding: 0.5rem 1rem;
   background-color: rgb(255, 255, 255, 0.95);
@@ -711,25 +715,65 @@
   box-shadow: 0 0 1rem rgb(0, 0, 0, 0.4);
 }
 
+.heart-icon {
+  font-size: 4rem;
+}
+
 .add-to-favorite-icon {
   position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
 
-  width: 2.4rem;
-  height: 2.4rem;
-  color: rgba(0, 0, 0, 0.8);
-  text-shadow: 0 0 0 0.4rem #fff;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 0.6rem;
+
+  --ionicon-stroke-width: 5rem;
+
+  transition: all 0.2s;
+}
+
+.add-to-favorite-icon:hover {
+  top: 1.1rem;
+  right: 1.1rem;
+  font-size: 2.1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
 .name-rating {
   display: flex;
   justify-content: space-between;
+  color: #000;
 }
 
 .hotel-name {
+  font-weight: 500;
 }
 
 .rating {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .rating-star-icon {
+}
+
+.hotel-location {
+}
+
+.hotel-suggested-dates {
+}
+
+.hotel-price {
+  color: #000;
+}
+
+.hotel-price mark {
+  font-weight: 500;
+}
+
+.view-details-btn {
 }

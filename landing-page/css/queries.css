@@ -41,8 +41,9 @@
   .user-inter {
     display: flex;
     gap: 2.4rem;
+    margin-left: 1.6rem;
 
-    justify-self: start;
+    justify-self: flex-start;
     grid-row: 1/2;
     grid-column: 3/5;
   }
@@ -173,6 +174,16 @@
     width: 90%;
     bottom: -0.6rem;
     right: auto;
+  }
+
+  .scrollRightAnimationLogo {
+    animation: scrollAnimationRightLogoMobile both;
+    animation-timeline: view();
+  }
+
+  .scrollLeftAnimationLogo {
+    animation: scrollAnimationLeftLogoMobile both;
+    animation-timeline: view();
   }
 }
 
