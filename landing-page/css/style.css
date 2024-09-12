@@ -465,14 +465,13 @@
 .search-button ion-icon {
   color: #fff;
   font-size: var(--icon-default-);
+  --ionicon-stroke-width: 5rem;
 }
 
 .search-button:hover {
   background-color: var(--pink-primary-);
   font-size: var(--icon-big-);
 }
-
-/* todo keep editng css variables */
 
 .sumnbit-searchbar-mobile {
   display: none;
@@ -544,7 +543,7 @@
 /* LOGOS SECTION */
 /*****************************************************************************************/
 .section-logos {
-  background-color: #ffdce9;
+  background-color: var(--pink-light-);
   padding: 2.4rem 0;
 }
 
@@ -557,7 +556,7 @@
 
   position: relative;
 
-  background-image: linear-gradient(#ff004c, #ff004c);
+  background-image: linear-gradient(var(--pink-bright-), var(--pink-bright-));
   mask-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0),
@@ -567,40 +566,34 @@
   );
 }
 
-@keyframes logosScrollLeft {
-  to {
-    left: -10rem;
-  }
-}
-
 .logos-scroll-left {
-  animation-name: logosScrollLeft;
-  animation-duration: 80s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation: logosScrollLeft 80s linear infinite;
 }
 
-.logo {
+.logo:link,
+.logo:visited {
   width: 12rem;
   height: 6rem;
 
   position: absolute;
   left: max(calc(20rem * 8), 100%);
+
+  transition: var(--transition-fast-);
 }
 
-.logo-img {
-  height: 100%;
-  width: auto;
+.logo:hover,
+.logo:active {
+  background-color: var(--pink-dark-);
+  background-size: 105%;
+  border-radius: 1rem;
 }
 
 .delay1 {
   animation-delay: calc(
     var(--logos-hero-seconds) / 8 * (8 - 1) * -1
   ); /* Based on the number of logos and the lap time */
-  background-image: url(/landing-page/img/companies/aflac-logo-white.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
+  background: url(/landing-page/img/companies/aflac-logo-white.svg) center/100%
+    no-repeat;
 }
 
 .delay2 {
@@ -661,15 +654,28 @@
 }
 
 .header-logos {
-  font-size: 3.6rem;
-  letter-spacing: 0;
-  font-weight: 500;
+  font: var(--weight-light-) 3.2rem var(--font-logo-);
+  letter-spacing: -0.1rem;
+  color: var(--pink-bright-);
+}
+
+.sub-header-logos {
+  font-size: 1.8rem;
+  color: var(--pink-bright-);
 }
 
 /*****************************************************************************************/
 /* FEATURED HOTELS SECTION */
 /*****************************************************************************************/
 .section-featured-hotels {
+}
+
+.cards-warpper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  gap: 1.6rem;
 }
 
 /* Hotel Card */
@@ -679,8 +685,14 @@
   gap: 1.2rem;
   font-size: 1.6rem;
 
-  width: 26rem;
-  color: #4e4e4e;
+  min-width: 26rem;
+  max-width: 26rem;
+  color: var(--gray-dark-);
+}
+
+.hotel-card:hover .icon-details {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .hotel-img-block {
@@ -690,15 +702,21 @@
 
   border-radius: 1rem;
   overflow: hidden;
+  box-shadow: 0 0 1rem rgb(0, 0, 0, 0.1);
 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hotel-img {
+.hotel-img-highW {
   height: 100%;
   width: auto;
+}
+
+.hotel-img-highH {
+  height: auto;
+  width: 100%;
 }
 
 .favorite-label {
@@ -706,17 +724,16 @@
   top: 1.2rem;
   left: 1.2rem;
 
-  font-weight: 500;
-  font-size: 1.6rem;
-  color: #2e2e2e;
+  font: var(--weight-normal-) 1.4rem var(--font-title-);
+  color: var(--gray-black-);
   padding: 0.5rem 1rem;
-  background-color: rgb(255, 255, 255, 0.95);
+  background-color: rgb(255, 255, 255, 0.9);
   border-radius: 10rem;
-  box-shadow: 0 0 1rem rgb(0, 0, 0, 0.4);
+  box-shadow: 0 0 1rem rgb(0, 0, 0, 0.3);
 }
 
 .heart-icon {
-  font-size: 4rem;
+  font-size: var(--icon-big-);
 }
 
 .add-to-favorite-icon {
@@ -724,22 +741,42 @@
   top: 1.2rem;
   right: 1.2rem;
 
-  color: rgba(255, 255, 255, 0.7);
+  color: #fff;
   font-size: 2rem;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
+  border-radius: 100%;
   padding: 0.6rem;
-
   --ionicon-stroke-width: 5rem;
 
-  transition: all 0.2s;
+  transition: var(--transition-fast-) ease-in-out;
 }
 
 .add-to-favorite-icon:hover {
-  top: 1.1rem;
-  right: 1.1rem;
-  font-size: 2.1rem;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+  font-size: 2.3rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+
+.view-details-btn:has(ion-icon) {
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-details {
+  font-size: var(--icon-small-);
+  color: var(--gray-dark-);
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 100%;
+  padding: 0.4rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  opacity: 0;
+
+  transition: var(--transition-normal-);
 }
 
 .name-rating {
@@ -749,7 +786,7 @@
 }
 
 .hotel-name {
-  font-weight: 500;
+  font-weight: var(--weight-normal-);
 }
 
 .rating {
@@ -772,8 +809,151 @@
 }
 
 .hotel-price mark {
-  font-weight: 500;
+  font-weight: var(--weight-normal-);
 }
 
-.view-details-btn {
+/*****************************************************************************************/
+/* GALLERY SECTION */
+/*****************************************************************************************/
+.section-gallery {
+  background-color: var(--pink-white-);
+}
+
+.galleries-container {
+}
+
+.gallery-wrapper {
+  margin-bottom: 9.6rem;
+}
+
+.gallery-wrapper header {
+  display: flex;
+  align-items: center;
+  gap: 4.8rem;
+
+  margin-bottom: 1.6rem;
+}
+
+.gallery-headers {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  font-family: var(--font-logo-);
+  white-space: nowrap;
+}
+
+.gallery-location {
+  color: var(--pink-dark-);
+  font: var(--weight-normal-) 3.6rem var(--font-logo-);
+}
+
+.gallery-title {
+  color: var(--pink-bright-);
+  font: var(--weight-light-) 2.4rem var(--font-logo-);
+}
+
+/* title Button Handling */
+.gallery-explore-more {
+  width: 4.4rem;
+  min-height: 5.2rem;
+  align-self: flex-end;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  white-space: nowrap;
+  padding: 0.4rem 2rem 0.4rem 0.6rem;
+  border-radius: 100%;
+
+  color: var(--pink-primary-);
+  cursor: pointer;
+}
+
+.gallery-explore-more:hover {
+  animation: expandWidth 0.25s ease-in-out both;
+  background-color: var(--pink-light-);
+}
+
+.gallery-explore-more:not(:hover) {
+  animation: collapseWidth 0.25s ease-in-out both;
+}
+
+.gallery-explore-more:active {
+  /* todo make a active habdling */
+}
+
+.icon-explore-more {
+  font-size: 3rem;
+  flex-shrink: 0;
+
+  transition: var(--transition-slow-) ease-in-out;
+}
+
+.exposed-content {
+  font: var(--weight-normal-) 2rem var(--font-anchors-);
+  display: none;
+  opacity: 0;
+  transition: var(--transition-normal-);
+}
+
+.gallery-explore-more:hover .exposed-content {
+  display: block;
+  opacity: 1;
+  animation: btnExploreMore 0.25s ease-in both;
+}
+
+.gallery-explore-more:hover .icon-explore-more {
+  font-size: 4rem;
+}
+
+/* title Images Handling */
+.gallery-images {
+  columns: 40rem;
+}
+
+.column {
+  /* todo not in the html yet */
+  display: flex;
+  flex-direction: column;
+}
+
+.image-conatiner {
+  /* todo not in the html yet */
+  position: relative;
+}
+
+.gallery-img {
+  border-radius: 8rem;
+  margin: 0 auto 2.4rem auto;
+  display: block;
+  width: 80%;
+
+  transition: var(--transition-normal-);
+  cursor: pointer;
+
+  overflow: hidden;
+  /* animation: imagesUp;
+  animation-timeline: view(); */
+}
+
+.gallery-img:hover {
+  border-radius: 12rem;
+  transform: scale(1.02);
+}
+
+.gallery-img:active {
+  transform: scale(1.05);
+}
+
+.img-overlay {
+  /* todo not in the html yet */
+  position: absolute;
+  background-color: red;
+  top: 0;
+  left: 0;
+  width: 10rem;
+  height: 10rem;
 }

@@ -5,33 +5,6 @@
 - Font sizes (px):
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
 
-- Fonts: 
-Logo: "M PLUS Rounded 1c"
-Elegant/Titles: "DM Serif Text" "SUSE"
-Body: "Poppins"
-Anchors: "Moderustic"  
-
-- Font weights:
-Default: 400
-Medium: 600
-Semi-bold: 700
-Bold: 800
-
-- Line hieght:
-Default: 1
-Small: 1.2
-Medium: 
-Large: 
-Pragraph default: 
-
-- Letter spacing:
-
---- 02 COLORS 
- #fff0f6 #ffdce9 #fcc2d7 #faa2c1 #f783ac #f06595 #e64980 #d6336c #c2255c #a61e4d #741738
-- Primary: #e64980
-- Grays: #ddd #f7f7f7 #f2f2f2 #ebebeb
-#8e8e8e #6e6e6e #4e4e4e #2e2e2e #e1e1ee
-
 --- 03 SACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
 
@@ -68,9 +41,6 @@ body {
 }
 
 .page-contaier {
-  display: grid;
-  align-items: start;
-  justify-content: start;
   padding: 6.4rem 12.8rem;
 }
 /*****************************************************************************************/
@@ -225,6 +195,55 @@ body {
   }
 }
 
+/* title Logo Scrolls */
+@keyframes logosScrollLeft {
+  to {
+    left: -10rem;
+  }
+}
+
+/* title Button Explore More */
+@keyframes btnExploreMore {
+  0% {
+    transform: translateX(-40%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes expandWidth {
+  0% {
+    width: 4.4rem;
+    border-radius: 100%;
+  }
+  100% {
+    width: 20rem;
+    border-radius: 15rem;
+  }
+}
+
+@keyframes collapseWidth {
+  0% {
+    width: 20rem;
+    border-radius: 15rem;
+  }
+  100% {
+    width: 4.4rem;
+    border-radius: 100%;
+  }
+}
+
+/* title Images Gallery */
+@keyframes imagesUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(200rem);
+  }
+}
+
 /*****************************************************************************************/
 /* REUSABLE COMPONENTS */
 /*****************************************************************************************/
@@ -292,7 +311,6 @@ mark {
   justify-content: start;
 
   font-family: "SUSE", sans-serif;
-  color: #000;
 
   margin-bottom: 4.2rem;
 }
@@ -300,11 +318,13 @@ mark {
 .prime-header {
   font-size: 4.8rem;
   margin-left: 1.2rem;
+  color: var(--gray-black-);
 }
 
 .sub-header {
   font-size: 2rem;
   font-weight: 500;
+  color: var(--gray-primary-);
 }
 
 .align-text {
@@ -312,15 +332,17 @@ mark {
   justify-content: center;
   align-items: center;
 }
-/* Focus state for links and buttons */
+
+/* title Focus state for links and buttons */
 .nav-link:focus,
 .user-login:focus,
 .navbar-logo:focus,
 .globe-lan-icon:focus,
 .dropdown-link:focus,
 .sign-in-dropdown:focus,
-.dropdown-social:focus {
-  outline: 0.4rem solid #fcc2d7;
+.dropdown-social:focus,
+.gallery-explore-more:focus {
+  outline: 0.4rem solid var(--pink-light-);
 }
 /*****************************************************************************************/
 /*  Fixing Safari flexbox gap */
