@@ -153,6 +153,20 @@ body {
 /*****************************************************************************************/
 /* @KEYFRAMES ANIMATION */
 /*****************************************************************************************/
+/* title Section Headers Show Up*/
+@keyframes headersShowUp {
+  0% {
+    transform: translateY(10rem);
+    scale: 0.6;
+    opacity: 0;
+  }
+
+  40% {
+    transform: translateY(0);
+    scale: 1;
+    opacity: 1;
+  }
+}
 
 /* title Logo Sliding */
 @keyframes scrollAnimationRightLogo {
@@ -212,7 +226,16 @@ body {
   }
 }
 
-@keyframes expandWidth {
+@keyframes btnAddWishlist {
+  0% {
+    transform: translateX(-40%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes expandWidthExplore {
   0% {
     width: 4.4rem;
     border-radius: 100%;
@@ -223,7 +246,7 @@ body {
   }
 }
 
-@keyframes collapseWidth {
+@keyframes collapseWidthExplore {
   0% {
     width: 20rem;
     border-radius: 15rem;
@@ -233,15 +256,43 @@ body {
     border-radius: 100%;
   }
 }
-
-/* title Images Gallery */
-@keyframes imagesUp {
+@keyframes expandWidthWishlist {
   0% {
+    width: 5.8rem;
+    border-radius: 100%;
+  }
+  100% {
+    width: 25rem;
+    border-radius: 15rem;
+  }
+}
+
+@keyframes collapseWidthWishlist {
+  0% {
+    width: 25rem;
+    border-radius: 15rem;
+  }
+  100% {
+    width: 5.8rem;
+    border-radius: 100%;
+  }
+}
+
+/* title Gallery Show Up */
+@keyframes galleryShowUp {
+  0% {
+    width: 40%;
+    transform: translateY(20rem);
+  }
+
+  50% {
+    width: 80%;
     transform: translateY(0);
   }
-  100% {
-    transform: translateY(200rem);
-  }
+}
+
+/* title Thumbnails Hotel Cards */
+@keyframes identifier {
 }
 
 /*****************************************************************************************/
@@ -311,20 +362,26 @@ mark {
   justify-content: start;
 
   font-family: "SUSE", sans-serif;
-
   margin-bottom: 4.2rem;
+  max-width: fit-content;
+
+  animation: headersShowUp both;
+  animation-timeline: view();
 }
 
 .prime-header {
   font-size: 4.8rem;
   margin-left: 1.2rem;
   color: var(--gray-black-);
+  letter-spacing: -0.05rem;
 }
 
 .sub-header {
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 500;
   color: var(--gray-primary-);
+  line-height: 1.2;
+  letter-spacing: 0.05rem;
 }
 
 .align-text {
@@ -341,7 +398,7 @@ mark {
 .dropdown-link:focus,
 .sign-in-dropdown:focus,
 .dropdown-social:focus,
-.gallery-explore-more:focus {
+.cta-gallery-link:focus {
   outline: 0.4rem solid var(--pink-light-);
 }
 /*****************************************************************************************/

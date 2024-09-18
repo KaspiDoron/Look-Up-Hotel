@@ -316,3 +316,46 @@ heroOverlay.addEventListener("click", function () {
 /*****************************************************************************************/
 /* FEATURED HOTELS SECTION */
 /*****************************************************************************************/
+// title Declaring Elements
+let list = document.querySelector(".carousel .images-list");
+let items = document.querySelectorAll(
+  ".carousel .images-list .image-container"
+);
+let dots = document.querySelectorAll(".carousel .dots li");
+let prev = document.getElementById("prev");
+let next = document.getElementById("next");
+
+let active = 0;
+let lengthItems = items.length - 1;
+
+next.onclick = function () {
+  active = active + 1 <= lengthItems ? active + 1 : 0;
+  reloadSlider();
+};
+
+prev.onclick = function () {
+  active = active - 1 >= 0 ? active - 1 : lengthItems;
+  reloadSlider();
+};
+
+let refreshSlider = setInterval(() => {
+  next.click();
+}, 5000);
+
+function reloadSlider() {
+  let checkLeft = items[active].offsetLeft;
+  list.style.left = -checkLeft + "px";
+
+  let lastActiveDot = document.querySelector(".carousel .dots li.active");
+  lastActiveDot.classList.remove("active");
+  dots[active].classList.add("active");
+
+  clearInterval(refreshSlider);
+}
+
+dots.forEach((li, key) => {
+  li.addEventListener("click", function () {
+    active = key;
+    reloadSlider();
+  });
+});

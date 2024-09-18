@@ -69,6 +69,8 @@
 
   .headers-container {
     text-align: center;
+    justify-content: center;
+    align-items: center;
   }
 
   .navbar {
@@ -125,7 +127,7 @@
     text-align: center;
   }
 
-  .gallery-explore-more {
+  .cta-gallery-link {
     align-self: center;
   }
 
@@ -215,6 +217,17 @@
   .scrollLeftAnimationLogo {
     animation: scrollAnimationLeftLogoMobile both;
     animation-timeline: view();
+  }
+
+  .gallery-headers {
+    align-items: center;
+    text-align: center;
+    gap: 2.4rem;
+  }
+
+  .gallery-title,
+  .gallery-location {
+    flex-direction: column;
   }
 }
 
