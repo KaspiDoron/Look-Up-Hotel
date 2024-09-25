@@ -338,10 +338,6 @@ prev.onclick = function () {
   reloadSlider();
 };
 
-let refreshSlider = setInterval(() => {
-  next.click();
-}, 5000);
-
 function reloadSlider() {
   let checkLeft = items[active].offsetLeft;
   list.style.left = -checkLeft + "px";
@@ -349,8 +345,6 @@ function reloadSlider() {
   let lastActiveDot = document.querySelector(".carousel .dots li.active");
   lastActiveDot.classList.remove("active");
   dots[active].classList.add("active");
-
-  clearInterval(refreshSlider);
 }
 
 dots.forEach((li, key) => {

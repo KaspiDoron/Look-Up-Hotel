@@ -12,6 +12,9 @@
 /*****************************************************************************************/
 
 @media (max-width: 84em) {
+  .featured-hotel {
+    grid-template-columns: 1fr;
+  }
 }
 
 /*****************************************************************************************/
@@ -21,6 +24,10 @@
   html {
     /* 9px / 16px */
     font-size: 56.25%;
+  }
+
+  .page-container {
+    padding: 6.4rem 6.4rem;
   }
 
   .navbar {
@@ -61,10 +68,6 @@
   html {
     /* 8px / 16px */
     font-size: 50%;
-  }
-
-  .page-contaier {
-    padding: 6.4rem 6.4rem;
   }
 
   .headers-container {
@@ -148,6 +151,10 @@
 /* BELOW 752px (smaller tablets) */
 /*****************************************************************************************/
 @media (max-width: 47em) {
+  .page-container {
+    padding: 6.4rem 3.2rem;
+  }
+
   .hero-title {
     margin-top: 12.8rem;
   }

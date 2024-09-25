@@ -1,12 +1,9 @@
 /* 
  * SYSTEMS: * 
 
---- 01 TYPOGRAPHY SYSTEM
-- Font sizes (px):
-10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
 
---- 03 SACING SYSTEM (px)
-2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+
 
 ---- 04 z-index tracking
 -1: glowing search bar border
@@ -40,12 +37,46 @@ body {
   position: relative;
 }
 
-.page-contaier {
+.page-container {
   padding: 6.4rem 12.8rem;
 }
 /*****************************************************************************************/
 /* @PROPERTIES CSS */
 /*****************************************************************************************/
+/* --- SACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
+/* title SACING System */
+:root {
+  --space-1-: 0.4rem;
+  --space-2-: 0.8rem;
+  --space-3-: 1.2rem;
+  --space-4-: 1.6rem;
+  --space-5-: 2.4rem;
+  --space-6-: 3.2rem;
+  --space-7-: 4.8rem;
+  --space-8-: 6.4rem;
+  --space-9-: 8rem;
+  --space-10-: 9.6rem;
+  --space-11-: 12.8rem;
+}
+
+/* --- TYPOGRAPHY SYSTEM
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
+/* title TYPOGRAPHY System */
+:root {
+  --font-1-: 1.2rem;
+  --font-2-: 1.6rem;
+  --font-3-: 2rem;
+  --font-4-: 2.4rem;
+  --font-5-: 3rem;
+  --font-6-: 3.6rem;
+  --font-7-: 4.4rem;
+  --font-8-: 5.2rem;
+  --font-9-: 6.2rem;
+  --font-10-: 8.6rem;
+  --font-11-: 9.8rem;
+}
+
 /* title Palette Colors */
 @property --pink-white- {
   syntax: "<color>";
@@ -138,6 +169,7 @@ body {
 
 /* title Icons */
 :root {
+  --icon-XL-big-: 4.4rem;
   --icon-big-: 3rem;
   --icon-default-: 2.4rem;
   --icon-small-: 2rem;
@@ -161,7 +193,7 @@ body {
     opacity: 0;
   }
 
-  40% {
+  50% {
     transform: translateY(0);
     scale: 1;
     opacity: 1;
@@ -285,9 +317,15 @@ body {
     transform: translateY(20rem);
   }
 
-  50% {
+  40%,
+  60% {
     width: 80%;
     transform: translateY(0);
+  }
+
+  100% {
+    width: 40%;
+    transform: translateY(-5rem);
   }
 }
 
@@ -307,6 +345,7 @@ a {
   font-weight: 400;
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 button {
