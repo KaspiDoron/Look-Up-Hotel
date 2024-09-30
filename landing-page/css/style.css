@@ -822,8 +822,8 @@
 
 .dots li {
   list-style: none;
-  width: 1.4rem;
-  height: 1.4rem;
+  width: var(--icon-small-);
+  height: var(--icon-small-);
   background-color: rgba(255, 255, 255, 0.7);
   margin: 2rem;
   border-radius: 2rem;
@@ -834,7 +834,7 @@
 
 .dots li.active {
   background-color: var(--pink-primary-);
-  width: 3rem;
+  width: var(--icon-XL-big-);
 }
 
 .dots li:hover {
@@ -1015,55 +1015,76 @@
 
 /* title Images Handling */
 .gallery-images {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, clamp(20rem, 20vw, 40rem));
-  justify-content: center;
-  align-items: center; */
   columns: 40rem;
 }
 
 .gallery-images .img-container {
   animation: galleryShowUp both;
   animation-timeline: view();
-
   border-radius: 8rem;
   margin: 0 auto 2.4rem auto;
-
   transition: var(--transition-normal-);
-
   overflow: hidden;
   cursor: pointer;
 }
 
-.gallery-images .img-container .gallery-img {
+.gallery-images .img-container .overlay {
+  position: relative;
+}
+
+.gallery-images .img-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.img-container .overlay .details-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0 0 0 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4-);
+  justify-content: center;
+  align-items: center;
+
+  font-size: var(--font-4-);
+  text-align: center;
+  font-family: var(--font-logo-);
+  color: var(--gray-white-);
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.7) 60%,
+    rgba(255, 0, 76, 0.5)
+  );
+
+  opacity: 0;
   transition: var(--transition-normal-);
+}
+
+.img-container .overlay .details-img:hover {
+  opacity: 1;
+}
+
+.img-container .overlay .details-img p {
+  font-weight: var(--weight-normal-);
+  text-decoration: underline;
+  color: var(--pink-bright-);
+}
+
+.gallery-images .img-container .gallery-img {
+  transition: var(--transition-fast-);
 }
 
 .gallery-images .img-container:hover {
   border-radius: 10rem;
 }
 
-.gallery-images .img-container .gallery-img:hover {
-}
-
 .gallery-images .img-container .gallery-img:active {
   transform: scale(1.2);
 }
-
-.img-overlay {
-  /* todo not in the html yet */
-  position: absolute;
-  background-color: red;
-  top: 0;
-  left: 0;
-  width: 10rem;
-  height: 10rem;
-}
-
 /*****************************************************************************************/
 /* LEGACY */
 /*****************************************************************************************/

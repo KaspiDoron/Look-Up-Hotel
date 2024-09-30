@@ -137,14 +137,6 @@
   .gallery-images {
     columns: 20rem;
   }
-
-  .gallery-img {
-    border-radius: 6rem;
-  }
-
-  .gallery-img:hover {
-    border-radius: 8rem;
-  }
 }
 
 /*****************************************************************************************/
@@ -235,6 +227,18 @@
   .gallery-title,
   .gallery-location {
     flex-direction: column;
+  }
+
+  .gallery-images .img-container {
+    border-radius: 4rem;
+  }
+
+  .gallery-images .img-container:hover {
+    border-radius: 6rem;
+  }
+
+  .img-container .overlay .details-img {
+    font-size: var(--font-2-);
   }
 }
 
