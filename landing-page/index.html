@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!--  -->
     <!-- Meta Descriptions -->
+    <!--  -->
     <meta
       name="description"
       content="Look Up Hotel is a friendly UI project."
@@ -16,7 +18,9 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#e64980" />
 
-    <!-- Icons -->
+    <!--  -->
+    <!-- Icons Logos -->
+    <!--  -->
     <link rel="icon" href="/landing-page/img/lookup-hotel-logo.png" />
     <link
       rel="apple-touch-icon"
@@ -24,12 +28,20 @@
     />
     <link rel="manifest" href="/landing-page/manifestweb.json" />
 
+    <!--  -->
     <!-- STYLES-->
+    <!--  -->
     <link rel="stylesheet" href="/landing-page/css/style.css" />
     <link rel="stylesheet" href="/landing-page/css/general.css" />
     <link rel="stylesheet" href="/landing-page/css/queries.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
 
+    <!--  -->
     <!-- ION-ICONS -->
+    <!--  -->
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
@@ -39,13 +51,17 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
 
+    <!--  -->
     <!-- Script to smooth scrolling -->
+    <!--  -->
     <script
       defer
       src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
     ></script>
 
+    <!--  -->
     <!-- Fonts -->
+    <!--  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -57,6 +73,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
 
@@ -198,13 +220,16 @@
 
           <ul class="user-login-dropdown hidden" aria-label="User Options">
             <li>
-              <a class="sign-in-dropdown" href="#" aria-label="Sign up"
+              <a
+                class="sign-in-dropdown greeting-user"
+                href="#"
+                aria-label="Sign up"
                 >Sign up</a
               >
             </li>
             <li>
               <a
-                class="log-in-dropdown dropdown-link"
+                class="log-in-dropdown logout-label dropdown-link"
                 href="#"
                 aria-label="Log in"
                 >Log in</a
@@ -291,6 +316,151 @@
         </aside>
       </aside>
     </nav>
+
+    <!--  -->
+    <!-- FORM SIGN UP/IN SECTION -->
+    <!--  -->
+    <div class="blur-form hidden"></div>
+    <section class="section-form-sign hidden" aria-label="Form Sign Section">
+      <div class="entire-form-container">
+        <div class="close-form">
+          <ion-icon name="close-outline"></ion-icon>
+        </div>
+
+        <div class="form-container sign-up" id="form-container">
+          <form>
+            <h2>Create Account</h2>
+            <div class="social-icons">
+              <a href="#" class="form-icon"
+                ><i class="fa-brands fa-google-plus-g"></i
+              ></a>
+              <a href="#" class="form-icon"
+                ><i class="fa-brands fa-facebook-f"></i
+              ></a>
+              <a href="#" class="form-icon"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a href="#" class="form-icon"
+                ><i class="fa-brands fa-linkedin-in"></i
+              ></a>
+            </div>
+            <span>Complete your info to create an account,</span>
+            <span><b>username</b> will be sent to your email</span>
+            <input
+              type="text"
+              placeholder="Name"
+              required
+              autofocus
+              autocomplete="off"
+            />
+            <input
+              type="text"
+              placeholder="Location"
+              autocomplete="off"
+              list="countryList"
+              pattern="USA|Canada|Spain|Italy|Israel"
+              title="Please choose a valid location from the list."
+              required
+            />
+            <datalist id="countryList">
+              <option value="USA"></option>
+              <option value="Canada"></option>
+              <option value="Spain"></option>
+              <option value="Italy"></option>
+              <option value="Israel"></option>
+            </datalist>
+            <input
+              type="email"
+              placeholder="Email"
+              required
+              autocomplete="off"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              title="Email must be valid."
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              required
+              pattern="(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{6,}"
+              autocomplete="off"
+              title="Password must be at least 6 letters long and contain at least one uppercase and one lowercase letter."
+            />
+            <button type="submit" value="Sumbit">Sign Up</button>
+          </form>
+        </div>
+
+        <div class="form-container sign-in" id="form-container">
+          <form>
+            <h2>Sign In</h2>
+            <div class="social-icons">
+              <a href="#" class="form-icon"
+                ><i class="fa-brands fa-google-plus-g"></i
+              ></a>
+              <a href="#" class="form-icon"
+                ><i class="fa-brands fa-facebook-f"></i
+              ></a>
+              <a href="#" class="form-icon"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a href="#" class="form-icon"
+                ><i class="fa-brands fa-linkedin-in"></i
+              ></a>
+            </div>
+            <span>or use your email password</span>
+            <input
+              type="text"
+              placeholder="Username"
+              required
+              autofocus
+              autocomplete="off"
+              pattern="[a-z]+"
+              title="Username should only contain lowercase letters."
+              class="login-username_value"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              required
+              autocomplete="off"
+              title="Email must be valid."
+              class="login-email_value"
+            />
+            <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
+            <input
+              type="password"
+              placeholder="Password"
+              required
+              pattern="(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{6,}"
+              autocomplete="off"
+              title="Password must be at least 6 letters long and contain at least one uppercase and one lowercase letter."
+              class="login-password_value"
+            />
+            <a href="#">Forgot Your Password?</a>
+            <button class="login-sumbit" type="submit" value="Submit">
+              Sign In
+            </button>
+          </form>
+        </div>
+
+        <div class="toggle-container">
+          <div class="toggle">
+            <div class="toggle-panel toggle-left">
+              <h2>Welcome Back!</h2>
+              <p>Enter your personal details to use all of site features</p>
+              <button class="hidden-form" id="form-login">Log In</button>
+            </div>
+
+            <div class="toggle-panel toggle-right">
+              <h2>Hello, Friend!</h2>
+              <p>
+                Register with your personal details to use all of site features
+              </p>
+              <button class="hidden-form" id="form-register">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!--  -->
     <!-- HERO SECTION -->
@@ -386,7 +556,7 @@
     <!--  -->
     <!-- LOGOS SECTION -->
     <!--  -->
-    <section class="section-logos">
+    <section class="section-logos" aria-label="Logos Section">
       <header class="logos-headers">
         <h2 class="header-logos">Collaborating for the Future</h2>
         <h3 class="sub-header-logos">
@@ -430,7 +600,10 @@
     <!--  -->
     <!-- FEATURED HOTELS SECTION -->
     <!--  -->
-    <section class="section-featured-hotels page-container">
+    <section
+      class="section-featured-hotels page-container"
+      aria-label="Featured Hotels Section"
+    >
       <header class="headers-container">
         <h2 class="prime-header">Discover Your Next Destination</h2>
         <h3 class="sub-header">
@@ -502,29 +675,34 @@
             </p>
           </header>
 
-          <p class="price">From $150/night</p>
+          <div class="details-des">
+            <div class="des">
+              <p>
+                Experience luxury and comfort at our farm hotel, surrounded by
+                peaceful orchards and stunning countryside views. Enjoy fresh,
+                farm-to-table dining and cozy accommodations, making it the
+                perfect escape for relaxation and rejuvenation.
+              </p>
+            </div>
 
-          <section class="amenities">
-            <h3>Attributes</h3>
-            <ul>
-              <li><i class="icon-wifi"></i> Free Wi-Fi</li>
-              <li><i class="icon-pool"></i> Pool</li>
-              <li><i class="icon-breakfast"></i> Breakfast included</li>
-            </ul>
-          </section>
+            <article class="features">
+              <h3>Attributes</h3>
+              <ul>
+                <li><i class="icon-wifi"></i> Free Wi-Fi</li>
+                <li><i class="icon-pool"></i> Pool</li>
+                <li><i class="icon-breakfast"></i> Breakfast included</li>
+              </ul>
+            </article>
 
-          <div class="des">
-            <p>
-              Experience luxury and comfort in the heart of the city. Perfect
-              for a relaxing getaway.
-            </p>
-          </div>
+            <p class="price">From $150/night</p>
 
-          <div class="cta">
-            <a class="book-now" href="#">Book Now</a>
-            <button class="add-whishlist">
-              Add AI Wishlist<!-- ION ICON -->
-            </button>
+            <div class="cta">
+              <a href="#">Book Now<ion-icon name="bed"></ion-icon></a>
+              <button class="add-whishlist">
+                AI Wishlist
+                <ion-icon name="sparkles"></ion-icon>
+              </button>
+            </div>
           </div>
         </aside>
       </article>
@@ -533,7 +711,10 @@
     <!--  -->
     <!-- GALLERY SECTION -->
     <!--  -->
-    <section class="section-gallery page-container">
+    <section
+      class="section-gallery page-container"
+      aria-label="Gallery Section"
+    >
       <header class="headers-container">
         <h2 class="prime-header">Explore the World's Hidden Gems</h2>
         <h3 class="sub-header">

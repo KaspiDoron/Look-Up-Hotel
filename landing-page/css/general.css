@@ -9,7 +9,10 @@
 -1: glowing search bar border
 5:  navigation bar, the borders in the search bar
 10: hero overlay, navbar overlay
-15: login dropdown navigation, login icons, mobile menu, search bar
+15: login dropdown navigation, login icons, mobile menu, search bar, bluring-form
+20: form-sign
+25: toggle-container
+30: .close-form (btn)
 */
 
 /*****************************************************************************************/
@@ -158,6 +161,7 @@ body {
   --font-title-: "SUSE", sans-serif;
   --font-titleE-: "DM serif Text", sans-serif; /* Using also for the logo */
   --font-anchors-: "Moderustic", sans-serif;
+  --font-form-: "Montserrat", sans-serif;
 }
 
 /* title Transitions */
@@ -165,6 +169,7 @@ body {
   --transition-fast-: all 0.15s;
   --transition-normal-: all 0.25s;
   --transition-slow-: all 0.4s;
+  --transition-very-slow-: all 0.6s;
 }
 
 /* title Icons */
@@ -197,6 +202,21 @@ body {
     transform: translateY(0);
     scale: 1;
     opacity: 1;
+  }
+}
+
+/* title Form Animation */
+@keyframes form-move {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
   }
 }
 
@@ -342,19 +362,28 @@ body {
 
 a {
   font-family: "Moderustic";
-  font-weight: 400;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  font-weight: inherit;
 }
 
 button {
   border: none;
   background: none;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
 }
 
 mark {
+  border: none;
   background: none;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
 }
 
 .icon {
@@ -437,7 +466,8 @@ mark {
 .dropdown-link:focus,
 .sign-in-dropdown:focus,
 .dropdown-social:focus,
-.cta-gallery-link:focus {
+.cta-gallery-link:focus,
+.entire-form-container input:focus {
   outline: 0.4rem solid var(--pink-light-);
 }
 /*****************************************************************************************/

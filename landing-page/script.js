@@ -1,4 +1,64 @@
 "use strict";
+/*****************************************************************************************/
+/* ACCOUNTS (DEMO) */
+/*****************************************************************************************/
+const account1 = {
+  name: "Doron Kaspi",
+  email: "kaspidoron@gmail.com",
+  password: "Doronkaspi",
+};
+const account2 = {
+  name: "Romi Meir Kalaf",
+  email: "romikalaf@gmail.com",
+  password: "Rmeir34",
+};
+const account3 = {
+  name: "Yair Kaspi",
+  email: "yairkaspi@gmail.com",
+  password: "GolaniSheli",
+};
+const account4 = {
+  name: "Shalom Hanoch",
+  email: "shalomhanoch@gmail.com",
+  password: "shabatShalom",
+};
+
+const accounts = [account1, account2, account3, account4];
+
+// title Create Usernames
+const checkType = function (arg) {
+  if (Array.isArray(arg)) {
+    return "arr";
+  } else if (typeof arg === "object" && arg !== null) {
+    return "obj";
+  } else {
+    console.log("It's neither an array nor an object");
+  }
+};
+
+// can create for individual and for a group
+const createUsernames = function (accs) {
+  if (checkType(accs) === "obj") {
+    const username = accs.name
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name.at(0))
+      .join("");
+    accs.username = username;
+  } else if (checkType(accs) === "arr") {
+    accs.forEach((acc) => {
+      const username = acc.name
+        .toLowerCase()
+        .split(" ")
+        .map((name) => name.at(0))
+        .join("");
+      acc.username = username;
+    });
+  } else {
+    console.log("it's not obj/arr");
+  }
+};
+createUsernames(accounts);
 
 /*****************************************************************************************/
 /* NAV SECTION */
@@ -119,6 +179,90 @@ closeMobileMenu.addEventListener("click", function () {
     closeMobileMenuFn();
     removeNabarOverlayCntrl();
   }
+});
+
+/*****************************************************************************************/
+/* FORM SIGN UP/IN SECTION */
+/*****************************************************************************************/
+// title Declaring Elements
+const signBtn = document.getElementById("form-register");
+const loginBtn = document.getElementById("form-login");
+const closeFormBtn = document.querySelector(".close-form");
+const openFormLogBtn = document.querySelector(".log-in-dropdown");
+const openFormSignBtn = document.querySelector(".sign-in-dropdown");
+const sumbitLogBtn = document.querySelector(".login-sumbit");
+
+const logUsernameInput = document.querySelector(".login-username_value");
+const logEmailInput = document.querySelector(".login-email_value");
+const logPasswordInput = document.querySelector(".login-password_value");
+
+const greetUserLabel = document.querySelector(".greeting-user");
+const logoutLabel = document.querySelector(".logout-label");
+const loginOverlay = document.querySelector(".blur-form");
+const formContainer = document.querySelector(".entire-form-container");
+const formSectionContainer = document.querySelector(".section-form-sign");
+
+// title Handling Login (create currentAcc)
+let currentAcc;
+sumbitLogBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  currentAcc = accounts.find((acc) => acc.username === logUsernameInput.value);
+  console.log(currentAcc);
+
+  if (
+    currentAcc?.password === logPasswordInput.value &&
+    currentAcc?.username === logUsernameInput.value &&
+    currentAcc?.email === logEmailInput.value
+  ) {
+    // Display logout and grret
+    greetUser(currentAcc);
+    logoutLabel.textContent = "Log Out";
+
+    // Close Form
+    closeForm();
+  }
+});
+
+// title Helper Functions
+// Starts in 'log in' state
+const switchToSign = () => formContainer.classList.remove("active-form");
+
+const switchToLog = () => formContainer.classList.add("active-form");
+
+const openForm = () => {
+  loginOverlay.classList.remove("hidden");
+  formSectionContainer.classList.remove("hidden");
+};
+
+const closeForm = () => {
+  loginOverlay.classList.add("hidden");
+  formSectionContainer.classList.add("hidden");
+};
+
+const greetUser = (acc) => {
+  greetUserLabel.textContent = `Welcome ${acc.name.split(" ")[0]}!`;
+};
+
+// title Handling Events
+signBtn.addEventListener("click", switchToLog);
+
+loginBtn.addEventListener("click", switchToSign);
+
+openFormSignBtn.addEventListener("click", function () {
+  openForm();
+  switchToLog();
+});
+
+openFormLogBtn.addEventListener("click", function () {
+  openForm();
+  switchToSign();
+});
+
+closeFormBtn.addEventListener("click", closeForm);
+
+loginOverlay.addEventListener("click", function () {
+  closeForm();
 });
 
 /*****************************************************************************************/
