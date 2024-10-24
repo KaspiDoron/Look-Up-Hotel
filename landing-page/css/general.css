@@ -1,18 +1,14 @@
 /* 
  * SYSTEMS: * 
-
-
-
-
-
----- 04 z-index tracking
+ 
+---- z-index tracking
 -1: glowing search bar border
 5:  navigation bar, the borders in the search bar
 10: hero overlay, navbar overlay
 15: login dropdown navigation, login icons, mobile menu, search bar, bluring-form
 20: form-sign
-25: toggle-container
-30: .close-form (btn)
+25: toggle-container, final-logout, user-exist-message
+30: close-form (btn), 
 */
 
 /*****************************************************************************************/
@@ -152,6 +148,12 @@ body {
   syntax: "<color>";
   inherits: true;
   initial-value: #ddd;
+}
+
+@property --angle-rotate- {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
 }
 
 /* title Fonts */
@@ -349,8 +351,19 @@ body {
   }
 }
 
-/* title Thumbnails Hotel Cards */
-@keyframes identifier {
+/* title Log Out Form */
+@keyframes autoRotate {
+  to {
+    --angle-rotate-: 360deg;
+  }
+}
+
+/* title Gallery Heart */
+@keyframes heart {
+  0%,
+  17.5% {
+    font-size: 0;
+  }
 }
 
 /*****************************************************************************************/
@@ -467,7 +480,9 @@ mark {
 .sign-in-dropdown:focus,
 .dropdown-social:focus,
 .cta-gallery-link:focus,
-.entire-form-container input:focus {
+.entire-form-container input:focus,
+.entire-form-container button:focus,
+.entire-form-container a:focus {
   outline: 0.4rem solid var(--pink-light-);
 }
 /*****************************************************************************************/

@@ -249,6 +249,14 @@
   html {
     font-size: 42.5%;
   }
+
+  .entire-form-container h2 {
+    font-size: var(--font-4-);
+  }
+
+  .entire-form-container span {
+    font-size: 1rem;
+  }
 }
 /*****************************************************************************************/
 /* BELOW 544px (small phones) */

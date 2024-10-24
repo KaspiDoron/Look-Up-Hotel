@@ -318,9 +318,42 @@
     </nav>
 
     <!--  -->
+    <!-- ALERTS SECTION -->
+    <!--  -->
+    <section class="section-custom-alerts">
+      <div class="blur-overlay hidden"></div>
+
+      <div class="warnning-logout-modal hidden">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <ion-icon class="close-alert" name="close-outline"></ion-icon>
+
+        <h2>Confirm Log Out</h2>
+        <p>Do you really want to sign out?</p>
+        <button class="final-signout-out">Sign Out</button>
+        <button class="final-signout-in">Stay Connected</button>
+      </div>
+
+      <div class="user-exist-message hidden">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <ion-icon class="close-alert" name="close-outline"></ion-icon>
+
+        <p>
+          A user with such email already exists.
+          <br />
+          <br />
+          Please choose,
+          <mark class="user-name-exist-message_value">Comrade</mark>:
+        </p>
+        <div class="exist-btns">
+          <button class="diff-email">Enter a new email</button>
+          <a href="#">Reset your password</a>
+        </div>
+      </div>
+    </section>
+
+    <!--  -->
     <!-- FORM SIGN UP/IN SECTION -->
     <!--  -->
-    <div class="blur-form hidden"></div>
     <section class="section-form-sign hidden" aria-label="Form Sign Section">
       <div class="entire-form-container">
         <div class="close-form">
@@ -347,11 +380,14 @@
             <span>Complete your info to create an account,</span>
             <span><b>username</b> will be sent to your email</span>
             <input
+              autofocus
               type="text"
               placeholder="Name"
               required
-              autofocus
               autocomplete="off"
+              class="form-input signup-name_value"
+              pattern="^[A-Za-z]+(\s[A-Za-z]+)+$"
+              title="Please enter at least a first and last name."
             />
             <input
               type="text"
@@ -361,6 +397,7 @@
               pattern="USA|Canada|Spain|Italy|Israel"
               title="Please choose a valid location from the list."
               required
+              class="form-input signup-location_value"
             />
             <datalist id="countryList">
               <option value="USA"></option>
@@ -374,18 +411,41 @@
               placeholder="Email"
               required
               autocomplete="off"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              title="Email must be valid."
+              pattern="^[a-z@.]+$"
+              title="Please enter a valid email and use only lowercase letters."
+              class="form-input signup-email_value"
             />
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              pattern="(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{6,}"
-              autocomplete="off"
-              title="Password must be at least 6 letters long and contain at least one uppercase and one lowercase letter."
-            />
-            <button type="submit" value="Sumbit">Sign Up</button>
+
+            <div class="password-wrapper">
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                pattern="(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{6,}"
+                autocomplete="off"
+                title="Password must be at least 6 letters long and contain at least one uppercase and one lowercase letter."
+                class="form-input input-password signup-password_value"
+              />
+
+              <div class="toggle-password-create password-toggle">
+                <ion-icon class="see-password" name="eye-outline"></ion-icon>
+                <ion-icon
+                  class="not-see-password"
+                  name="eye-off-outline"
+                ></ion-icon>
+              </div>
+            </div>
+
+            <button type="submit" value="Sumbit" class="signup-sumbit">
+              Sign Up
+            </button>
+
+            <aside>
+              <input type="checkbox" name="stay-signed" class="stay-signed" />
+              <span class="stay-signed-label"
+                >Stay <b>signed</b><br />after creation</span
+              >
+            </aside>
           </form>
         </div>
 
@@ -408,14 +468,14 @@
             </div>
             <span>or use your email password</span>
             <input
+              autofocus
               type="text"
               placeholder="Username"
               required
-              autofocus
               autocomplete="off"
               pattern="[a-z]+"
               title="Username should only contain lowercase letters."
-              class="login-username_value"
+              class="login-username_value form-input"
             />
             <input
               type="email"
@@ -423,19 +483,30 @@
               required
               autocomplete="off"
               title="Email must be valid."
-              class="login-email_value"
+              class="login-email_value form-input"
             />
-            <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              pattern="(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{6,}"
-              autocomplete="off"
-              title="Password must be at least 6 letters long and contain at least one uppercase and one lowercase letter."
-              class="login-password_value"
-            />
-            <a href="#">Forgot Your Password?</a>
+
+            <div class="password-wrapper">
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                pattern="(?=.*[a-z])(?=.*[A-Z])[a-zA-Z]{6,}"
+                autocomplete="off"
+                title="Password must be at least 6 letters long and contain at least one uppercase and one lowercase letter, without numbers."
+                class="login-password_value form-input input-password"
+              />
+
+              <div class="toggle-password-login password-toggle">
+                <ion-icon class="see-password" name="eye-outline"></ion-icon>
+                <ion-icon
+                  class="not-see-password"
+                  name="eye-off-outline"
+                ></ion-icon>
+              </div>
+            </div>
+
+            <a href="#" class="forgot-password">Forgot Your Password?</a>
             <button class="login-sumbit" type="submit" value="Submit">
               Sign In
             </button>
@@ -493,7 +564,10 @@
               required
               aria-required="true"
               aria-label="Search Locations"
+              list="location-suggestions"
+              pattern=""
             />
+            <datalist id="location-suggestions"></datalist>
           </div>
 
           <div class="search-field arrive-by search-field-regular-mode">
@@ -506,6 +580,7 @@
               required
               aria-required="true"
               aria-label="Arrival Date"
+              onchange="updateCheckoutMinDate()"
             />
           </div>
 
@@ -519,28 +594,34 @@
               required
               aria-required="true"
               aria-label="Checkout Date"
+              min=""
             />
           </div>
 
           <div class="search-field travelers search-field-regular-mode">
             <label class="label-field" for="who">Travelers</label>
-            <input
-              id="who"
-              type="number"
-              class="input travelers-input input-background-regular-mode"
-              placeholder="Add guests"
-              min="1"
-              max="10"
-              required
-              aria-required="true"
-              aria-label="Number of Guests"
-            />
+            <div class="guest-selector">
+              <button type="button" class="guest-decrement">-</button>
+              <input
+                id="who"
+                type="number"
+                class="input travelers-input input-background-regular-mode"
+                placeholder="Add guests"
+                min="1"
+                max="10"
+                required
+                aria-required="true"
+                aria-label="Number of Guests"
+              />
+              <button type="button" class="guest-increment">+</button>
+            </div>
           </div>
 
           <button
             type="submit"
             class="search-button"
             aria-label="Submit Search"
+            value="sumbit"
           >
             <ion-icon
               class="icon"
@@ -606,12 +687,16 @@
     >
       <header class="headers-container">
         <h2 class="prime-header">Discover Your Next Destination</h2>
-        <h3 class="sub-header">
-          Explore the best hotels tailored to your vacation style.
-        </h3>
+        <aside>
+          <h3 class="sub-header">
+            Discover the top hotels handpicked just for you from the AI
+            wishlist.
+          </h3>
+          <button class="login-to-see">Login to Experience Feature!</button>
+        </aside>
         <p>
-          Click to see more and find
-          <a href="#">your perfect stay.</a>
+          Click to see your whole
+          <a href="#">AI Wishlist.</a>
         </p>
       </header>
 
@@ -666,43 +751,50 @@
         <!-- Hotel Details -->
         <aside class="hotel-details">
           <header>
-            <h2 class="hotel-name">Anoira Suites</h2>
+            <h2 class="hotel-name">Pali Suits</h2>
             <address class="location">Italy, Rome</address>
 
             <p class="rating">
-              4.64
+              4.64/5
               <ion-icon name="star"></ion-icon>
             </p>
           </header>
 
           <div class="details-des">
             <div class="des">
-              <p>
-                Experience luxury and comfort at our farm hotel, surrounded by
-                peaceful orchards and stunning countryside views. Enjoy fresh,
-                farm-to-table dining and cozy accommodations, making it the
-                perfect escape for relaxation and rejuvenation.
+              <p class="hotel-des">
+                Experience <span>luxury</span> at our farm hotel, nestled among
+                peaceful orchards and stunning views. <br />
+                <mark>Enjoy</mark> farm-to-table dining and cozy
+                accommodations—the perfect escape for relaxation.
               </p>
             </div>
 
             <article class="features">
-              <h3>Attributes</h3>
-              <ul>
-                <li><i class="icon-wifi"></i> Free Wi-Fi</li>
-                <li><i class="icon-pool"></i> Pool</li>
-                <li><i class="icon-breakfast"></i> Breakfast included</li>
+              <h3>Features</h3>
+              <ul class="features-list">
+                <li><ion-icon name="wifi-outline"></ion-icon> Free Wi-Fi</li>
+                <li><ion-icon name="golf-outline"></ion-icon> Golf court</li>
+                <li>
+                  <ion-icon name="cafe-outline"></ion-icon> Breakfast included
+                </li>
+                <li><ion-icon name="car-outline"></ion-icon> Free parking</li>
+                <li><ion-icon name="paw-outline"></ion-icon> Pet-friendly</li>
               </ul>
+
+              <div class="cta">
+                <a href="#">Book Now<ion-icon name="bed"></ion-icon></a>
+                <button class="add-whishlist">
+                  AI Wishlist
+                  <ion-icon name="sparkles"></ion-icon>
+                </button>
+              </div>
+
+              <p class="price">
+                From <mark>$<span class="price-number">125</span></mark
+                >/night
+              </p>
             </article>
-
-            <p class="price">From $150/night</p>
-
-            <div class="cta">
-              <a href="#">Book Now<ion-icon name="bed"></ion-icon></a>
-              <button class="add-whishlist">
-                AI Wishlist
-                <ion-icon name="sparkles"></ion-icon>
-              </button>
-            </div>
           </div>
         </aside>
       </article>
@@ -762,6 +854,12 @@
                   src="/landing-page/img/gallery/portugal/por-1.jpg"
                   alt="portugal-img"
                 />
+              </div>
+              <div class="icon-container">
+                <input id="toggle-heart" type="checkbox" />
+                <label class="heart ai-wishlist-icon" for="toggle-heart"
+                  >❤</label
+                >
               </div>
             </div>
 
