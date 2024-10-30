@@ -323,7 +323,7 @@
     <section class="section-custom-alerts">
       <div class="blur-overlay hidden"></div>
 
-      <div class="warnning-logout-modal hidden">
+      <div class="warnning-logout-modal hidden alert">
         <ion-icon name="alert-circle-outline"></ion-icon>
         <ion-icon class="close-alert" name="close-outline"></ion-icon>
 
@@ -333,7 +333,7 @@
         <button class="final-signout-in">Stay Connected</button>
       </div>
 
-      <div class="user-exist-message hidden">
+      <div class="user-exist-message hidden alert">
         <ion-icon name="alert-circle-outline"></ion-icon>
         <ion-icon class="close-alert" name="close-outline"></ion-icon>
 
@@ -348,6 +348,20 @@
           <button class="diff-email">Enter a new email</button>
           <a href="#">Reset your password</a>
         </div>
+      </div>
+
+      <div class="hotel-searched-displayed hidden alert">
+        <ion-icon name="sparkles-outline"></ion-icon>
+        <ion-icon class="close-alert" name="close-outline"></ion-icon>
+
+        <h2>Hotel Appears Just Below</h2>
+        <p>
+          If that hotel doesn't meet your needs,
+          <mark
+            >simply tap the search icon again to view a different option!</mark
+          >
+        </p>
+        <button class="hotel-appear">Great!</button>
       </div>
     </section>
 
@@ -580,6 +594,7 @@
               required
               aria-required="true"
               aria-label="Arrival Date"
+              title="Arrival date must be in the future."
               onchange="updateCheckoutMinDate()"
             />
           </div>
@@ -594,6 +609,7 @@
               required
               aria-required="true"
               aria-label="Checkout Date"
+              title="Check-out date must be in the future and after the arrival date."
               min=""
             />
           </div>

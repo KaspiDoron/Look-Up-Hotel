@@ -5,7 +5,60 @@
 // title Helper Functions
 const randomRating = () => Number((Math.random() + 4).toFixed(2));
 
+const calculateDaysBetween = function (date1, date2) {
+  const date1Ms = new Date(date1).getTime();
+  const date2Ms = new Date(date2).getTime();
+  const differenceMs = Math.abs(date2Ms - date1Ms);
+  return Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
+};
+
+const initializeDynamicRoomAvailability = function (checkOutValue) {
+  const today = new Date();
+  const checkOutDate = new Date(checkOutValue);
+  checkOutDate.setDate(checkOutDate.getDate() + 1);
+  const daysUntilCheckout = calculateDaysBetween(today, checkOutDate);
+
+  const days = daysUntilCheckout > 120 ? daysUntilCheckout : 120;
+
+  return initializeRoomAvailability(days);
+};
+
+const initializeRoomAvailability = function (days = 120) {
+  const today = new Date();
+  const roomAvailability = [];
+  let currentDate = new Date(today);
+
+  let gapDuration = 0;
+  let indexGapDuration = 0;
+
+  // 30% chance to have a gap duration
+  if (Math.random() < 0.3) {
+    gapDuration = Math.floor(Math.random() * 1) + 3;
+  }
+  for (let i = 0; i < days; i++) {
+    roomAvailability.push({
+      date: currentDate.toISOString().split("T")[0],
+      available: gapDuration > indexGapDuration ? false : true,
+      maxTravelers:
+        gapDuration > indexGapDuration ? 0 : Math.floor(Math.random() * 10),
+    });
+    if (indexGapDuration === gapDuration) {
+      indexGapDuration = 0;
+      gapDuration = 0;
+    } else {
+      indexGapDuration++;
+    }
+    currentDate.setDate(currentDate.getDate() + 1);
+    // 10% chance to have a new gap duration
+    if (indexGapDuration === 0 && Math.random() < 0.1) {
+      gapDuration = Math.floor(Math.random() * 1) + 3;
+    }
+  }
+  return roomAvailability;
+};
+
 const coastalHavenHotel = {
+  type: "hotel",
   name: "Coastal Haven Hotel",
   location: "Israel, Tel Aviv",
   rating: randomRating(),
@@ -27,10 +80,12 @@ const coastalHavenHotel = {
     "/landing-page/img/featured-hotels/Coastal Haven/coast-4.webp",
     "/landing-page/img/featured-hotels/Coastal Haven/coast-5.webp",
   ],
-  hotelLoc: "city",
+  hotelLoc: "City",
+  roomAvailability: initializeRoomAvailability(),
 };
 
 const MarinaSandsResort = {
+  type: "hotel",
   name: "Marina Sands Resort",
   location: "Thailand, Ko Samui",
   rating: randomRating(),
@@ -52,10 +107,12 @@ const MarinaSandsResort = {
     "/landing-page/img/featured-hotels/Marina Sands/marina-4.webp",
     "/landing-page/img/featured-hotels/Marina Sands/marina-5.webp",
   ],
-  hotelLoc: "beach",
+  hotelLoc: "Beach",
+  roomAvailability: initializeRoomAvailability(),
 };
 
 const StarlightsHeaven = {
+  type: "hotel",
   name: "Star Light Heaven",
   location: "Maldives, South Ari Atoll",
   rating: randomRating(),
@@ -77,10 +134,12 @@ const StarlightsHeaven = {
     "/landing-page/img/featured-hotels/Starlights/star-4.webp",
     "/landing-page/img/featured-hotels/Starlights/star-5.webp",
   ],
-  hotelLoc: "beach",
+  hotelLoc: "Beach",
+  roomAvailability: initializeRoomAvailability(),
 };
 
 const OceanPearl = {
+  type: "hotel",
   name: "Ocean Pearl Resort",
   location: "Bora Bora, French Polynesia",
   rating: randomRating(),
@@ -102,10 +161,12 @@ const OceanPearl = {
     "/landing-page/img/featured-hotels/OceanPearl/pearl-4.webp",
     "/landing-page/img/featured-hotels/OceanPearl/pearl-5.webp",
   ],
-  hotelLoc: "beach",
+  hotelLoc: "Beach",
+  roomAvailability: initializeRoomAvailability(),
 };
 
 const MountainWhispers = {
+  type: "hotel",
   name: "Mountain Whispers Retreat",
   location: "Aspen, Colorado",
   rating: randomRating(),
@@ -127,10 +188,12 @@ const MountainWhispers = {
     "/landing-page/img/featured-hotels/MountainWhispers/mountain-4.webp",
     "/landing-page/img/featured-hotels/MountainWhispers/mountain-5.webp",
   ],
-  hotelLoc: "mountain",
+  hotelLoc: "Mountain",
+  roomAvailability: initializeRoomAvailability(),
 };
 
 const CoralReefEscape = {
+  type: "hotel",
   name: "Coral Reef Escape",
   location: "Great Barrier Reef, Australia",
   rating: randomRating(),
@@ -138,7 +201,7 @@ const CoralReefEscape = {
     "Coral Reef Escape offers an eco-friendly haven for marine lovers. Stay in beachfront villas, dive into vibrant reefs, and experience wildlife tours in the heart of the world's largest coral reef system.",
   features: [
     { label: "Beachfront Villas", icon: "home-outline" },
-    { label: "Reef Diving", icon: "scuba-tank-outline" },
+    { label: "Reef Diving", icon: "sparkles-outline" },
     { label: "Wildlife Tours", icon: "paw-outline" },
     { label: "Eco-Friendly", icon: "leaf-outline" },
     { label: "Outdoor Pools", icon: "water-outline" },
@@ -152,10 +215,12 @@ const CoralReefEscape = {
     "/landing-page/img/featured-hotels/CoralReef/coral-4.webp",
     "/landing-page/img/featured-hotels/CoralReef/coral-5.webp",
   ],
-  hotelLoc: "beach",
+  hotelLoc: "Beach",
+  roomAvailability: initializeRoomAvailability(),
 };
 
 const DesertDunesOasis = {
+  type: "hotel",
   name: "Desert Dunes Oasis",
   location: "Dubai, United Arab Emirates",
   rating: randomRating(),
@@ -163,7 +228,7 @@ const DesertDunesOasis = {
     "An exotic desert getaway, Desert Dunes Oasis combines luxury with adventure. Enjoy lavish tents, camel rides, and unforgettable desert safaris under the stars in the heart of the Arabian desert.",
   features: [
     { label: "Luxury Tents", icon: "home-outline" },
-    { label: "Camel Rides", icon: "camel-outline" },
+    { label: "Camel Rides", icon: "paw-outline" },
     { label: "Desert Safari", icon: "car-outline" },
     { label: "Star Gazing", icon: "moon-outline" },
     { label: "Fine Dining", icon: "restaurant-outline" },
@@ -177,10 +242,12 @@ const DesertDunesOasis = {
     "/landing-page/img/featured-hotels/DesertDunes/desert-4.webp",
     "/landing-page/img/featured-hotels/DesertDunes/desert-5.webp",
   ],
-  hotelLoc: "desert",
+  hotelLoc: "Desert",
+  roomAvailability: initializeRoomAvailability(),
 };
 
 const RainforestRetreat = {
+  type: "hotel",
   name: "Rainforest Retreat",
   location: "Amazon Rainforest, Brazil",
   rating: randomRating(),
@@ -202,10 +269,12 @@ const RainforestRetreat = {
     "/landing-page/img/featured-hotels/Rainforest/rainforest-4.webp",
     "/landing-page/img/featured-hotels/Rainforest/rainforest-5.webp",
   ],
-  hotelLoc: "forest",
+  hotelLoc: "Forest",
+  roomAvailability: initializeRoomAvailability(),
 };
 
 const NorthernLightsInn = {
+  type: "hotel",
   name: "Northern Lights Inn",
   location: "Reykjavik, Iceland",
   rating: randomRating(),
@@ -227,12 +296,9 @@ const NorthernLightsInn = {
     "/landing-page/img/featured-hotels/NorthernLights/northern-4.webp",
     "/landing-page/img/featured-hotels/NorthernLights/northern-5.webp",
   ],
-  hotelLoc: "mountain",
+  hotelLoc: "Mountain",
+  roomAvailability: initializeRoomAvailability(),
 };
-
-const desMarkWords = ["stunning", "elegantly"];
-
-const desSpanWords = ["luxurious", "ultimate"];
 
 const hotels = [
   coastalHavenHotel,
@@ -246,7 +312,7 @@ const hotels = [
   NorthernLightsInn,
 ];
 
-const hotelLocationSet = new Set(["beach", "mountain", "desert"]);
+const hotelLocationSet = new Set(["Beach", "Mountain", "Desert"]);
 
 const checkIfNewHotelLoc = (function (hotels) {
   hotels.forEach((hotel) => {
@@ -256,43 +322,78 @@ const checkIfNewHotelLoc = (function (hotels) {
   });
 })(hotels);
 
+const desMarkWords = [];
+const desSpanWords = [];
+
+const addUniqueWord = function (description, targetArr, otherArr) {
+  const words = description.split(" ");
+
+  for (let word of words) {
+    word = word.replace(/[.,]/g, "").toLowerCase();
+
+    if (
+      !targetArr.includes(word) &&
+      !otherArr.includes(word) &&
+      word != "a" &&
+      word != "an"
+    ) {
+      targetArr.push(word);
+      return;
+    }
+  }
+};
+hotels.forEach((hotel) => {
+  const description = hotel.description;
+
+  addUniqueWord(description, desMarkWords, desSpanWords);
+  addUniqueWord(description, desSpanWords, desMarkWords);
+});
+
 /*****************************************************************************************/
 /* ACCOUNTS (DEMO) */
 /*****************************************************************************************/
 const account1 = {
+  type: "acc",
   name: "Doron Kaspi",
   location: "Israel",
   email: "kaspidoron@gmail.com",
   password: "KASPIdoron",
   AIWishlist: [coastalHavenHotel, MarinaSandsResort, StarlightsHeaven],
   likedPicutres: [],
+  searchHistory: [],
 };
 
 const account2 = {
+  type: "acc",
   name: "Looni Meir Kalaf",
   location: "Italy",
   email: "romikalaf@gmail.com",
   password: "MEIRlooni",
   AIWishlist: [],
   likedPicutres: [],
+  searchHistory: [],
 };
 
 const account3 = {
+  type: "acc",
   name: "Yair Kaspi",
   location: "USA",
   email: "yairkaspi@gmail.com",
   password: "GolaniSheli",
   AIWishlist: [],
   likedPicutres: [],
+  searchHistory: [],
 };
 
 const account4 = {
+  type: "acc",
   name: "Shalom Hanoch",
   location: "Canada",
   email: "shalomhanoch@gmail.com",
   password: "shabatShalom",
   AIWishlist: [],
   likedPicutres: [],
+  searchHistory: [],
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -354,7 +455,7 @@ const closeAlertBtn = document.querySelectorAll(".close-alert");
 const sumbitLogBtn = document.querySelector(".login-sumbit");
 const loginHotelFeaturedBtn = document.querySelector(".login-to-see");
 
-// todo Make a checking fn for if the user tries to exit the form before sumbitting
+// TODO: Make a checking fn for if the user tries to exit the form before sumbitting
 const formInputs = document.querySelectorAll(".form-input");
 const passwordInputs = document.querySelectorAll(".input-password");
 
@@ -413,7 +514,6 @@ sumbitCreateBtn.addEventListener("click", function (e) {
   const username = createUsernames(name);
 
   const staySigned = staySignedInput.checked;
-  console.log(staySigned);
 
   if (!checkIfUserExists(email)) {
     if (email !== "") {
@@ -424,7 +524,7 @@ sumbitCreateBtn.addEventListener("click", function (e) {
         accountSigned = true;
         currentAcc = newUser;
         greetUser(currentAcc);
-        displayAIHotel();
+        displayAIHotel(currentAcc);
         logoutLabel.textContent = "Log Out";
       }
       closeForm();
@@ -533,7 +633,6 @@ const checkIfUserExists = (email) => {
 
 const makeOfficialName = (name = "Comrade") => {
   name = name.toLowerCase();
-  console.log(name);
   const returnName = name[0].toUpperCase() + name.slice(1);
   return returnName;
 };
@@ -553,6 +652,8 @@ const closeAlert = (index) => {
     removeLogOutModal();
   } else if (index === 1) {
     removeUserExistMessage();
+  } else if (index === 2) {
+    removeHotelAppearMessaage();
   }
 };
 
@@ -595,6 +696,8 @@ closeFormBtn.addEventListener("click", closeForm);
 blurOverlay.addEventListener("click", function () {
   closeForm();
   removeLogOutModal();
+  removeUserExistMessage();
+  removeHotelAppearMessaage();
 });
 
 logoutLabel.addEventListener("click", function (e) {
@@ -628,7 +731,7 @@ closeAlertBtn.forEach((btn, index) => {
 });
 
 /*****************************************************************************************/
-// todo AI WISHLIST */
+// TODO: AI WISHLIST */
 /*****************************************************************************************/
 
 /*****************************************************************************************/
@@ -837,7 +940,7 @@ function hideHeroOverlay() {
   heroOverlay.classList.add("hidden");
 }
 
-// todo to understand how can make all the elif qs shorter as a function to apply the DRY rule
+// TODO: to understand how can make all the elif qs shorter as a function to apply the DRY rule
 // title Handling the search bar "choose mode"
 
 // Handle click events on search fields and labels
@@ -918,12 +1021,12 @@ const changeInptElementStyle = (clickedElement) => {
     chosenInputField = document.querySelector(".check-out-input");
   } else if (
     clickedElement.classList.contains("travelers") ||
-    clickedElement.classList.contains("travelers-input")
+    clickedElement.classList.contains("travelers-input") ||
+    clickedElement.classList.contains("guest-increment") ||
+    clickedElement.classList.contains("guest-decrement")
   ) {
     chosenSearchField = document.querySelector(".travelers");
     chosenInputField = document.querySelector(".travelers-input");
-  } else {
-    console.log("Unexpected element clicked");
   }
 };
 
@@ -944,12 +1047,50 @@ heroOverlay.addEventListener("click", function () {
   hideHeroOverlay();
 });
 
-// title Handlaing Sumbit Searchbar
-
 function updateCheckoutMinDate() {
   const arriveByInput = document.getElementById("arrive-by");
   const checkoutInput = document.getElementById("check-out");
+
+  const today = new Date();
+  const todayFormatted = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(today);
+
+  // Calculate the maximum date (today + 120 days)
+  const maxDate = new Date();
+  maxDate.setDate(today.getDate() + 120);
+  const maxDateFormatted = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(maxDate);
+
+  if (arriveByInput.value < todayFormatted) {
+    // TODO: make a nice alert UI
+    return;
+  }
+
+  if (arriveByInput.value > maxDateFormatted) {
+    // TODO: make a nice alert UI for exceeding max date
+    return;
+  }
+
   checkoutInput.min = arriveByInput.value;
+
+  if (
+    checkoutInput.value < todayFormatted ||
+    checkoutInput.value < arriveByInput.value
+  ) {
+    // TODO: make a nice alert UI
+    return;
+  }
+
+  if (checkoutInput.value > maxDateFormatted) {
+    // TODO: make a nice alert UI for exceeding max date
+    return;
+  }
 }
 
 document.querySelector(".guest-decrement").addEventListener("click", () => {
@@ -973,8 +1114,140 @@ function updateDatalist() {
       : (inputWhere.pattern += `|${option.value}`);
   });
 }
-hotelLocationSet.add("city");
 updateDatalist();
+
+// title Handlaing Sumbit Searchbar
+const searchbarBtn = document.querySelector(".search-button");
+const messageHotelAppearBtn = document.querySelector(".hotel-appear");
+
+const messageHotelAppear = document.querySelector(".hotel-searched-displayed");
+
+const whereValue = document.querySelector("#where");
+const checkInValue = document.querySelector("#arrive-by");
+const checkOutValue = document.querySelector("#check-out");
+const travelersCountValue = document.querySelector("#who");
+
+const showHotelAppearMessaage = function () {
+  messageHotelAppear.classList.remove("hidden");
+  openOverlay();
+};
+
+const removeHotelAppearMessaage = function () {
+  messageHotelAppear.classList.add("hidden");
+  closeOverlay();
+};
+
+searchbarBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // 1. Filter hotels by location
+  const filteredLocHotels = hotels.filter(
+    (hotel) => hotel.hotelLoc === whereValue.value
+  );
+  console.log(filteredLocHotels);
+
+  // 2. Initialize room availability for each hotel in filteredLocHotels
+  filteredLocHotels.forEach((hotel) => {
+    hotel.roomAvailability = initializeDynamicRoomAvailability(
+      checkOutValue.value
+    );
+  });
+
+  // 3. Calculate number of nights and find specific date range in roomAvailability
+  const checkInDate = new Date(checkInValue.value);
+  const checkOutDate = new Date(checkOutValue.value);
+  console.log(`Check out date: ${checkOutDate}`);
+
+  const finalFilteredHotels = filteredLocHotels.filter((hotel) => {
+    // Parse check-in and check-out dates to match roomAvailability format
+    const checkInStr = checkInDate.toISOString().split("T")[0];
+    const checkOutStr = checkOutDate.toISOString().split("T")[0];
+
+    const startIndex = hotel.roomAvailability.findIndex(
+      (room) => room.date === checkInStr
+    );
+    const endIndex = hotel.roomAvailability.findIndex(
+      (room) => room.date === checkOutStr
+    );
+
+    console.log(`Start Index: ${startIndex}, End Index: ${endIndex}`);
+
+    if (startIndex === -1 || endIndex === -1 || startIndex >= endIndex) {
+      console.log("Returned False");
+      return false;
+    }
+
+    const roomAvailable = hotel.roomAvailability
+      .slice(startIndex, endIndex)
+      .every(
+        (room) =>
+          room.available &&
+          room.maxTravelers >= Number(travelersCountValue.value)
+      );
+
+    return roomAvailable;
+  });
+
+  console.log(finalFilteredHotels);
+  console.log(
+    finalFilteredHotels[Math.floor(Math.random() * finalFilteredHotels.length)]
+  );
+
+  // 4. Display a random hotel if any match, else show an error message
+  if (finalFilteredHotels.length > 0) {
+    displayAIHotel(
+      finalFilteredHotels[
+        Math.floor(Math.random() * finalFilteredHotels.length)
+      ]
+    );
+    showHotelAppearMessaage();
+    console.log("A hotel has been displayed below!");
+  } else {
+    console.log(
+      "No hotels match your search criteria. Try different dates or locations."
+    );
+  }
+
+  // 5. Scroll to "section-featured-hotels" using Intersection Observer
+  const featuredSection = document.querySelector(".section-featured-hotels");
+  const navbar = document.querySelector(".navbar");
+
+  if (finalFilteredHotels.length > 0) {
+    const navbarHeight = navbar.getBoundingClientRect().height;
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          const sectionRect = featuredSection.getBoundingClientRect();
+          const scrollToPosition =
+            sectionRect.top + window.scrollY - navbarHeight;
+
+          window.scrollTo({
+            top: scrollToPosition,
+            behavior: "smooth",
+          });
+
+          observer.unobserve(featuredSection);
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(featuredSection);
+  }
+
+  // 6. Save search to active account’s search history if logged in
+  if (accountSigned === true) {
+    currentAcc.searchHistory.push({
+      location: whereValue.value,
+      checkIn: checkInValue.value,
+      checkOut: checkOutValue.value,
+      travelers: travelersCountValue.value,
+    });
+  }
+});
+
+messageHotelAppearBtn.addEventListener("click", removeHotelAppearMessaage);
 
 /*****************************************************************************************/
 /* CAROUSEL FEATURED HOTEL SECTION */
@@ -1060,32 +1333,36 @@ const updateHotelImages = (hotel) => {
   });
 };
 
-const displayAIHotel = function (acc) {
-  if (accountSigned === true) {
+const displayAIHotel = function (accOrHotel) {
+  if (accountSigned === true && accOrHotel.type === "acc") {
     loginHotelFeaturedBtn.style.display = "none";
-
-    currentFeaturedHotel = acc.AIWishlist[Math.floor(Math.random() * 4)];
-
-    hotelName.textContent = currentFeaturedHotel.name;
-    hotelLoc.textContent = currentFeaturedHotel.location;
-    hotelRating.innerHTML = `${currentFeaturedHotel.rating}/5<ion-icon name="star"></ion-icon>`;
-
-    displayDesHotel(currentFeaturedHotel);
-
-    hotelPrice.textContent = currentFeaturedHotel.pricePerNight;
-
-    hotelFeaturesList.innerHTML = "";
-    currentFeaturedHotel.features.forEach((feature) => {
-      const featureItem = document.createElement("li");
-      featureItem.innerHTML = `<ion-icon name="${feature.icon}"></ion-icon> ${feature.label}`;
-      hotelFeaturesList.appendChild(featureItem);
-    });
-
-    updateHotelImages(currentFeaturedHotel);
+    currentFeaturedHotel =
+      accOrHotel.AIWishlist[
+        Math.floor(Math.random() * accOrHotel.AIWishlist.length)
+      ];
+  } else if (accOrHotel.type === "hotel") {
+    currentFeaturedHotel = accOrHotel;
   }
+
+  hotelName.textContent = currentFeaturedHotel.name;
+  hotelLoc.textContent = currentFeaturedHotel.location;
+  hotelRating.innerHTML = `${currentFeaturedHotel.rating}/5<ion-icon name="star"></ion-icon>`;
+
+  displayDesHotel(currentFeaturedHotel);
+
+  hotelPrice.textContent = currentFeaturedHotel.pricePerNight;
+
+  hotelFeaturesList.innerHTML = "";
+  currentFeaturedHotel.features.forEach((feature) => {
+    const featureItem = document.createElement("li");
+    featureItem.innerHTML = `<ion-icon name="${feature.icon}"></ion-icon> ${feature.label}`;
+    hotelFeaturesList.appendChild(featureItem);
+  });
+
+  updateHotelImages(currentFeaturedHotel);
 };
 
 /*****************************************************************************************/
 /* GALLERY SECTION */
 /*****************************************************************************************/
-// todo make that each time we clicked a picture in the gallrty its add to the 'likedPictures' array
+// TODO: make that each time we clicked a picture in the gallrty its add to the 'likedPictures' array
