@@ -42,6 +42,10 @@ const initializeRoomAvailability = function (days = 120) {
       maxTravelers:
         gapDuration > indexGapDuration ? 0 : Math.floor(Math.random() * 10),
     });
+
+    if (roomAvailability[i].maxTravelers === 0)
+      roomAvailability[i].available = false;
+
     if (indexGapDuration === gapDuration) {
       indexGapDuration = 0;
       gapDuration = 0;
@@ -149,7 +153,7 @@ const OceanPearl = {
     { label: "Overwater Suites", icon: "home-outline" },
     { label: "Private Jacuzzi", icon: "water-outline" },
     { label: "Gourmet Cuisine", icon: "restaurant-outline" },
-    { label: "Snorkeling", icon: "scuba-tank-outline" },
+    { label: "Snorkeling", icon: "sunny-outline" },
     { label: "Sunset Cruises", icon: "boat-outline" },
   ],
   pricePerNight: 149,
@@ -174,8 +178,8 @@ const MountainWhispers = {
     "A luxurious retreat in the heart of the Rockies, Mountain Whispers offers cozy cabins with breathtaking mountain views. Experience world-class skiing, spa treatments, and fine dining by a roaring fire.",
   features: [
     { label: "Mountain Cabins", icon: "home-outline" },
-    { label: "Ski Access", icon: "snowflake-outline" },
-    { label: "Spa & Wellness", icon: "spa-outline" },
+    { label: "Ski Access", icon: "snow-outline" },
+    { label: "Spa & Wellness", icon: "accessibility-outline" },
     { label: "Fine Dining", icon: "restaurant-outline" },
     { label: "Hot Tubs", icon: "water-outline" },
   ],
@@ -256,8 +260,8 @@ const RainforestRetreat = {
   features: [
     { label: "Eco-Lodges", icon: "home-outline" },
     { label: "Wildlife Expeditions", icon: "paw-outline" },
-    { label: "Jungle Trails", icon: "tree-outline" },
-    { label: "Canoe Tours", icon: "canoe-outline" },
+    { label: "Jungle Trails", icon: "footsteps-outline" },
+    { label: "Canoe Tours", icon: "boat-outline" },
     { label: "Cultural Experiences", icon: "earth-outline" },
   ],
   pricePerNight: 120,
@@ -284,8 +288,8 @@ const NorthernLightsInn = {
     { label: "Glass Igloos", icon: "home-outline" },
     { label: "Hot Springs", icon: "water-outline" },
     { label: "Aurora Viewing", icon: "moon-outline" },
-    { label: "Snowmobile Rides", icon: "snowmobile-outline" },
-    { label: "Ice Caves", icon: "ice-outline" },
+    { label: "Snowmobile Rides", icon: "ice-cream-outline" },
+    { label: "Ice Caves", icon: "snow-outline" },
   ],
   pricePerNight: 220,
   imgSrc: [
@@ -921,6 +925,7 @@ function deactivateChoosingMode() {
   if (isFieldChosen) {
     chosenSearchField.classList.remove("choosing-search-field");
     chosenInputField.classList.remove("choosing-input");
+
     isFieldChosen = false;
   }
 }
@@ -929,6 +934,7 @@ function activateChoosingMode() {
   // Apply styles to the currently chosen field
   chosenSearchField.classList.add("choosing-search-field");
   chosenInputField.classList.add("choosing-input");
+
   isFieldChosen = true;
 }
 
@@ -1037,6 +1043,7 @@ function determineChosenField(clickedElement) {
 const searchbarClasses = document.querySelectorAll(
   ".input, .search-field, .label-field"
 );
+
 searchbarClasses.forEach((element) =>
   element.addEventListener("click", handleElementClick)
 );
@@ -1118,8 +1125,6 @@ updateDatalist();
 
 // title Handlaing Sumbit Searchbar
 const searchbarBtn = document.querySelector(".search-button");
-const messageHotelAppearBtn = document.querySelector(".hotel-appear");
-
 const messageHotelAppear = document.querySelector(".hotel-searched-displayed");
 
 const whereValue = document.querySelector("#where");
@@ -1127,8 +1132,31 @@ const checkInValue = document.querySelector("#arrive-by");
 const checkOutValue = document.querySelector("#check-out");
 const travelersCountValue = document.querySelector("#who");
 
-const showHotelAppearMessaage = function () {
+const originalMessageHotelAppearHTML = `
+        <ion-icon name="sparkles-outline"></ion-icon>
+        <ion-icon class="close-alert" name="close-outline"></ion-icon>
+
+        <h2>Hotel Appears Just Below</h2>
+        <p>
+          If that hotel doesn't meet your needs,
+          <mark>simply tap</mark> the search icon again to view a different
+          option!
+        </p>
+        <button class="hotel-appear">Great!</button>
+`;
+
+messageHotelAppear.innerHTML = originalMessageHotelAppearHTML;
+
+const restoreOriginalHotelAppearMessage = function () {
+  messageHotelAppear.innerHTML = originalMessageHotelAppearHTML;
+  removeHotelAppearMessaage();
+};
+
+const showHotelAppearMessage = function () {
   messageHotelAppear.classList.remove("hidden");
+
+  const messageHotelAppearBtn = document.querySelector(".hotel-appear");
+  messageHotelAppearBtn.addEventListener("click", removeHotelAppearMessaage);
   openOverlay();
 };
 
@@ -1137,6 +1165,45 @@ const removeHotelAppearMessaage = function () {
   closeOverlay();
 };
 
+const showNoMoreHotel = function (finalFilteredHotels) {
+  messageHotelAppear.innerHTML = "";
+
+  const generateHotelMessage = function (finalFilteredHotels) {
+    let message;
+
+    if (finalFilteredHotels.length === 0) {
+      message = `Unfortunately, there are no hotels matching your criteria. 
+                 Please <mark>change your check-in dates</mark> or <mark>try a different location</mark> to find options.`;
+    } else if (finalFilteredHotels.length === 1) {
+      message = `Great news! There is only <mark>one hotel</mark> matching your needs. 
+                 You can proceed to view the details or change your search criteria for more options.`;
+    }
+    return message;
+  };
+
+  const messageHotelAppearHTML = `      
+        <ion-icon name="alert-circle-outline"></ion-icon>        
+        <ion-icon class="close-alert" name="close-outline"></ion-icon>
+
+        <h2>No More Matching Hotels Available!</h2>
+        <p>
+        ${generateHotelMessage(finalFilteredHotels)}
+        </p>
+        <button class="hotel-appear">Let's Try</button>`;
+
+  messageHotelAppear.insertAdjacentHTML("beforeend", messageHotelAppearHTML);
+  showHotelAppearMessage();
+};
+
+// Event listeners to restore the original message when inputs change
+whereValue.addEventListener("input", restoreOriginalHotelAppearMessage);
+checkInValue.addEventListener("input", restoreOriginalHotelAppearMessage);
+checkOutValue.addEventListener("input", restoreOriginalHotelAppearMessage);
+travelersCountValue.addEventListener(
+  "input",
+  restoreOriginalHotelAppearMessage
+);
+
 searchbarBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -1144,7 +1211,6 @@ searchbarBtn.addEventListener("click", function (e) {
   const filteredLocHotels = hotels.filter(
     (hotel) => hotel.hotelLoc === whereValue.value
   );
-  console.log(filteredLocHotels);
 
   // 2. Initialize room availability for each hotel in filteredLocHotels
   filteredLocHotels.forEach((hotel) => {
@@ -1156,7 +1222,6 @@ searchbarBtn.addEventListener("click", function (e) {
   // 3. Calculate number of nights and find specific date range in roomAvailability
   const checkInDate = new Date(checkInValue.value);
   const checkOutDate = new Date(checkOutValue.value);
-  console.log(`Check out date: ${checkOutDate}`);
 
   const finalFilteredHotels = filteredLocHotels.filter((hotel) => {
     // Parse check-in and check-out dates to match roomAvailability format
@@ -1173,7 +1238,6 @@ searchbarBtn.addEventListener("click", function (e) {
     console.log(`Start Index: ${startIndex}, End Index: ${endIndex}`);
 
     if (startIndex === -1 || endIndex === -1 || startIndex >= endIndex) {
-      console.log("Returned False");
       return false;
     }
 
@@ -1188,24 +1252,26 @@ searchbarBtn.addEventListener("click", function (e) {
     return roomAvailable;
   });
 
-  console.log(finalFilteredHotels);
-  console.log(
-    finalFilteredHotels[Math.floor(Math.random() * finalFilteredHotels.length)]
-  );
-
   // 4. Display a random hotel if any match, else show an error message
-  if (finalFilteredHotels.length > 0) {
-    displayAIHotel(
+  if (finalFilteredHotels.length > 1) {
+    const randomHotel =
       finalFilteredHotels[
         Math.floor(Math.random() * finalFilteredHotels.length)
-      ]
-    );
-    showHotelAppearMessaage();
-    console.log("A hotel has been displayed below!");
-  } else {
-    console.log(
-      "No hotels match your search criteria. Try different dates or locations."
-    );
+      ];
+    console.log(finalFilteredHotels);
+
+    displayAIHotel(randomHotel);
+    showHotelAppearMessage();
+  }
+  // 4.1 Check if the selected hotel was already displayed
+  else if (finalFilteredHotels.length === 1) {
+    showNoMoreHotel(finalFilteredHotels);
+    const randomHotel = finalFilteredHotels[0];
+    console.log(finalFilteredHotels);
+
+    displayAIHotel(randomHotel);
+  } else if (finalFilteredHotels.length === 0) {
+    showNoMoreHotel(finalFilteredHotels);
   }
 
   // 5. Scroll to "section-featured-hotels" using Intersection Observer
@@ -1246,8 +1312,6 @@ searchbarBtn.addEventListener("click", function (e) {
     });
   }
 });
-
-messageHotelAppearBtn.addEventListener("click", removeHotelAppearMessaage);
 
 /*****************************************************************************************/
 /* CAROUSEL FEATURED HOTEL SECTION */
