@@ -362,8 +362,18 @@ const account1 = {
   location: "Israel",
   email: "kaspidoron@gmail.com",
   password: "KASPIdoron",
-  AIWishlist: [coastalHavenHotel, MarinaSandsResort, StarlightsHeaven],
-  likedPicutres: [],
+  AIWishlist: [
+    coastalHavenHotel,
+    MarinaSandsResort,
+    StarlightsHeaven,
+    OceanPearl,
+    MountainWhispers,
+    CoralReefEscape,
+    DesertDunesOasis,
+    RainforestRetreat,
+    NorthernLightsInn,
+  ],
+  likedPictures: [],
   searchHistory: [],
 };
 
@@ -373,8 +383,18 @@ const account2 = {
   location: "Italy",
   email: "romikalaf@gmail.com",
   password: "MEIRlooni",
-  AIWishlist: [],
-  likedPicutres: [],
+  AIWishlist: [
+    coastalHavenHotel,
+    MarinaSandsResort,
+    StarlightsHeaven,
+    OceanPearl,
+    MountainWhispers,
+    CoralReefEscape,
+    DesertDunesOasis,
+    RainforestRetreat,
+    NorthernLightsInn,
+  ],
+  likedPictures: [],
   searchHistory: [],
 };
 
@@ -384,8 +404,18 @@ const account3 = {
   location: "USA",
   email: "yairkaspi@gmail.com",
   password: "GolaniSheli",
-  AIWishlist: [],
-  likedPicutres: [],
+  AIWishlist: [
+    coastalHavenHotel,
+    MarinaSandsResort,
+    StarlightsHeaven,
+    OceanPearl,
+    MountainWhispers,
+    CoralReefEscape,
+    DesertDunesOasis,
+    RainforestRetreat,
+    NorthernLightsInn,
+  ],
+  likedPictures: [],
   searchHistory: [],
 };
 
@@ -395,8 +425,18 @@ const account4 = {
   location: "Canada",
   email: "shalomhanoch@gmail.com",
   password: "shabatShalom",
-  AIWishlist: [],
-  likedPicutres: [],
+  AIWishlist: [
+    coastalHavenHotel,
+    MarinaSandsResort,
+    StarlightsHeaven,
+    OceanPearl,
+    MountainWhispers,
+    CoralReefEscape,
+    DesertDunesOasis,
+    RainforestRetreat,
+    NorthernLightsInn,
+  ],
+  likedPictures: [],
   searchHistory: [],
 };
 
@@ -456,8 +496,8 @@ const finalLogoutBtnIn = document.querySelector(".final-signout-in");
 const seePasswordBtns = document.querySelectorAll(".see-password");
 const notSeePasswordBtns = document.querySelectorAll(".not-see-password");
 const closeAlertBtn = document.querySelectorAll(".close-alert");
-const sumbitLogBtn = document.querySelector(".login-sumbit");
-const loginHotelFeaturedBtn = document.querySelector(".login-to-see");
+const submitLogBtn = document.querySelector(".login-sumbit");
+const loginHotelFeaturedBtns = document.querySelectorAll(".login-to-see");
 
 // TODO: Make a checking fn for if the user tries to exit the form before sumbitting
 const formInputs = document.querySelectorAll(".form-input");
@@ -467,7 +507,7 @@ const logUsernameInput = document.querySelector(".login-username_value");
 const logEmailInput = document.querySelector(".login-email_value");
 const logPasswordInput = document.querySelector(".login-password_value");
 
-const sumbitCreateBtn = document.querySelector(".signup-sumbit");
+const submitCreateBtn = document.querySelector(".signup-sumbit");
 const staySignedInput = document.querySelector(".stay-signed");
 const createNameInput = document.querySelector(".signup-name_value");
 const createEmailInput = document.querySelector(".signup-email_value");
@@ -488,7 +528,7 @@ let accountSigned = false,
   currentAcc;
 
 // title Handling Login (create currentAcc)
-sumbitLogBtn.addEventListener("click", function (e) {
+submitLogBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
   currentAcc = accounts.find((acc) => acc.username === logUsernameInput.value);
@@ -508,7 +548,7 @@ sumbitLogBtn.addEventListener("click", function (e) {
 });
 
 // title Handling Create (create currentAcc)
-sumbitCreateBtn.addEventListener("click", function (e) {
+submitCreateBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
   const name = createNameInput.value;
@@ -517,11 +557,36 @@ sumbitCreateBtn.addEventListener("click", function (e) {
   const password = createPasswordInput.value;
   const username = createUsernames(name);
 
+  const type = "acc";
+  const AIWishlist = [
+    coastalHavenHotel,
+    MarinaSandsResort,
+    StarlightsHeaven,
+    OceanPearl,
+    MountainWhispers,
+    CoralReefEscape,
+    DesertDunesOasis,
+    RainforestRetreat,
+    NorthernLightsInn,
+  ];
+  const likedPictures = [];
+  const searchHistory = [];
+
   const staySigned = staySignedInput.checked;
 
   if (!checkIfUserExists(email)) {
     if (email !== "") {
-      const newUser = createUser(name, location, email, password, username);
+      const newUser = createUser(
+        name,
+        location,
+        email,
+        password,
+        username,
+        type,
+        AIWishlist,
+        likedPictures,
+        searchHistory
+      );
       console.log("User Not exist");
       accounts.push(newUser);
       if (staySigned) {
@@ -661,12 +726,26 @@ const closeAlert = (index) => {
   }
 };
 
-const createUser = (name, location, email, password, username) => ({
+const createUser = (
   name,
   location,
   email,
   password,
   username,
+  type,
+  AIWishlist,
+  likedPictures,
+  searchHistory
+) => ({
+  name,
+  location,
+  email,
+  password,
+  username,
+  type,
+  AIWishlist,
+  likedPictures,
+  searchHistory,
 });
 
 // title Handling Events
@@ -688,12 +767,14 @@ openFormLogBtn.addEventListener("click", function () {
   }
 });
 
-loginHotelFeaturedBtn.addEventListener("click", function () {
-  if (openFormLogBtn.textContent === "Log in") {
-    openForm();
-    switchToSign();
-  }
-});
+loginHotelFeaturedBtns.forEach((btn) =>
+  btn.addEventListener("click", function () {
+    if (openFormLogBtn.textContent === "Log in") {
+      openForm();
+      switchToSign();
+    }
+  })
+);
 
 closeFormBtn.addEventListener("click", closeForm);
 
@@ -1182,7 +1263,7 @@ const showNoMoreHotel = function (finalFilteredHotels) {
   };
 
   const messageHotelAppearHTML = `      
-        <ion-icon name="alert-circle-outline"></ion-icon>        
+        <ion-icon nae="alert-circle-outline"></ion-icon>        
         <ion-icon class="close-alert" name="close-outline"></ion-icon>
 
         <h2>No More Matching Hotels Available!</h2>
@@ -1399,7 +1480,7 @@ const updateHotelImages = (hotel) => {
 
 const displayAIHotel = function (accOrHotel) {
   if (accountSigned === true && accOrHotel.type === "acc") {
-    loginHotelFeaturedBtn.style.display = "none";
+    loginHotelFeaturedBtns.forEach((btn) => (btn.style.display = "none"));
     currentFeaturedHotel =
       accOrHotel.AIWishlist[
         Math.floor(Math.random() * accOrHotel.AIWishlist.length)
@@ -1429,4 +1510,43 @@ const displayAIHotel = function (accOrHotel) {
 /*****************************************************************************************/
 /* GALLERY SECTION */
 /*****************************************************************************************/
-// TODO: make that each time we clicked a picture in the gallrty its add to the 'likedPictures' array
+// title Helper Functions
+const toggleLike = function (pictureName, iconElement) {
+  if (accountSigned === true) {
+    if (!currentAcc.likedPictures.includes(pictureName)) {
+      currentAcc.likedPictures.push(pictureName);
+      iconElement.setAttribute("name", "heart");
+    } else {
+      currentAcc.likedPictures = currentAcc.likedPictures.filter(
+        (pic) => pic !== pictureName
+      );
+      iconElement.setAttribute("name", "heart-outline");
+    }
+
+    console.log(currentAcc.likedPictures);
+  } else {
+    openForm();
+    switchToSign();
+  }
+};
+
+// title Event Handlers
+document.querySelectorAll(".gallery-img").forEach((image) => {
+  image.addEventListener("click", function () {
+    const pictureName = this.getAttribute("data-pic-name");
+    const iconElement =
+      this.closest(".img-container").querySelector(".ai-wishlist-icon");
+    toggleLike(pictureName, iconElement);
+  });
+});
+
+document.querySelectorAll(".ai-wishlist-icon").forEach((icon) => {
+  icon.addEventListener("click", function () {
+    const pictureName = this.getAttribute("data-pic-name");
+    toggleLike(pictureName, this);
+  });
+});
+
+// TODO: Clicking on "Add to AI Wishlist", then add this to a special property on the CurAccount "likedLocation"
+
+// TODO: Clicking on "Explore More", then a popup modal with info about the location is shown
