@@ -61,199 +61,11 @@ const initializeRoomAvailability = function (days = 120) {
   return roomAvailability;
 };
 
-const coastalHavenHotel = {
-  type: "hotel",
-  name: "Coastal Haven Hotel",
-  location: "Israel, Tel Aviv",
-  rating: randomRating(),
-  description:
-    "Coastal Haven Hotel offers luxurious seaside apartments with stunning ocean views. Enjoy the elegance of spacious, modern suites, premium amenities, and direct beach access for a perfect coastal escape.",
-  features: [
-    { label: "Ocean View", icon: "eye-outline" },
-    { label: "Champagne Bar", icon: "wine-outline" },
-    { label: "Heated Floors", icon: "thermometer-outline" },
-    { label: "Private Terrace", icon: "home-outline" },
-    { label: "Marble Bathroom", icon: "water-outline" },
-  ],
-  pricePerNight: 125,
-  imgSrc: [
-    "/landing-page/img/featured-hotels/Coastal Haven/coast-main.webp",
-    "/landing-page/img/featured-hotels/Coastal Haven/coast-1.webp",
-    "/landing-page/img/featured-hotels/Coastal Haven/coast-2.webp",
-    "/landing-page/img/featured-hotels/Coastal Haven/coast-3.webp",
-    "/landing-page/img/featured-hotels/Coastal Haven/coast-4.webp",
-    "/landing-page/img/featured-hotels/Coastal Haven/coast-5.webp",
-  ],
-  hotelLoc: "City",
-  roomAvailability: initializeRoomAvailability(),
-};
-
-const MarinaSandsResort = {
-  type: "hotel",
-  name: "Marina Sands Resort",
-  location: "Thailand, Ko Samui",
-  rating: randomRating(),
-  description:
-    "Enjoy upscale beachfront living with breathtaking sea views and elegantly designed suites. Experience world-class amenities, private terraces, and direct access to pristine white-sand beaches for the ultimate tropical escape",
-  features: [
-    { label: "Sunset Yoga", icon: "body-outline" },
-    { label: "Beachfront Cabanas", icon: "umbrella-outline" },
-    { label: "In-Villa Dining", icon: "restaurant-outline" },
-    { label: "Tropical Gardens", icon: "flower-outline" },
-    { label: "Water Sports", icon: "bicycle-outline" },
-  ],
-  pricePerNight: 154,
-  imgSrc: [
-    "/landing-page/img/featured-hotels/Marina Sands/marina-main.webp",
-    "/landing-page/img/featured-hotels/Marina Sands/marina-1.webp",
-    "/landing-page/img/featured-hotels/Marina Sands/marina-2.webp",
-    "/landing-page/img/featured-hotels/Marina Sands/marina-3.webp",
-    "/landing-page/img/featured-hotels/Marina Sands/marina-4.webp",
-    "/landing-page/img/featured-hotels/Marina Sands/marina-5.webp",
-  ],
-  hotelLoc: "Beach",
-  roomAvailability: initializeRoomAvailability(),
-};
-
-const StarlightsHeaven = {
-  type: "hotel",
-  name: "Star Light Heaven",
-  location: "Maldives, South Ari Atoll",
-  rating: randomRating(),
-  description:
-    "Nestled in the serene Maldives, Star Light Heaven offers luxurious overwater bungalows with crystal-clear lagoon views. Immerse yourself in the beauty of tropical paradise with private pools, fine dining, and stunning starry skies.",
-  features: [
-    { label: "Overwater Bungalows", icon: "home-outline" },
-    { label: "Private Pools", icon: "water-outline" },
-    { label: "Fine Dining", icon: "restaurant-outline" },
-    { label: "Star Gazing", icon: "moon-outline" },
-    { label: "Diving Expeditions", icon: "water-outline" },
-  ],
-  pricePerNight: 113,
-  imgSrc: [
-    "/landing-page/img/featured-hotels/Starlights/star-main.webp",
-    "/landing-page/img/featured-hotels/Starlights/star-1.webp",
-    "/landing-page/img/featured-hotels/Starlights/star-2.webp",
-    "/landing-page/img/featured-hotels/Starlights/star-3.webp",
-    "/landing-page/img/featured-hotels/Starlights/star-4.webp",
-    "/landing-page/img/featured-hotels/Starlights/star-5.webp",
-  ],
-  hotelLoc: "Beach",
-  roomAvailability: initializeRoomAvailability(),
-};
-
-const OceanPearl = {
-  type: "hotel",
-  name: "Ocean Pearl Resort",
-  location: "Bora Bora, French Polynesia",
-  rating: randomRating(),
-  description:
-    "A dream escape awaits at Ocean Pearl Resort, offering stunning overwater suites with direct access to turquoise waters. Enjoy private jacuzzis, gourmet cuisine, and water sports in one of the world's most iconic destinations.",
-  features: [
-    { label: "Overwater Suites", icon: "home-outline" },
-    { label: "Private Jacuzzi", icon: "water-outline" },
-    { label: "Gourmet Cuisine", icon: "restaurant-outline" },
-    { label: "Snorkeling", icon: "sunny-outline" },
-    { label: "Sunset Cruises", icon: "boat-outline" },
-  ],
-  pricePerNight: 149,
-  imgSrc: [
-    "/landing-page/img/featured-hotels/OceanPearl/pearl-main.webp",
-    "/landing-page/img/featured-hotels/OceanPearl/pearl-1.webp",
-    "/landing-page/img/featured-hotels/OceanPearl/pearl-2.webp",
-    "/landing-page/img/featured-hotels/OceanPearl/pearl-3.webp",
-    "/landing-page/img/featured-hotels/OceanPearl/pearl-4.webp",
-    "/landing-page/img/featured-hotels/OceanPearl/pearl-5.webp",
-  ],
-  hotelLoc: "Beach",
-  roomAvailability: initializeRoomAvailability(),
-};
-
-const MountainWhispers = {
-  type: "hotel",
-  name: "Mountain Whispers Retreat",
-  location: "Aspen, Colorado",
-  rating: randomRating(),
-  description:
-    "A luxurious retreat in the heart of the Rockies, Mountain Whispers offers cozy cabins with breathtaking mountain views. Experience world-class skiing, spa treatments, and fine dining by a roaring fire.",
-  features: [
-    { label: "Mountain Cabins", icon: "home-outline" },
-    { label: "Ski Access", icon: "snow-outline" },
-    { label: "Spa & Wellness", icon: "accessibility-outline" },
-    { label: "Fine Dining", icon: "restaurant-outline" },
-    { label: "Hot Tubs", icon: "water-outline" },
-  ],
-  pricePerNight: 250,
-  imgSrc: [
-    "/landing-page/img/featured-hotels/MountainWhispers/mountain-main.webp",
-    "/landing-page/img/featured-hotels/MountainWhispers/mountain-1.webp",
-    "/landing-page/img/featured-hotels/MountainWhispers/mountain-2.webp",
-    "/landing-page/img/featured-hotels/MountainWhispers/mountain-3.webp",
-    "/landing-page/img/featured-hotels/MountainWhispers/mountain-4.webp",
-    "/landing-page/img/featured-hotels/MountainWhispers/mountain-5.webp",
-  ],
-  hotelLoc: "Mountain",
-  roomAvailability: initializeRoomAvailability(),
-};
-
-const CoralReefEscape = {
-  type: "hotel",
-  name: "Coral Reef Escape",
-  location: "Great Barrier Reef, Australia",
-  rating: randomRating(),
-  description:
-    "Coral Reef Escape offers an eco-friendly haven for marine lovers. Stay in beachfront villas, dive into vibrant reefs, and experience wildlife tours in the heart of the world's largest coral reef system.",
-  features: [
-    { label: "Beachfront Villas", icon: "home-outline" },
-    { label: "Reef Diving", icon: "sparkles-outline" },
-    { label: "Wildlife Tours", icon: "paw-outline" },
-    { label: "Eco-Friendly", icon: "leaf-outline" },
-    { label: "Outdoor Pools", icon: "water-outline" },
-  ],
-  pricePerNight: 190,
-  imgSrc: [
-    "/landing-page/img/featured-hotels/CoralReef/coral-main.webp",
-    "/landing-page/img/featured-hotels/CoralReef/coral-1.webp",
-    "/landing-page/img/featured-hotels/CoralReef/coral-2.webp",
-    "/landing-page/img/featured-hotels/CoralReef/coral-3.webp",
-    "/landing-page/img/featured-hotels/CoralReef/coral-4.webp",
-    "/landing-page/img/featured-hotels/CoralReef/coral-5.webp",
-  ],
-  hotelLoc: "Beach",
-  roomAvailability: initializeRoomAvailability(),
-};
-
-const DesertDunesOasis = {
-  type: "hotel",
-  name: "Desert Dunes Oasis",
-  location: "Dubai, United Arab Emirates",
-  rating: randomRating(),
-  description:
-    "An exotic desert getaway, Desert Dunes Oasis combines luxury with adventure. Enjoy lavish tents, camel rides, and unforgettable desert safaris under the stars in the heart of the Arabian desert.",
-  features: [
-    { label: "Luxury Tents", icon: "home-outline" },
-    { label: "Camel Rides", icon: "paw-outline" },
-    { label: "Desert Safari", icon: "car-outline" },
-    { label: "Star Gazing", icon: "moon-outline" },
-    { label: "Fine Dining", icon: "restaurant-outline" },
-  ],
-  pricePerNight: 280,
-  imgSrc: [
-    "/landing-page/img/featured-hotels/DesertDunes/desert-main.webp",
-    "/landing-page/img/featured-hotels/DesertDunes/desert-1.webp",
-    "/landing-page/img/featured-hotels/DesertDunes/desert-2.webp",
-    "/landing-page/img/featured-hotels/DesertDunes/desert-3.webp",
-    "/landing-page/img/featured-hotels/DesertDunes/desert-4.webp",
-    "/landing-page/img/featured-hotels/DesertDunes/desert-5.webp",
-  ],
-  hotelLoc: "Desert",
-  roomAvailability: initializeRoomAvailability(),
-};
-
 const RainforestRetreat = {
   type: "hotel",
   name: "Rainforest Retreat",
-  location: "Amazon Rainforest, Brazil",
+  location: "Iceland, Brazil",
+  country: "Iceland",
   rating: randomRating(),
   description:
     "Hidden deep in the Amazon, Rainforest Retreat offers an immersive experience in nature. Explore jungle trails, spot exotic wildlife, and stay in eco-lodges surrounded by the lush beauty of the rainforest.",
@@ -280,7 +92,8 @@ const RainforestRetreat = {
 const NorthernLightsInn = {
   type: "hotel",
   name: "Northern Lights Inn",
-  location: "Reykjavik, Iceland",
+  location: "Iceland, Reykjavik",
+  country: "Iceland",
   rating: randomRating(),
   description:
     "Northern Lights Inn offers a magical stay with breathtaking views of the Aurora Borealis. Warm up in hot springs, explore icy landscapes, and experience the natural beauty of Iceland from the comfort of glass igloos.",
@@ -301,6 +114,202 @@ const NorthernLightsInn = {
     "/landing-page/img/featured-hotels/NorthernLights/northern-5.webp",
   ],
   hotelLoc: "Mountain",
+  roomAvailability: initializeRoomAvailability(),
+};
+
+const coastalHavenHotel = {
+  type: "hotel",
+  name: "Coastal Haven Hotel",
+  location: "Portugal, Lisbon",
+  country: "Portugal",
+  rating: randomRating(),
+  description:
+    "Coastal Haven Hotel offers luxurious seaside apartments with stunning ocean views. Enjoy the elegance of spacious, modern suites, premium amenities, and direct beach access for a perfect coastal escape.",
+  features: [
+    { label: "Ocean View", icon: "eye-outline" },
+    { label: "Champagne Bar", icon: "wine-outline" },
+    { label: "Heated Floors", icon: "thermometer-outline" },
+    { label: "Private Terrace", icon: "home-outline" },
+    { label: "Marble Bathroom", icon: "water-outline" },
+  ],
+  pricePerNight: 125,
+  imgSrc: [
+    "/landing-page/img/featured-hotels/Coastal Haven/coast-main.webp",
+    "/landing-page/img/featured-hotels/Coastal Haven/coast-1.webp",
+    "/landing-page/img/featured-hotels/Coastal Haven/coast-2.webp",
+    "/landing-page/img/featured-hotels/Coastal Haven/coast-3.webp",
+    "/landing-page/img/featured-hotels/Coastal Haven/coast-4.webp",
+    "/landing-page/img/featured-hotels/Coastal Haven/coast-5.webp",
+  ],
+  hotelLoc: "City",
+  roomAvailability: initializeRoomAvailability(),
+};
+
+const MarinaSandsResort = {
+  type: "hotel",
+  name: "Marina Sands Resort",
+  location: "Portugal, Lisbon",
+  country: "Portugal",
+  rating: randomRating(),
+  description:
+    "Enjoy upscale beachfront living with breathtaking sea views and elegantly designed suites. Experience world-class amenities, private terraces, and direct access to pristine white-sand beaches for the ultimate tropical escape",
+  features: [
+    { label: "Sunset Yoga", icon: "body-outline" },
+    { label: "Beachfront Cabanas", icon: "umbrella-outline" },
+    { label: "In-Villa Dining", icon: "restaurant-outline" },
+    { label: "Tropical Gardens", icon: "flower-outline" },
+    { label: "Water Sports", icon: "bicycle-outline" },
+  ],
+  pricePerNight: 154,
+  imgSrc: [
+    "/landing-page/img/featured-hotels/Marina Sands/marina-main.webp",
+    "/landing-page/img/featured-hotels/Marina Sands/marina-1.webp",
+    "/landing-page/img/featured-hotels/Marina Sands/marina-2.webp",
+    "/landing-page/img/featured-hotels/Marina Sands/marina-3.webp",
+    "/landing-page/img/featured-hotels/Marina Sands/marina-4.webp",
+    "/landing-page/img/featured-hotels/Marina Sands/marina-5.webp",
+  ],
+  hotelLoc: "Beach",
+  roomAvailability: initializeRoomAvailability(),
+};
+
+const StarlightsHeaven = {
+  type: "hotel",
+  name: "Star Light Heaven",
+  location: "Iceland, South Ari Atoll",
+  country: "Iceland",
+  rating: randomRating(),
+  description:
+    "Nestled in the serene Maldives, Star Light Heaven offers luxurious overwater bungalows with crystal-clear lagoon views. Immerse yourself in the beauty of tropical paradise with private pools, fine dining, and stunning starry skies.",
+  features: [
+    { label: "Overwater Bungalows", icon: "home-outline" },
+    { label: "Private Pools", icon: "water-outline" },
+    { label: "Fine Dining", icon: "restaurant-outline" },
+    { label: "Star Gazing", icon: "moon-outline" },
+    { label: "Diving Expeditions", icon: "water-outline" },
+  ],
+  pricePerNight: 113,
+  imgSrc: [
+    "/landing-page/img/featured-hotels/Starlights/star-main.webp",
+    "/landing-page/img/featured-hotels/Starlights/star-1.webp",
+    "/landing-page/img/featured-hotels/Starlights/star-2.webp",
+    "/landing-page/img/featured-hotels/Starlights/star-3.webp",
+    "/landing-page/img/featured-hotels/Starlights/star-4.webp",
+    "/landing-page/img/featured-hotels/Starlights/star-5.webp",
+  ],
+  hotelLoc: "Beach",
+  roomAvailability: initializeRoomAvailability(),
+};
+
+const OceanPearl = {
+  type: "hotel",
+  name: "Ocean Pearl Resort",
+  location: "Morocco, French Polynesia",
+  country: "Morocco",
+  rating: randomRating(),
+  description:
+    "A dream escape awaits at Ocean Pearl Resort, offering stunning overwater suites with direct access to turquoise waters. Enjoy private jacuzzis, gourmet cuisine, and water sports in one of the world's most iconic destinations.",
+  features: [
+    { label: "Overwater Suites", icon: "home-outline" },
+    { label: "Private Jacuzzi", icon: "water-outline" },
+    { label: "Gourmet Cuisine", icon: "restaurant-outline" },
+    { label: "Snorkeling", icon: "sunny-outline" },
+    { label: "Sunset Cruises", icon: "boat-outline" },
+  ],
+  pricePerNight: 149,
+  imgSrc: [
+    "/landing-page/img/featured-hotels/OceanPearl/pearl-main.webp",
+    "/landing-page/img/featured-hotels/OceanPearl/pearl-1.webp",
+    "/landing-page/img/featured-hotels/OceanPearl/pearl-2.webp",
+    "/landing-page/img/featured-hotels/OceanPearl/pearl-3.webp",
+    "/landing-page/img/featured-hotels/OceanPearl/pearl-4.webp",
+    "/landing-page/img/featured-hotels/OceanPearl/pearl-5.webp",
+  ],
+  hotelLoc: "Beach",
+  roomAvailability: initializeRoomAvailability(),
+};
+
+const MountainWhispers = {
+  type: "hotel",
+  name: "Mountain Whispers Retreat",
+  location: "Iceland, Colorado",
+  country: "Iceland",
+  rating: randomRating(),
+  description:
+    "A luxurious retreat in the heart of the Rockies, Mountain Whispers offers cozy cabins with breathtaking mountain views. Experience world-class skiing, spa treatments, and fine dining by a roaring fire.",
+  features: [
+    { label: "Mountain Cabins", icon: "home-outline" },
+    { label: "Ski Access", icon: "snow-outline" },
+    { label: "Spa & Wellness", icon: "accessibility-outline" },
+    { label: "Fine Dining", icon: "restaurant-outline" },
+    { label: "Hot Tubs", icon: "water-outline" },
+  ],
+  pricePerNight: 250,
+  imgSrc: [
+    "/landing-page/img/featured-hotels/MountainWhispers/mountain-main.webp",
+    "/landing-page/img/featured-hotels/MountainWhispers/mountain-1.webp",
+    "/landing-page/img/featured-hotels/MountainWhispers/mountain-2.webp",
+    "/landing-page/img/featured-hotels/MountainWhispers/mountain-3.webp",
+    "/landing-page/img/featured-hotels/MountainWhispers/mountain-4.webp",
+    "/landing-page/img/featured-hotels/MountainWhispers/mountain-5.webp",
+  ],
+  hotelLoc: "Mountain",
+  roomAvailability: initializeRoomAvailability(),
+};
+
+const CoralReefEscape = {
+  type: "hotel",
+  name: "Coral Reef Escape",
+  location: "Japan, Australia",
+  country: "Japan",
+  rating: randomRating(),
+  description:
+    "Coral Reef Escape offers an eco-friendly haven for marine lovers. Stay in beachfront villas, dive into vibrant reefs, and experience wildlife tours in the heart of the world's largest coral reef system.",
+  features: [
+    { label: "Beachfront Villas", icon: "home-outline" },
+    { label: "Reef Diving", icon: "sparkles-outline" },
+    { label: "Wildlife Tours", icon: "paw-outline" },
+    { label: "Eco-Friendly", icon: "leaf-outline" },
+    { label: "Outdoor Pools", icon: "water-outline" },
+  ],
+  pricePerNight: 190,
+  imgSrc: [
+    "/landing-page/img/featured-hotels/CoralReef/coral-main.webp",
+    "/landing-page/img/featured-hotels/CoralReef/coral-1.webp",
+    "/landing-page/img/featured-hotels/CoralReef/coral-2.webp",
+    "/landing-page/img/featured-hotels/CoralReef/coral-3.webp",
+    "/landing-page/img/featured-hotels/CoralReef/coral-4.webp",
+    "/landing-page/img/featured-hotels/CoralReef/coral-5.webp",
+  ],
+  hotelLoc: "Beach",
+  roomAvailability: initializeRoomAvailability(),
+};
+
+const DesertDunesOasis = {
+  type: "hotel",
+  name: "Desert Dunes Oasis",
+  location: "Japan, Tokyo",
+  country: "Japan",
+  rating: randomRating(),
+  description:
+    "An exotic desert getaway, Desert Dunes Oasis combines luxury with adventure. Enjoy lavish tents, camel rides, and unforgettable desert safaris under the stars in the heart of the Arabian desert.",
+  features: [
+    { label: "Luxury Tents", icon: "home-outline" },
+    { label: "Camel Rides", icon: "walk-outline" },
+    { label: "Desert Safaris", icon: "planet-outline" },
+    { label: "Stargazing", icon: "moon-outline" },
+    { label: "Sand Dunes", icon: "snow-outline" },
+  ],
+  pricePerNight: 210,
+  imgSrc: [
+    "/landing-page/img/featured-hotels/DesertDunes/desert-main.webp",
+    "/landing-page/img/featured-hotels/DesertDunes/desert-1.webp",
+    "/landing-page/img/featured-hotels/DesertDunes/desert-2.webp",
+    "/landing-page/img/featured-hotels/DesertDunes/desert-3.webp",
+    "/landing-page/img/featured-hotels/DesertDunes/desert-4.webp",
+    "/landing-page/img/featured-hotels/DesertDunes/desert-5.webp",
+  ],
+  hotelLoc: "Desert",
   roomAvailability: initializeRoomAvailability(),
 };
 
@@ -346,6 +355,7 @@ const addUniqueWord = function (description, targetArr, otherArr) {
     }
   }
 };
+
 hotels.forEach((hotel) => {
   const description = hotel.description;
 
@@ -497,7 +507,9 @@ const seePasswordBtns = document.querySelectorAll(".see-password");
 const notSeePasswordBtns = document.querySelectorAll(".not-see-password");
 const closeAlertBtn = document.querySelectorAll(".close-alert");
 const submitLogBtn = document.querySelector(".login-sumbit");
-const loginHotelFeaturedBtns = document.querySelectorAll(".login-to-see");
+const loginHotelFeaturedBtns = document.querySelectorAll(
+  ".login-to-see, .login-through-modal"
+);
 
 // TODO: Make a checking fn for if the user tries to exit the form before sumbitting
 const formInputs = document.querySelectorAll(".form-input");
@@ -859,11 +871,11 @@ function closeDropdownUser() {
   navbarDropdown.classList.add("hidden");
 }
 
-function addNabarOverlayCntrl() {
+function addNavbarOverlayCntrl() {
   navBarOverlay.classList.remove("hidden");
 }
 
-function removeNabarOverlayCntrl() {
+function removeNavbarOverlayCntrl() {
   navBarOverlay.classList.add("hidden");
 }
 
@@ -886,7 +898,7 @@ userDropdownIcons.addEventListener("click", function () {
   // Activate dropdown if it's close
   if (!isUserDropdownOpen) {
     openDropdownUser();
-    addNabarOverlayCntrl();
+    addNavbarOverlayCntrl();
 
     closeLan(); // Close popup if it's open
     closeMobileMenuFn(); // Close menuMobile if it's open
@@ -894,7 +906,7 @@ userDropdownIcons.addEventListener("click", function () {
   // Close dropdown if it's open
   else {
     closeDropdownUser();
-    removeNabarOverlayCntrl();
+    removeNavbarOverlayCntrl();
   }
 });
 
@@ -902,7 +914,7 @@ iconGlobe.addEventListener("click", function () {
   // Activate popup if it's close
   if (!isLanPopupOpen) {
     openLan();
-    addNabarOverlayCntrl();
+    addNavbarOverlayCntrl();
 
     closeDropdownUser(); // Close dropdown if it's open
     closeMobileMenuFn(); // Close menuMobile if it's open
@@ -910,7 +922,7 @@ iconGlobe.addEventListener("click", function () {
   // Close dropdown if it's open
   else {
     closeLan();
-    removeNabarOverlayCntrl();
+    removeNavbarOverlayCntrl();
   }
 });
 
@@ -920,24 +932,54 @@ navBarOverlay.addEventListener("click", function () {
   closeDropdownUser();
   closeMobileMenuFn();
 
-  removeNabarOverlayCntrl();
+  removeNavbarOverlayCntrl();
 });
 
 // title Handling Mobile Menu
 openMobileMenu.addEventListener("click", function () {
-  // Clickinng on the open menu btn, open only if it's closed
+  // Clicking on the open menu btn, open only if it's closed
   if (!isMobileMenuOpen) {
     openMobileMenuFn();
-    addNabarOverlayCntrl();
+    addNavbarOverlayCntrl();
   }
 });
 
 closeMobileMenu.addEventListener("click", function () {
-  // Clickinng on the close menu btn, close only if it's open
+  // Clicking on the close menu btn, close only if it's open
   if (isMobileMenuOpen) {
     closeMobileMenuFn();
-    removeNabarOverlayCntrl();
+    removeNavbarOverlayCntrl();
   }
+});
+
+const navbarObserve = document.getElementById("navbar");
+const navbarHeightObserve = navbarObserve.offsetHeight;
+
+const navbarBtns = document.querySelectorAll(".nav-links a");
+const sections = document.querySelectorAll("section");
+
+const observerCallback = (entries) => {
+  entries.forEach((entry) => {
+    const btn = document.querySelector(`[data-section="${entry.target.id}"]`);
+
+    entry.isIntersecting
+      ? btn?.classList.add("active")
+      : btn?.classList.remove("active");
+  });
+};
+
+const observerOptions = {
+  root: null,
+  threshold: 0.1,
+  rootMargin: `-${navbarHeightObserve}px`,
+};
+
+// Create the Intersection Observer instance
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+// Observe each section
+sections.forEach((section) => {
+  observer.observe(section);
 });
 
 /*****************************************************************************************/
@@ -1547,6 +1589,144 @@ document.querySelectorAll(".ai-wishlist-icon").forEach((icon) => {
   });
 });
 
+// TODO: Clicking on "Explore More", then a popup modal with info about the location is shown
+
+// title declaring Elements
+
+const exploreMoreBtns = document.querySelectorAll(".gallery-explore-more");
+const closeExploreModalsLocBtns = document.querySelectorAll(
+  "#close-explore-loc-modal"
+);
+const modalFindHotelBtns = document.querySelectorAll("#top-hotels");
+
+const exploreMoreModals = document.querySelectorAll(".modal-explore-loc");
+const overlayExplore = document.querySelector(".overlay-explore-loc");
+
+// title Helper Functions
+
+const openOverlayModal = () => overlayExplore.classList.remove("hidden");
+const closeOverlayModal = () => overlayExplore.classList.add("hidden");
+
+const openModalExplore = (modal) => {
+  modal?.classList.remove("hidden");
+  openOverlayModal();
+};
+
+const closeModalExplore = (modal) => {
+  modal?.classList.add("hidden");
+  closeOverlayModal();
+};
+
+// title Event Handlers
+exploreMoreBtns.forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const location = e.target.closest(".gallery-explore-more").dataset.loc;
+    const modalLoc = document.getElementById(`${location}`);
+
+    openModalExplore(modalLoc);
+  });
+});
+
+closeExploreModalsLocBtns.forEach((btn) =>
+  btn.addEventListener("click", function (e) {
+    const curModal = e.target.closest(".modal-explore-loc");
+    curModal && closeModalExplore(curModal);
+  })
+);
+
+overlayExplore.addEventListener("click", function () {
+  exploreMoreModals.forEach((modal) => closeModalExplore(modal));
+});
+
+modalFindHotelBtns.forEach((btn) =>
+  btn.addEventListener("click", function (e) {
+    const loc = e.target.closest(".modal-explore-loc").id;
+    const filteredHotels = hotels.filter(
+      (hotel) => hotel.country.toLocaleLowerCase() === loc
+    );
+
+    const randomHotel =
+      filteredHotels[Math.floor(Math.random() * filteredHotels.length)];
+    displayAIHotel(randomHotel);
+    closeModalExplore(e.target.closest(".modal-explore-loc"));
+  })
+);
+
 // TODO: Clicking on "Add to AI Wishlist", then add this to a special property on the CurAccount "likedLocation"
 
-// TODO: Clicking on "Explore More", then a popup modal with info about the location is shown
+/*****************************************************************************************/
+/* WHY LOOKUP SECTION */
+/*****************************************************************************************/
+const modalsContainer = document.querySelector(".modals-container");
+const modals = document.querySelectorAll(".modals-container .modal");
+
+const modalFeatureList = document.querySelectorAll(".modal > div > ul");
+
+const applyBlurEffect = function (exceptModal) {
+  modals.forEach((modal) => {
+    modal !== exceptModal ? modal.classList.add("blurred") : "";
+  });
+};
+
+const removeBlurEffect = function () {
+  modals.forEach((modal) => modal.classList.remove("blurred"));
+};
+
+modals.forEach((modal) => {
+  modal.addEventListener("mouseenter", () => applyBlurEffect(modal));
+  modal.addEventListener("mouseleave", removeBlurEffect);
+});
+
+modalFeatureList.forEach((ul) => {
+  const listItems = ul.querySelectorAll("li");
+
+  modalFeatureList.forEach((ul) => {
+    const listItems = ul.querySelectorAll("li");
+
+    listItems.forEach((li) => {
+      li.addEventListener("mouseenter", function () {
+        const icons = li.querySelectorAll("ion-icon");
+        icons.forEach((icon) => {
+          icon.setAttribute("name", "checkmark-done");
+
+          icon.style.transform = "scale(1.2)";
+          icon.style.opacity = "0.7";
+        });
+      });
+
+      li.addEventListener("mouseleave", function () {
+        const icons = li.querySelectorAll("ion-icon");
+        icons.forEach((icon) => {
+          icon.setAttribute("name", "checkmark");
+
+          icon.style.transform = "scale(1)";
+          icon.style.opacity = "1";
+        });
+      });
+    });
+  });
+});
+
+const scrollBtns = document.querySelectorAll(
+  ".modals-container > .modal > div > a, .nav-links a, #top-hotels"
+);
+const navbar = document.getElementById("navbar");
+
+scrollBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const targetSectionId = e.target.getAttribute("data-section");
+    const targetSection = document.getElementById(targetSectionId);
+
+    const navbarHeight = navbar.offsetHeight;
+
+    const targetPosition = targetSection.offsetTop;
+
+    window.scrollTo({
+      top: targetPosition - navbarHeight,
+      behavior: "smooth",
+    });
+  });
+});

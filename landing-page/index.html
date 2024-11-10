@@ -92,7 +92,7 @@
     <!--  -->
     <!-- NAVBAR SECTION -->
     <!--  -->
-    <nav class="navbar" aria-label="Main Navigation">
+    <nav class="navbar" aria-label="Main Navigation" id="navbar">
       <div class="navbar-overlay hidden"></div>
 
       <!-- NAVBAR LOGO -->
@@ -108,7 +108,7 @@
       <!-- NAV LINKS -->
       <ul class="nav-links" aria-label="Primary Navigation">
         <li>
-          <a class="nav-link home-link" href="#" aria-label="Home">
+          <a class="nav-link" href="#" aria-label="Home" data-section="hero">
             <ion-icon
               class="icon"
               name="home-outline"
@@ -118,43 +118,57 @@
           </a>
         </li>
         <li>
-          <a class="nav-link" href="#" aria-label="About Us">
+          <a
+            class="nav-link"
+            href="#"
+            aria-label="Gallery"
+            data-section="gallery"
+          >
             <ion-icon
               class="icon"
-              name="book-outline"
+              name="aperture"
               aria-label="About Icon"
             ></ion-icon>
-            About
+            Gallery
           </a>
         </li>
+        <a
+          class="nav-link"
+          href="#"
+          aria-label="Wishlist"
+          data-section="featured-hotel"
+        >
+          <ion-icon
+            class="icon"
+            name="sparkles-outline"
+            aria-label="Wishlist Icon"
+          ></ion-icon>
+          AI Wishlist
+        </a>
         <li>
-          <a class="nav-link" href="#" aria-label="Rentals">
+          <a
+            class="nav-link"
+            href="#"
+            aria-label="Our Value"
+            data-section="values"
+          >
             <ion-icon
               class="icon"
-              name="business-outline"
+              name="shield-checkmark-outline"
               aria-label="Rentals Icon"
             ></ion-icon>
-            Rentals
+            Our Value
           </a>
         </li>
+        <li></li>
         <li>
-          <a class="nav-link" href="#" aria-label="Wishlist">
+          <a class="nav-link" href="#" aria-label="newsletter">
             <ion-icon
               class="icon"
-              name="sparkles-outline"
-              aria-label="Wishlist Icon"
-            ></ion-icon>
-            AI Wishlist
-          </a>
-        </li>
-        <li>
-          <a class="nav-link" href="#" aria-label="Services">
-            <ion-icon
-              class="icon"
-              name="bulb-outline"
+              name="paper-plane-outline"
               aria-label="Services Icon"
             ></ion-icon>
-            Services
+            Newsletter
           </a>
         </li>
       </ul>
@@ -542,7 +556,7 @@
     <!--  -->
     <!-- HERO SECTION -->
     <!--  -->
-    <section class="hero" aria-label="Hero Section">
+    <section class="hero" aria-label="Hero Section" id="hero">
       <div class="hero-content">
         <div class="hero-overlay hidden" aria-hidden="true"></div>
         <!-- HERO TITLES -->
@@ -692,6 +706,7 @@
     <section
       class="section-featured-hotels page-container"
       aria-label="Featured Hotels Section"
+      id="featured-hotel"
     >
       <header class="headers-container">
         <h2 class="prime-header">Discover Your Next Destination</h2>
@@ -814,6 +829,7 @@
     <section
       class="section-gallery page-container"
       aria-label="Gallery Section"
+      id="gallery"
     >
       <header class="headers-container">
         <h2 class="prime-header">Explore the World's Hidden Gems</h2>
@@ -824,16 +840,165 @@
         <button class="login-to-see">Login to Experience Feature!</button>
       </header>
 
+      <!-- LOCATIONS POPUP EXPLORE -->
+      <div class="blur-overlay overlay-explore-loc hidden"></div>
+
+      <article class="modal-explore-loc hidden" id="portugal">
+        <span>Portugal<br /><ion-icon name="boat-outline"></ion-icon></span>
+
+        <ion-icon name="close-outline" id="close-explore-loc-modal"></ion-icon>
+
+        <div class="header">
+          <div>
+            <h4>Discover the Charms <br /><mark>of Portugal</mark></h4>
+            <a id="top-hotels" data-section="featured-hotel">
+              <ion-icon name="location-outline"></ion-icon>View Top Hotels
+            </a>
+          </div>
+          <figure>
+            <img src="/landing-page/img/gallery/modals/portugal.jpg" />
+            <figcaption>Rail Train in Portugal’s Landscapes</figcaption>
+          </figure>
+        </div>
+
+        <div class="content">
+          <p>
+            <span class="t">Explore,</span> the <mark>rich history</mark>,
+            stunning beaches, and vibrant cities of Portugal. From the bustling
+            streets of Lisbon to the <mark>sun-kissed shores</mark> of the
+            Algarve, Portugal has something for every traveler. Dive into
+            <mark>unique traditions</mark>, mouth-watering cuisine, and
+            <mark>breathtaking landscapes.</mark>
+          </p>
+          <ul>
+            <li class="title">Highlights,</li>
+            <li>🏰 Historic city tours in Lisbon and Porto.</li>
+            <li>🍇 Wine tastings in the Douro Valley.</li>
+            <li>🏖️ Stunning beaches and coastal adventures.</li>
+            <li>🎶 Festivals and traditional Fado music.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="modal-explore-loc hidden" id="japan">
+        <span>Japan<br /><ion-icon name="train-outline"></ion-icon></span>
+
+        <ion-icon name="close-outline" id="close-explore-loc-modal"></ion-icon>
+
+        <div class="header">
+          <div>
+            <h4>Embrace the Magic <br /><mark>of Japan</mark></h4>
+            <a id="top-hotels" data-section="featured-hotel">
+              <ion-icon name="location-outline"></ion-icon>Find Nearby Hotels
+            </a>
+          </div>
+          <figure>
+            <img src="/landing-page/img/gallery/modals/japan.jpg" />
+            <figcaption>The Tranquil Japanese Temple</figcaption>
+          </figure>
+        </div>
+
+        <div class="content">
+          <p>
+            <span class="t">Immerse,</span> yourself in Japan’s blend of
+            <mark>ancient traditions</mark> and cutting-edge innovation.
+            Discover tranquil temples, <mark>bustling cityscapes</mark>, and
+            serene cherry blossom spots. Japan promises a
+            <mark>unique journey</mark> through art, history, and culture
+          </p>
+          <ul>
+            <li class="title">Highlights,</li>
+            <li>🌸 Explore temples and gardens in Kyoto.</li>
+            <li>🌆 Tech wonders and neon lights of Tokyo.</li>
+            <li>🛁 Onsen (hot spring) experiences.</li>
+            <li>⚔️ Traditional tea ceremonies and samurai history.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="modal-explore-loc hidden" id="morocco">
+        <span>Morocco<br /><ion-icon name="sunny-outline"></ion-icon></span>
+
+        <ion-icon name="close-outline" id="close-explore-loc-modal"></ion-icon>
+
+        <div class="header">
+          <div>
+            <h4>Dive into the Enchantment <br /><mark>of Morocco</mark></h4>
+            <a id="top-hotels" data-section="featured-hotel">
+              <ion-icon name="location-outline"></ion-icon>See Hotel Options
+            </a>
+          </div>
+          <figure>
+            <img src="/landing-page/img/gallery/modals/morocco.jpg" />
+            <figcaption>Majestic, Tranquil, Vast waters</figcaption>
+          </figure>
+        </div>
+
+        <div class="content">
+          <p>
+            <span class="t">Step,</span> into a world of
+            <mark>exotic beauty</mark> and vibrant culture in Morocco. From the
+            <mark>colorful souks</mark> of Marrakech to the vast
+            <mark>Sahara Desert</mark>, Morocco offers an unforgettable
+            adventure. Get ready to explore a land of <mark>rich flavors</mark>,
+            historic cities, and scenic landscapes.
+          </p>
+          <ul>
+            <li class="title">Highlights,</li>
+            <li>🌿 Guided tours through bustling souks.</li>
+            <li>🐪 Desert safaris and camel treks.</li>
+            <li>🏛️ Historic medinas and ancient architecture.</li>
+            <li>🏞️ Moroccan cuisine and rooftop dining.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="modal-explore-loc hidden" id="iceland">
+        <span>Iceland<br /><ion-icon name="snow-outline"></ion-icon></span>
+
+        <ion-icon name="close-outline" id="close-explore-loc-modal"></ion-icon>
+
+        <div class="header">
+          <div>
+            <h4>Experience the Wonders <br /><mark>of Iceland</mark></h4>
+            <a id="top-hotels" data-section="featured-hotel">
+              <ion-icon name="location-outline"></ion-icon>Browse Top Hotels
+            </a>
+          </div>
+          <figure>
+            <img src="/landing-page/img/gallery/modals/iceland.webp" />
+            <figcaption>Breathtaking Peaks, Serene Landscapes</figcaption>
+          </figure>
+        </div>
+
+        <div class="content">
+          <p>
+            <span class="t">Journey,</span> through Iceland’s otherworldly
+            landscapes, where waterfalls, glaciers, and
+            <mark>volcanic marvels</mark> await. Iceland is a
+            <mark>paradise for nature lovers</mark>, offering a one-of-a-kind
+            escape into <mark>untouched wilderness</mark> and natural beauty.
+          </p>
+          <ul>
+            <li class="title">Highlights,</li>
+            <li>🌌 Northern Lights excursions.</li>
+            <li>🏞️ Hot springs and geothermal spas.</li>
+            <li>🏔️ Glacial hiking and ice caves.</li>
+            <li>🌋 Waterfalls, volcanoes, and scenic drives.</li>
+          </ul>
+        </div>
+      </article>
+
       <div class="galleries-container">
         <!-- PORTUGAL GALLERY -->
         <div class="gallery-wrapper">
           <header class="gallery-headers">
             <h4 class="gallery-location">
               Portugal, Lisbon
-              <a class="gallery-add-wishlist cta-gallery-link" href="#">
+              <a class="gallery-add-wishlist cta-gallery-link">
                 <ion-icon
                   class="cta-icon wishlist-icon"
-                  name="sparkles"
+                  name="sparkles-outline"
                 ></ion-icon>
                 <span class="wishlist-exposed-content">Add to AI Wishlist</span>
               </a>
@@ -841,10 +1006,13 @@
 
             <h5 class="gallery-title">
               Meet New Cultures by the Atlantic.
-              <a class="gallery-explore-more cta-gallery-link" href="#">
+              <a
+                class="gallery-explore-more cta-gallery-link"
+                data-loc="portugal"
+              >
                 <ion-icon
                   class="cta-icon explore-icon"
-                  name="navigate"
+                  name="navigate-outline"
                 ></ion-icon>
                 <span class="explore-exposed-content">Explore More</span>
               </a>
@@ -1038,17 +1206,21 @@
               <a class="gallery-add-wishlist cta-gallery-link" href="#">
                 <ion-icon
                   class="cta-icon wishlist-icon"
-                  name="sparkles"
+                  name="sparkles-outline"
                 ></ion-icon>
                 <span class="wishlist-exposed-content">Add to AI Wishlist</span>
               </a>
             </h4>
             <h5 class="gallery-title">
               Find Peace in Ancient Temples.
-              <a class="gallery-explore-more cta-gallery-link" href="#">
+              <a
+                class="gallery-explore-more cta-gallery-link"
+                href="#"
+                data-loc="japan"
+              >
                 <ion-icon
                   class="cta-icon explore-icon"
-                  name="navigate"
+                  name="navigate-outline"
                 ></ion-icon>
                 <span class="explore-exposed-content">Explore More</span>
               </a>
@@ -1241,17 +1413,21 @@
               <a class="gallery-add-wishlist cta-gallery-link" href="#">
                 <ion-icon
                   class="cta-icon wishlist-icon"
-                  name="sparkles"
+                  name="sparkles-outline"
                 ></ion-icon>
                 <span class="wishlist-exposed-content">Add to AI Wishlist</span>
               </a>
             </h4>
             <h5 class="gallery-title">
               Discover the Magic of the Medina.
-              <a class="gallery-explore-more cta-gallery-link" href="#">
+              <a
+                class="gallery-explore-more cta-gallery-link"
+                href="#"
+                data-loc="morocco"
+              >
                 <ion-icon
                   class="cta-icon explore-icon"
-                  name="navigate"
+                  name="navigate-outline"
                 ></ion-icon>
                 <span class="explore-exposed-content">Explore More</span>
               </a>
@@ -1445,17 +1621,21 @@
               <a class="gallery-add-wishlist cta-gallery-link" href="#">
                 <ion-icon
                   class="cta-icon wishlist-icon"
-                  name="sparkles"
+                  name="sparkles-outline"
                 ></ion-icon>
                 <span class="wishlist-exposed-content">Add to AI Wishlist</span>
               </a>
             </h4>
             <h5 class="gallery-title">
               Chase the Northern Lights.
-              <a class="gallery-explore-more cta-gallery-link" href="#">
+              <a
+                class="gallery-explore-more cta-gallery-link"
+                href="#"
+                data-loc="iceland"
+              >
                 <ion-icon
                   class="cta-icon explore-icon"
-                  name="navigate"
+                  name="navigate-outline"
                 ></ion-icon>
                 <span class="explore-exposed-content">Explore More</span>
               </a>
@@ -1637,6 +1817,159 @@
                   data-pic-name="Amberwind Plains"
                 ></ion-icon>
               </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!--  -->
+    <!-- VALUES SECTION -->
+    <!--  -->
+    <section
+      class="section-why-lookup"
+      aria-label="Why LookUp Section"
+      id="values"
+    >
+      <div class="page-container">
+        <header class="headers-container">
+          <h2 class="prime-header">
+            Discover Why <span>LookUp <mark>Hotel</mark></span>
+            Is the
+            <mark>Best Choice </mark>
+          </h2>
+          <h3 class="sub-header">
+            From exclusive deals to an intuitive booking experience, we make
+            your hotel search easy and rewarding.
+          </h3>
+          <button class="login-to-see">
+            Hover or click a Feature to see the MAGIC!
+          </button>
+        </header>
+
+        <div class="modals-container">
+          <article class="modal">
+            <ion-icon name="accessibility"></ion-icon>
+            <div>
+              <h4>Easy Account Creation & Login</h4>
+              <ul>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Effortlessly create an account with a
+                    <mark>simple and secure</mark> process.</span
+                  >
+                </li>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Quick login for returning users, making access
+                    <mark>seamless and fast.</mark>
+                  </span>
+                </li>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Enjoy <mark>personalized features</mark>, from saved
+                    preferences to exclusive recommendations.</span
+                  >
+                </li>
+              </ul>
+              <a class="login-through-modal">Login and explore</a>
+            </div>
+          </article>
+
+          <article class="modal">
+            <ion-icon name="search"></ion-icon>
+            <div>
+              <h4>Search by Experience, Not Location</h4>
+              <ul>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Discover hotels based on the
+                    <mark>experiences you desire</mark> (e.g. beach vacations,
+                    mountain retreats).</span
+                  >
+                </li>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Explore <mark>personalized suggestions</mark> for unique
+                    stays.</span
+                  >
+                </li>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Effortlessly browse destinations that
+                    <mark>fit your mood and style.</mark></span
+                  >
+                </li>
+              </ul>
+              <a data-section="hero">Find Your Experience</a>
+            </div>
+          </article>
+
+          <article class="modal">
+            <ion-icon name="sparkles"></ion-icon>
+            <div>
+              <h4>Your Personal Travel Assistant</h4>
+              <ul>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Simple and clean design for
+                    <mark>quick navigation.</mark></span
+                  >
+                </li>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    ><mark>AI learns your preferences</mark> to improve future
+                    searches.</span
+                  >
+                </li>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Save time with <mark>automated recommendations</mark> that
+                    match your travel style.</span
+                  >
+                </li>
+              </ul>
+              <a data-section="featured-hotel">Let AI Find Your Stay</a>
+            </div>
+          </article>
+
+          <article class="modal">
+            <ion-icon name="images"></ion-icon>
+            <div>
+              <h4>Tailored Trips: Your Personalized Gallery</h4>
+              <ul>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Discover destinations based on
+                    <mark>your interests</mark> with smart AI.
+                  </span>
+                </li>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Browse hotels that match <mark>your style</mark> and ensure
+                    comfort.</span
+                  >
+                </li>
+                <li>
+                  <ion-icon name="checkmark"></ion-icon
+                  ><span
+                    >Easily plan with all the <mark>best options</mark> just a
+                    click away.</span
+                  >
+                </li>
+              </ul>
+              <a data-section="gallery">Explore Your Personalized Gallery</a>
             </div>
           </article>
         </div>

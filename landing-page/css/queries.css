@@ -62,6 +62,10 @@
 
   .section-custom-alerts .hotel-searched-displayed {
   }
+
+  .modals-container {
+    grid-template-columns: repeat(1, minmax(25rem, 1fr));
+  }
 }
 
 /*****************************************************************************************/
@@ -246,6 +250,10 @@
 
   .img-container .overlay .details-img {
     font-size: var(--font-2-);
+  }
+
+  .prime-header span {
+    display: block;
   }
 }
 
