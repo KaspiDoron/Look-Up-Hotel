@@ -385,6 +385,8 @@ const account1 = {
   ],
   likedPictures: [],
   searchHistory: [],
+  likedLocations: new Set(["portugal"]),
+  seenHotels: [],
 };
 
 const account2 = {
@@ -406,6 +408,8 @@ const account2 = {
   ],
   likedPictures: [],
   searchHistory: [],
+  likedLocations: new Set(),
+  seenHotels: new Set(),
 };
 
 const account3 = {
@@ -427,6 +431,8 @@ const account3 = {
   ],
   likedPictures: [],
   searchHistory: [],
+  likedLocations: new Set(),
+  seenHotels: new Set(),
 };
 
 const account4 = {
@@ -448,6 +454,8 @@ const account4 = {
   ],
   likedPictures: [],
   searchHistory: [],
+  likedLocations: new Set(),
+  seenHotels: new Set(),
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -553,7 +561,11 @@ submitLogBtn.addEventListener("click", function (e) {
     accountSigned = true;
     console.log(currentAcc);
     greetUser(currentAcc);
-    displayAIHotel(currentAcc);
+    displayAIHotel(
+      currentAcc.AIWishlist[
+        Math.floor(Math.random() * currentAcc.AIWishlist.length)
+      ]
+    );
     logoutLabel.textContent = "Log Out";
     closeForm();
   }
@@ -605,7 +617,11 @@ submitCreateBtn.addEventListener("click", function (e) {
         accountSigned = true;
         currentAcc = newUser;
         greetUser(currentAcc);
-        displayAIHotel(currentAcc);
+        displayAIHotel(
+          currentAcc.AIWishlist[
+            Math.floor(Math.random() * currentAcc.AIWishlist.length)
+          ]
+        );
         logoutLabel.textContent = "Log Out";
       }
       closeForm();
@@ -686,7 +702,7 @@ const removeLogOutModal = () => {
 const handleLogOutAction = (action) => {
   action === "logout" ? location.reload() : removeLogOutModal();
 };
-
+// comment
 const togglePasswordState = (index) => {
   if (passwordInputs[index].getAttribute("type") === "password") {
     notSeePasswordBtns[index].style.opacity = "0";
@@ -1327,9 +1343,126 @@ travelersCountValue.addEventListener(
   restoreOriginalHotelAppearMessage
 );
 
-searchbarBtn.addEventListener("click", function (e) {
-  e.preventDefault();
+const getFilteredHotels = function (
+  account,
+  whereValue,
+  checkInValue,
+  checkOutValue,
+  travelersCountValue
+) {
+  // 1. Filter hotels by location in AIWishlist
+  let filteredLocHotels = account.AIWishlist.filter(
+    (hotel) => hotel.hotelLoc === whereValue
+  );
 
+  console.log("--------------------------");
+  console.log("1. Filtered locations hotels:");
+  console.log(filteredLocHotels);
+
+  // 2. Initialize room availability for each hotel
+  filteredLocHotels.forEach((hotel) => {
+    hotel.roomAvailability = initializeDynamicRoomAvailability(checkOutValue);
+  });
+
+  // 3. Calculate number of nights and find specific date range in roomAvailability
+  const checkInDate = new Date(checkInValue);
+  const checkOutDate = new Date(checkOutValue);
+  const checkInStr = checkInDate.toISOString().split("T")[0];
+  const checkOutStr = checkOutDate.toISOString().split("T")[0];
+
+  const finalFilteredHotels = filteredLocHotels.filter((hotel) => {
+    const startIndex = hotel.roomAvailability.findIndex(
+      (room) => room.date === checkInStr
+    );
+    const endIndex = hotel.roomAvailability.findIndex(
+      (room) => room.date === checkOutStr
+    );
+
+    if (startIndex === -1 || endIndex === -1 || startIndex >= endIndex) {
+      return false;
+    }
+
+    return hotel.roomAvailability
+      .slice(startIndex, endIndex)
+      .every(
+        (room) =>
+          room.available && room.maxTravelers >= Number(travelersCountValue)
+      );
+  });
+  console.log("--------------------------");
+  console.log("3. Final filtered locations hotels:");
+  console.log(finalFilteredHotels);
+
+  // 4. Prioritize liked hotels but keep all available hotels for future searches
+  const likedHotels = finalFilteredHotels.filter((hotel) =>
+    account.likedLocations.has(hotel.country.toLowerCase())
+  );
+  const availableHotels = finalFilteredHotels;
+  console.log("--------------------------");
+  console.log("4. Liked hotels:");
+  console.log(likedHotels);
+
+  console.log("--------------------------");
+  console.log("5. Available hotels:");
+  console.log(availableHotels);
+
+  // 5. Filter out previously seen hotels
+  const unseenLikedHotels = likedHotels.filter(
+    (hotel) => !account.seenHotels.includes(hotel.name)
+  );
+  const unseenAvailableHotels = availableHotels.filter(
+    (hotel) => !account.seenHotels.includes(hotel.name)
+  );
+
+  console.log("--------------------------");
+  console.log("6. Unseen Liked hotels:");
+  console.log(unseenLikedHotels);
+
+  console.log("--------------------------");
+  console.log("7. Unseen Available hotels:");
+  console.log(unseenAvailableHotels);
+
+  // 6. Prioritize unseen liked hotels if available; otherwise, use all unseen available hotels
+  const selectionPool =
+    unseenLikedHotels.length > 0 ? unseenLikedHotels : unseenAvailableHotels;
+
+  console.log("--------------------------");
+  console.log("8. Selection pool hotels:");
+  console.log(selectionPool);
+
+  // 7. If no unseen hotels are available, allow re-showing all available hotels
+  const finalSelection =
+    selectionPool.length > 0 ? selectionPool : availableHotels;
+
+  console.log("--------------------------");
+  console.log("9. Final selection hotels:");
+  console.log(finalSelection);
+
+  // 8. If all hotels have been seen, reset `seenHotels` to only the currently selected hotel
+  if (account.seenHotels.length >= availableHotels.length) {
+    account.seenHotels = [];
+  }
+
+  // 9. Choose a random hotel from the final selection and mark it as "seen"
+  const selectedHotel =
+    finalSelection[Math.floor(Math.random() * finalSelection.length)];
+
+  console.log("--------------------------");
+  console.log("10. SELECTED HOTEL:");
+  console.log(selectedHotel);
+
+  !account.seenHotels.some((hotel) => hotel.name === selectedHotel.name)
+    ? account.seenHotels.push(selectedHotel.name) // Track the hotel as seen by its name
+    : "";
+
+  console.log("--------------------------");
+  console.log("11. Seen hotels Updated:");
+  console.log(account.seenHotels);
+
+  return selectedHotel; // Return a single selected hotel
+};
+
+const logicIfNoUserSign = function () {
   // 1. Filter hotels by location
   const filteredLocHotels = hotels.filter(
     (hotel) => hotel.hotelLoc === whereValue.value
@@ -1358,8 +1491,6 @@ searchbarBtn.addEventListener("click", function (e) {
       (room) => room.date === checkOutStr
     );
 
-    console.log(`Start Index: ${startIndex}, End Index: ${endIndex}`);
-
     if (startIndex === -1 || endIndex === -1 || startIndex >= endIndex) {
       return false;
     }
@@ -1381,7 +1512,6 @@ searchbarBtn.addEventListener("click", function (e) {
       finalFilteredHotels[
         Math.floor(Math.random() * finalFilteredHotels.length)
       ];
-    console.log(finalFilteredHotels);
 
     displayAIHotel(randomHotel);
     showHotelAppearMessage();
@@ -1396,44 +1526,24 @@ searchbarBtn.addEventListener("click", function (e) {
   } else if (finalFilteredHotels.length === 0) {
     showNoMoreHotel(finalFilteredHotels);
   }
+};
 
-  // 5. Scroll to "section-featured-hotels" using Intersection Observer
-  const featuredSection = document.querySelector(".section-featured-hotels");
-  const navbar = document.querySelector(".navbar");
+const logicIfUserSign = function () {
+  const selectedHotel = getFilteredHotels(
+    currentAcc,
+    whereValue.value,
+    checkInValue.value,
+    checkOutValue.value,
+    travelersCountValue.value
+  );
 
-  if (finalFilteredHotels.length > 0) {
-    const navbarHeight = navbar.getBoundingClientRect().height;
+  displayAIHotel(selectedHotel);
+  showHotelAppearMessage();
+};
 
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          const sectionRect = featuredSection.getBoundingClientRect();
-          const scrollToPosition =
-            sectionRect.top + window.scrollY - navbarHeight;
-
-          window.scrollTo({
-            top: scrollToPosition,
-            behavior: "smooth",
-          });
-
-          observer.unobserve(featuredSection);
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(featuredSection);
-  }
-
-  // 6. Save search to active account’s search history if logged in
-  if (accountSigned === true) {
-    currentAcc.searchHistory.push({
-      location: whereValue.value,
-      checkIn: checkInValue.value,
-      checkOut: checkOutValue.value,
-      travelers: travelersCountValue.value,
-    });
-  }
+searchbarBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  accountSigned === true ? logicIfUserSign() : logicIfNoUserSign();
 });
 
 /*****************************************************************************************/
@@ -1490,7 +1600,7 @@ const hotelDes = document.querySelector(".hotel-des");
 const hotelFeaturesList = document.querySelector(".features-list");
 const hotelPrice = document.querySelector(".price-number");
 
-let currentFeaturedHotel;
+let hotel;
 
 const displayDesHotel = (hotel) => {
   const descriptionSentences = hotel.description.split(/(?<=\.)\s+/);
@@ -1520,52 +1630,79 @@ const updateHotelImages = (hotel) => {
   });
 };
 
-const displayAIHotel = function (accOrHotel) {
-  if (accountSigned === true && accOrHotel.type === "acc") {
-    loginHotelFeaturedBtns.forEach((btn) => (btn.style.display = "none"));
-    currentFeaturedHotel =
-      accOrHotel.AIWishlist[
-        Math.floor(Math.random() * accOrHotel.AIWishlist.length)
-      ];
-  } else if (accOrHotel.type === "hotel") {
-    currentFeaturedHotel = accOrHotel;
-  }
+const displayAIHotel = function (hotel) {
+  hotelName.textContent = hotel.name;
+  hotelLoc.textContent = hotel.location;
+  hotelRating.innerHTML = `${hotel.rating}/5<ion-icon name="star"></ion-icon>`;
 
-  hotelName.textContent = currentFeaturedHotel.name;
-  hotelLoc.textContent = currentFeaturedHotel.location;
-  hotelRating.innerHTML = `${currentFeaturedHotel.rating}/5<ion-icon name="star"></ion-icon>`;
+  displayDesHotel(hotel);
 
-  displayDesHotel(currentFeaturedHotel);
-
-  hotelPrice.textContent = currentFeaturedHotel.pricePerNight;
+  hotelPrice.textContent = hotel.pricePerNight;
 
   hotelFeaturesList.innerHTML = "";
-  currentFeaturedHotel.features.forEach((feature) => {
+  hotel.features.forEach((feature) => {
     const featureItem = document.createElement("li");
     featureItem.innerHTML = `<ion-icon name="${feature.icon}"></ion-icon> ${feature.label}`;
     hotelFeaturesList.appendChild(featureItem);
   });
 
-  updateHotelImages(currentFeaturedHotel);
+  updateHotelImages(hotel);
+
+  const featuredSection = document.querySelector(".section-featured-hotels");
+  const navbar = document.querySelector(".navbar");
+
+  const navbarHeight = navbar.getBoundingClientRect().height;
+
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        const sectionRect = featuredSection.getBoundingClientRect();
+        const scrollToPosition =
+          sectionRect.top + window.scrollY - navbarHeight;
+
+        window.scrollTo({
+          top: scrollToPosition,
+          behavior: "smooth",
+        });
+
+        observer.unobserve(featuredSection);
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  observer.observe(featuredSection);
+
+  if (currentAcc)
+    currentAcc.searchHistory.push({
+      location: whereValue.value,
+      checkIn: checkInValue.value,
+      checkOut: checkOutValue.value,
+      travelers: travelersCountValue.value,
+    });
 };
 
 /*****************************************************************************************/
 /* GALLERY SECTION */
 /*****************************************************************************************/
-// title Helper Functions
-const toggleLike = function (pictureName, iconElement) {
+// title Helper Function
+const toggleLike = function (imgContainer) {
+  const imgName = imgContainer.getAttribute("data-pic-name");
+  const iconElement = imgContainer.querySelector(".ai-wishlist-icon");
+  console.log(imgName);
+  console.log(iconElement);
+
   if (accountSigned === true) {
-    if (!currentAcc.likedPictures.includes(pictureName)) {
-      currentAcc.likedPictures.push(pictureName);
+    if (!currentAcc.likedPictures.includes(imgName)) {
+      currentAcc.likedPictures.push(imgName);
       iconElement.setAttribute("name", "heart");
     } else {
       currentAcc.likedPictures = currentAcc.likedPictures.filter(
-        (pic) => pic !== pictureName
+        (pic) => pic !== imgName
       );
       iconElement.setAttribute("name", "heart-outline");
     }
-
-    console.log(currentAcc.likedPictures);
+    console.log(currentAcc.likedPictures); // Logs updated likedPictures
   } else {
     openForm();
     switchToSign();
@@ -1573,23 +1710,13 @@ const toggleLike = function (pictureName, iconElement) {
 };
 
 // title Event Handlers
-document.querySelectorAll(".gallery-img").forEach((image) => {
-  image.addEventListener("click", function () {
-    const pictureName = this.getAttribute("data-pic-name");
-    const iconElement =
-      this.closest(".img-container").querySelector(".ai-wishlist-icon");
-    toggleLike(pictureName, iconElement);
+document.querySelectorAll(".img-container").forEach((imgContainer) => {
+  imgContainer.addEventListener("click", function (e) {
+    toggleLike(imgContainer);
   });
 });
 
-document.querySelectorAll(".ai-wishlist-icon").forEach((icon) => {
-  icon.addEventListener("click", function () {
-    const pictureName = this.getAttribute("data-pic-name");
-    toggleLike(pictureName, this);
-  });
-});
-
-// TODO: Clicking on "Explore More", then a popup modal with info about the location is shown
+// title Clicking on "Explore More", then a popup modal with info about the location is shown
 
 // title declaring Elements
 
@@ -1654,7 +1781,41 @@ modalFindHotelBtns.forEach((btn) =>
   })
 );
 
-// TODO: Clicking on "Add to AI Wishlist", then add this to a special property on the CurAccount "likedLocation"
+// title Clicking on "Add to AI Wishlist", then add this to a special property on the CurAccount "likedLocation"
+
+const addAiWishlistBtns = document.querySelectorAll(".gallery-add-wishlist");
+
+const toggleWishlistBtn = (btn) => {
+  btn.name === "sparkles-outline"
+    ? btn.setAttribute("name", "sparkles")
+    : btn.setAttribute("name", "sparkles-outline");
+};
+
+const handleWishlistBtn = function (e) {
+  e.preventDefault();
+
+  if (accountSigned === true) {
+    const loc = e.target.closest(".gallery-add-wishlist").dataset.loc;
+
+    if (currentAcc.likedLocations.has(loc) === true)
+      currentAcc.likedLocations.delete(loc);
+    else currentAcc.likedLocations.add(loc);
+
+    const wishlistIcon = e.target
+      .closest(".gallery-add-wishlist")
+      .querySelector(".wishlist-icon");
+    toggleWishlistBtn(wishlistIcon);
+  } else {
+    if (openFormLogBtn.textContent === "Log in") {
+      openForm();
+      switchToSign();
+    }
+  }
+};
+
+addAiWishlistBtns.forEach((btn) => {
+  btn.addEventListener("click", handleWishlistBtn);
+});
 
 /*****************************************************************************************/
 /* WHY LOOKUP SECTION */
