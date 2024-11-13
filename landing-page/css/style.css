@@ -1418,7 +1418,7 @@
 }
 
 .hotel-details .hotel-name {
-  font-size: clamp(var(--font-4-), 1vw + var(--font-4-), var(--font-5-));
+  font-size: clamp(var(--font-3-), 1vw + var(--font-3-), var(--font-4-));
   color: var(--pink-bright-);
   margin-bottom: 0.4rem;
 
