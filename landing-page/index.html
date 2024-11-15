@@ -160,9 +160,13 @@
             Our Value
           </a>
         </li>
-        <li></li>
         <li>
-          <a class="nav-link" href="#" aria-label="newsletter">
+          <a
+            class="nav-link"
+            href="#"
+            aria-label="newsletter"
+            data-section="newsletter"
+          >
             <ion-icon
               class="icon"
               name="paper-plane-outline"
@@ -369,6 +373,41 @@
       </div>
 
       <div class="hotel-searched-displayed hidden alert"></div>
+
+      <div class="inputs-error-alert alert hidden">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <ion-icon class="close-alert" name="close-outline"></ion-icon>
+
+        <p>
+          One of your inputs isn't valid.
+          <br />
+          <br />
+          Please read the conditions,
+          <br />
+          <mark class="user-name-inputs-error">Comrade</mark>,
+        </p>
+
+        <ul>
+          <li>
+            <mark>Name:</mark> must be at least 2 words, without numbers and
+            spaces allowed.
+          </li>
+          <li>
+            <mark>Location:</mark> must be one of the valid options from the
+            popup list.
+          </li>
+          <li>
+            <mark>Email:</mark> must be a valid email format, with at least one
+            domain.
+          </li>
+          <li>
+            <mark>Password:</mark> At least 6 characters, one uppercase, one
+            lowercase, no numbers.
+          </li>
+        </ul>
+
+        <button id="try-again-create-user">Let's try again</button>
+      </div>
     </section>
 
     <!--  -->
@@ -431,8 +470,8 @@
               placeholder="Email"
               required
               autocomplete="off"
-              pattern="^[a-z@.]+$"
-              title="Please enter a valid email and use only lowercase letters."
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
+              title="Please enter a valid email with lowercase letters, numbers, and allowed symbols (_.%+-)."
               class="form-input signup-email_value"
             />
 
@@ -831,15 +870,6 @@
       aria-label="Gallery Section"
       id="gallery"
     >
-      <header class="headers-container">
-        <h2 class="prime-header">Explore the World's Hidden Gems</h2>
-        <h3 class="sub-header">
-          Discover unforgettable destinations that inspire adventure, culture,
-          and tranquility.
-        </h3>
-        <button class="login-to-see">Login to Experience Feature!</button>
-      </header>
-
       <!-- LOCATIONS POPUP EXPLORE -->
       <div class="blur-overlay overlay-explore-loc hidden"></div>
 
@@ -1214,8 +1244,8 @@
             </h5>
           </header>
 
-          <article class="gallery-images" data-pic-name="Solstice Valley">
-            <div class="img-container">
+          <article class="gallery-images">
+            <div class="img-container" data-pic-name="Solstice Valley">
               <div class="overlay gallery-img">
                 <a class="details-img">
                   <h3>Solstice Valley</h3>
@@ -1408,8 +1438,8 @@
             </h5>
           </header>
 
-          <article class="gallery-images" data-pic-name="Serene Horizon">
-            <div class="img-container">
+          <article class="gallery-images">
+            <div class="img-container" data-pic-name="Serene Horizon">
               <div class="overlay gallery-img">
                 <a class="details-img">
                   <h3>Serene Horizon</h3>
@@ -1603,8 +1633,8 @@
             </h5>
           </header>
 
-          <article class="gallery-images" data-pic-name="Frostwood Meadows">
-            <div class="img-container">
+          <article class="gallery-images">
+            <div class="img-container" data-pic-name="Frostwood Meadows">
               <div class="overlay gallery-img">
                 <a class="details-img">
                   <h3>Frostwood Meadows</h3>
@@ -1917,6 +1947,47 @@
               <a data-section="gallery">Explore Your Personalized Gallery</a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!--  -->
+    <!-- NEWSLETTER SECTION -->
+    <!--  -->
+    <section
+      class="section-newsletter page-container"
+      aria-label="Newsletter Section"
+      id="newsletter"
+    >
+      <h2 class="prime-header">Unlock Your Dream Vacation</h2>
+
+      <div class="cta-container">
+        <div>
+          <p>Looking for inspiration for your next trip?</p>
+          <form action="#" method="POST" class="cta-form">
+            <input
+              type="email"
+              name="email"
+              id="email-newsletter_input"
+              placeholder="Join the community"
+              required
+              autocomplete="off"
+            />
+            <ion-icon
+              id="email-newsletter_input-submit"
+              name="send-outline"
+            ></ion-icon>
+          </form>
+        </div>
+
+        <div class="group">
+          <p>
+            <mark>A group?</mark>
+            <br />
+            Explore our flexible Team Plan for unique vacation experiences
+            together.
+          </p>
+          <a href="#">See our Team Plan &rarr;</a>
         </div>
       </div>
     </section>

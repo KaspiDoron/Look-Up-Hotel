@@ -324,7 +324,8 @@
 }
 
 .section-custom-alerts ion-icon[name="alert-circle-outline"],
-.section-custom-alerts ion-icon[name="sparkles-outline"] {
+.section-custom-alerts ion-icon[name="sparkles-outline"],
+.section-custom-alerts ion-icon[name="information-circle-outline"] {
   font-size: var(--font-11-);
   margin-bottom: var(--space-1-);
 }
@@ -355,6 +356,7 @@
   border-radius: 2rem;
   box-shadow: 1rem 3rem 5rem rgba(0, 0, 0, 0.4);
   border: var(--space-1-) solid var(--pink-primary-);
+  max-width: 90vw;
 }
 
 /* title logout modal */
@@ -448,9 +450,6 @@
   filter: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.2));
 }
 
-.user-exist-message .exist-btns button {
-}
-
 .user-exist-message .exist-btns a {
   background-color: #fff;
   color: var(--pink-dark-);
@@ -512,6 +511,81 @@
   background-color: var(--pink-light-);
 }
 .section-custom-alerts .hotel-searched-displayed button:active {
+  transform: scale(0.95);
+}
+
+/* title Inputs Error Alert */
+.inputs-error-alert {
+  padding: var(--space-3-) var(--space-7-) var(--space-6-) var(--space-7-);
+}
+
+.inputs-error-alert p {
+  margin-bottom: var(--space-4-);
+  font-size: var(--font-4-);
+}
+
+.inputs-error-alert p mark {
+  font-weight: var(--weight-normal-);
+  color: var(--pink-bright-);
+}
+
+.inputs-error-alert ul {
+  list-style: none;
+  text-align: start;
+  margin-bottom: var(--space-6-);
+  counter-reset: listMarkAlert;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4-);
+}
+
+.inputs-error-alert ul li {
+  font-size: var(--font-2-);
+  text-wrap: wrap;
+  line-height: 1.2;
+}
+
+.inputs-error-alert ul li mark {
+  font-style: var(--font-form-);
+  font-size: var(--font-3-);
+  color: var(--pink-primary-);
+  font-weight: var(--weight-normal-);
+  counter-increment: listMarkAlert;
+}
+
+.counter {
+  counter-reset: listMarkAlert;
+}
+
+.inputs-error-alert ul li mark::before {
+  content: counter(listMarkAlert, decimal) ".";
+  color: var(--pink-bright-);
+  font-size: var(--font-3-);
+  font-weight: var(--weight-bold-);
+  margin-right: var(--space-2-);
+}
+
+.inputs-error-alert button {
+  font-size: var(--font-2-);
+  padding: var(--space-2-) var(--space-4-);
+  border-radius: 5rem;
+  font-family: var(--font-anchors-);
+  font-weight: var(--weight-normal-);
+  color: var(--pink-primary-);
+  border: 2px solid var(--pink-primary-);
+  transition: var(--transition-fast-);
+}
+
+.inputs-error-alert button:hover {
+  color: var(--pink-white-);
+  transform: scale(1.1);
+  box-shadow: 1rem 2rem 3rem rgba(0, 0, 0, 0.2);
+  background-color: var(--pink-bright-);
+  border: 2px solid var(--pink-bright-);
+}
+
+.inputs-error-alert button:active {
   transform: scale(0.95);
 }
 
@@ -645,6 +719,7 @@
   font-size: var(--font-1-);
   border-radius: 0.8rem;
   width: 100%;
+  transition: var(--transition-normal-);
 }
 
 .form-container {
@@ -1978,8 +2053,6 @@
 /*****************************************************************************************/
 /* WHY LOOKUP SECTION */
 /*****************************************************************************************/
-
-/* TODO: make a before element with number (the icon of the modal is above the number) */
 .section-why-lookup {
   background-color: var(--gray-white-);
 }
@@ -2117,4 +2190,125 @@
 .blurred {
   filter: grayscale(100%);
   opacity: 0.4;
+}
+
+/*****************************************************************************************/
+/* WHY LOOKUP SECTION */
+/*****************************************************************************************/
+.section-newsletter {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4-);
+
+  background-color: #751738;
+  color: #fff;
+  font-family: var(--font-title-);
+}
+
+.section-newsletter h2 {
+  font-family: var(--font-titleE-);
+  font-size: clamp(var(--font-4-), 2vw + var(--font-4-), var(--font-8-));
+  letter-spacing: 0.3rem;
+  color: #fff;
+}
+
+.section-newsletter .cta-container {
+  font-size: var(--font-4-);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8-);
+}
+
+.section-newsletter .cta-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4-);
+}
+
+.section-newsletter .cta-container div p {
+}
+
+.section-newsletter .cta-container div form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2-);
+
+  padding: 0 var(--space-4-);
+  border-radius: 10rem;
+  background-color: #440a1f;
+  transition: var(--transition-fast-);
+  box-shadow: 1rem 2rem 3rem rgba(0, 0, 0, 0.2);
+}
+
+.section-newsletter .cta-container div form input {
+  background-color: transparent;
+  padding: var(--space-2-) var(--space-6-);
+  border-radius: 2rem;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: var(--font-form-);
+  font-size: var(--font-3-);
+  cursor: pointer;
+  transition: var(--transition-fast-);
+  text-align: center;
+}
+
+.section-newsletter .cta-container div form input::placeholder {
+  color: #fff;
+  font-family: var(--font-form-);
+  font-size: var(--font-3-);
+}
+
+.section-newsletter .cta-container div form input:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.section-newsletter .cta-container div form:hover {
+  background-color: #700c31;
+}
+
+.section-newsletter .cta-container div form ion-icon {
+  font-size: var(--icon-XL-big-);
+  padding: var(--space-3-);
+  color: #fff;
+  border-radius: 100%;
+  transition: var(--transition-fast-);
+  cursor: pointer;
+}
+
+.section-newsletter .cta-container div form ion-icon:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: var(--pink-light-);
+}
+
+.section-newsletter .cta-container div form ion-icon:active {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.section-newsletter .cta-container div form button {
+}
+
+.section-newsletter .cta-container div a {
+  text-decoration: underline;
+  transition: var(--transition-fast-);
+  font-size: var(--font-2-);
+}
+
+.section-newsletter .cta-container div a:hover,
+.section-newsletter .cta-container div a:active {
+  text-decoration: none;
+}
+
+.section-newsletter .cta-container .group {
+}
+
+.section-newsletter .cta-container .group p {
+}
+
+.section-newsletter .cta-container .group p mark {
+  font-weight: var(--weight-normal-);
 }

@@ -255,6 +255,13 @@
   .prime-header span {
     display: block;
   }
+
+  .section-newsletter .cta-container div form {
+    flex-direction: column;
+  }
+
+  .section-newsletter .cta-container div form {
+  }
 }
 
 /*****************************************************************************************/
