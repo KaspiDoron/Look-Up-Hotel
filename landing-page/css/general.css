@@ -504,7 +504,8 @@ mark {
 .cta-gallery-link:focus,
 .entire-form-container input:focus,
 .entire-form-container button:focus,
-.entire-form-container a:focus {
+.entire-form-container a:focus,
+#email-newsletter:focus {
   outline: 0.4rem solid var(--pink-light-);
 }
 /*****************************************************************************************/

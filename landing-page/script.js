@@ -385,7 +385,7 @@ const account1 = {
   ],
   likedPictures: [],
   searchHistory: [],
-  likedLocations: new Set(["portugal"]),
+  likedLocations: new Set(),
   seenHotels: [],
 };
 
@@ -409,7 +409,7 @@ const account2 = {
   likedPictures: [],
   searchHistory: [],
   likedLocations: new Set(),
-  seenHotels: new Set(),
+  seenHotels: [],
 };
 
 const account3 = {
@@ -432,7 +432,7 @@ const account3 = {
   likedPictures: [],
   searchHistory: [],
   likedLocations: new Set(),
-  seenHotels: new Set(),
+  seenHotels: [],
 };
 
 const account4 = {
@@ -455,7 +455,7 @@ const account4 = {
   likedPictures: [],
   searchHistory: [],
   likedLocations: new Set(),
-  seenHotels: new Set(),
+  seenHotels: [],
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -551,7 +551,7 @@ let accountSigned = false,
 submitLogBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
-  currentAcc = accounts.find((acc) => acc.username === logUsernameInput.value);
+  currentAcc = accounts.find((acc) => acc.email === logEmailInput.value);
 
   if (
     currentAcc?.password === logPasswordInput.value &&
@@ -568,10 +568,100 @@ submitLogBtn.addEventListener("click", function (e) {
     );
     logoutLabel.textContent = "Log Out";
     closeForm();
+    loginHotelFeaturedBtns.forEach((btn) => {
+      btn.style.display = "none";
+    });
   }
 });
 
 // title Handling Create (create currentAcc)
+const inputsInvalidMsg = document.querySelector(".inputs-error-alert");
+const tryAgainCreate = document.getElementById("try-again-create-user");
+
+const isValidPassword = function (password) {
+  const strPass = password;
+
+  const validLong = strPass.length >= 6;
+  let validUpper = false,
+    validSmall = false,
+    hasNumber = false;
+
+  for (let ch of strPass) {
+    if (/\d/.test(ch)) {
+      hasNumber = true;
+      break;
+    }
+
+    if (/^[A-Z]$/.test(ch)) {
+      validUpper = true;
+      console.log("Valid Upper true");
+    }
+
+    if (/^[a-z]$/.test(ch)) {
+      validSmall = true;
+      console.log("Valid Small true");
+    }
+  }
+
+  const final =
+    validLong && validUpper && validSmall && !hasNumber ? true : false;
+
+  return final;
+};
+
+const isValidEmail = function (email) {
+  const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+  return emailPattern.test(email);
+};
+
+const isValidLocation = function (location) {
+  const locList = document.getElementById("countryList");
+
+  for (let option of locList.options)
+    if (location === option.value) return true;
+
+  return false;
+};
+
+const isValidName = function (name) {
+  const words = name.trim().split(/\s+/);
+  if (words.length < 2) return false;
+
+  if (/\d/.test(name)) return false;
+
+  return true;
+};
+
+const isValidInputs = function (validPass, validEmail, validLoc, validName) {
+  return validPass && validEmail && validLoc && validName;
+};
+
+function closeInputsInvalidMsg() {
+  inputsInvalidMsg.classList.add("hidden");
+
+  closeOverlay();
+}
+
+function tryAgain() {
+  inputsInvalidMsg.classList.add("hidden");
+}
+
+function openInputsInvalidMsg(name = "Comrade") {
+  const [firstName] = name.split(" ");
+
+  const formattedFirstName =
+    firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+
+  inputsInvalidMsg.classList.remove("hidden");
+
+  document.querySelector(".user-name-inputs-error").textContent =
+    formattedFirstName;
+
+  openOverlay();
+}
+
+tryAgainCreate.addEventListener("click", tryAgain);
+
 submitCreateBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -595,52 +685,63 @@ submitCreateBtn.addEventListener("click", function (e) {
   ];
   const likedPictures = [];
   const searchHistory = [];
+  const likedLocations = new Set();
+  const seenHotels = [];
 
   const staySigned = staySignedInput.checked;
 
-  if (!checkIfUserExists(email)) {
-    if (email !== "") {
-      const newUser = createUser(
-        name,
-        location,
-        email,
-        password,
-        username,
-        type,
-        AIWishlist,
-        likedPictures,
-        searchHistory
-      );
-      console.log("User Not exist");
-      accounts.push(newUser);
-      if (staySigned) {
-        accountSigned = true;
-        currentAcc = newUser;
-        greetUser(currentAcc);
-        displayAIHotel(
-          currentAcc.AIWishlist[
-            Math.floor(Math.random() * currentAcc.AIWishlist.length)
-          ]
-        );
-        logoutLabel.textContent = "Log Out";
-      }
-      closeForm();
-      console.log("User created:", newUser);
-    }
+  if (!isValidInputs(password, email, location, name)) {
+    openInputsInvalidMsg(name);
   } else {
-    openUserExistMessage();
-    const chooseDifferentEmailBtn = document.querySelector(".diff-email");
-    const userLabelName = document.querySelector(
-      ".user-name-exist-message_value"
-    );
-    formSectionContainer.style.opacity = "0";
-    userLabelName.textContent = makeOfficialName(name);
-    chooseDifferentEmailBtn.addEventListener("click", () => {
-      removeUserExistMessage();
-      openOverlay();
-      createEmailInput.value = "";
-      formSectionContainer.style.opacity = "1";
-    });
+    if (!checkIfUserExists(email)) {
+      if (email !== "") {
+        const newUser = createUser(
+          name,
+          location,
+          email,
+          password,
+          username,
+          type,
+          AIWishlist,
+          likedPictures,
+          searchHistory,
+          likedLocations,
+          seenHotels
+        );
+        console.log("User Not exist");
+        accounts.push(newUser);
+        if (staySigned) {
+          accountSigned = true;
+          currentAcc = newUser;
+          greetUser(currentAcc);
+          displayAIHotel(
+            currentAcc.AIWishlist[
+              Math.floor(Math.random() * currentAcc.AIWishlist.length)
+            ]
+          );
+          logoutLabel.textContent = "Log Out";
+          loginHotelFeaturedBtns.forEach((btn) => {
+            btn.style.display = "none";
+          });
+        }
+        closeForm();
+        console.log("User created:", newUser);
+      }
+    } else {
+      openUserExistMessage();
+      const chooseDifferentEmailBtn = document.querySelector(".diff-email");
+      const userLabelName = document.querySelector(
+        ".user-name-exist-message_value"
+      );
+      formSectionContainer.style.opacity = "0";
+      userLabelName.textContent = makeOfficialName(name);
+      chooseDifferentEmailBtn.addEventListener("click", () => {
+        removeUserExistMessage();
+        openOverlay();
+        createEmailInput.value = "";
+        formSectionContainer.style.opacity = "1";
+      });
+    }
   }
 });
 
@@ -750,7 +851,7 @@ const closeAlert = (index) => {
   } else if (index === 1) {
     removeUserExistMessage();
   } else if (index === 2) {
-    removeHotelAppearMessaage();
+    tryAgain();
   }
 };
 
@@ -763,7 +864,9 @@ const createUser = (
   type,
   AIWishlist,
   likedPictures,
-  searchHistory
+  searchHistory,
+  likedLocations,
+  seenHotels
 ) => ({
   name,
   location,
@@ -774,6 +877,8 @@ const createUser = (
   AIWishlist,
   likedPictures,
   searchHistory,
+  likedLocations,
+  seenHotels,
 });
 
 // title Handling Events
@@ -810,7 +915,8 @@ blurOverlay.addEventListener("click", function () {
   closeForm();
   removeLogOutModal();
   removeUserExistMessage();
-  removeHotelAppearMessaage();
+  removeHotelAppearMessage();
+  closeInputsInvalidMsg();
 });
 
 logoutLabel.addEventListener("click", function (e) {
@@ -1273,7 +1379,6 @@ const travelersCountValue = document.querySelector("#who");
 
 const originalMessageHotelAppearHTML = `
         <ion-icon name="sparkles-outline"></ion-icon>
-        <ion-icon class="close-alert" name="close-outline"></ion-icon>
 
         <h2>Hotel Appears Just Below</h2>
         <p>
@@ -1288,18 +1393,18 @@ messageHotelAppear.innerHTML = originalMessageHotelAppearHTML;
 
 const restoreOriginalHotelAppearMessage = function () {
   messageHotelAppear.innerHTML = originalMessageHotelAppearHTML;
-  removeHotelAppearMessaage();
+  removeHotelAppearMessage();
 };
 
 const showHotelAppearMessage = function () {
   messageHotelAppear.classList.remove("hidden");
 
   const messageHotelAppearBtn = document.querySelector(".hotel-appear");
-  messageHotelAppearBtn.addEventListener("click", removeHotelAppearMessaage);
+  messageHotelAppearBtn.addEventListener("click", removeHotelAppearMessage);
   openOverlay();
 };
 
-const removeHotelAppearMessaage = function () {
+const removeHotelAppearMessage = function () {
   messageHotelAppear.classList.add("hidden");
   closeOverlay();
 };
@@ -1322,7 +1427,6 @@ const showNoMoreHotel = function (finalFilteredHotels) {
 
   const messageHotelAppearHTML = `      
         <ion-icon nae="alert-circle-outline"></ion-icon>        
-        <ion-icon class="close-alert" name="close-outline"></ion-icon>
 
         <h2>No More Matching Hotels Available!</h2>
         <p>
@@ -1801,6 +1905,9 @@ const handleWishlistBtn = function (e) {
       currentAcc.likedLocations.delete(loc);
     else currentAcc.likedLocations.add(loc);
 
+    console.log("Current liked locations:");
+    console.log(currentAcc.likedLocations);
+
     const wishlistIcon = e.target
       .closest(".gallery-add-wishlist")
       .querySelector(".wishlist-icon");
@@ -1891,3 +1998,11 @@ scrollBtns.forEach((btn) => {
     });
   });
 });
+
+/*****************************************************************************************/
+/* NEWSLETTER SECTION */
+/*****************************************************************************************/
+const emailNewsInput = document.getElementById("email-newsletter_input");
+const emailNewsInputSubmit = document.getElementById(
+  "email-newsletter_input-submit"
+);
