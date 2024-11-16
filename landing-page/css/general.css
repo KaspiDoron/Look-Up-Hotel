@@ -505,7 +505,7 @@ mark {
 .entire-form-container input:focus,
 .entire-form-container button:focus,
 .entire-form-container a:focus,
-#email-newsletter:focus {
+#email-newsletter_input:focus {
   outline: 0.4rem solid var(--pink-light-);
 }
 /*****************************************************************************************/

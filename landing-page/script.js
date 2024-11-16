@@ -571,6 +571,7 @@ submitLogBtn.addEventListener("click", function (e) {
     loginHotelFeaturedBtns.forEach((btn) => {
       btn.style.display = "none";
     });
+    newsletterExistAcc();
   }
 });
 
@@ -723,6 +724,7 @@ submitCreateBtn.addEventListener("click", function (e) {
           loginHotelFeaturedBtns.forEach((btn) => {
             btn.style.display = "none";
           });
+          newsletterExistAcc();
         }
         closeForm();
         console.log("User created:", newUser);
@@ -2006,3 +2008,101 @@ const emailNewsInput = document.getElementById("email-newsletter_input");
 const emailNewsInputSubmit = document.getElementById(
   "email-newsletter_input-submit"
 );
+const formContainerNews = document.querySelector(".cta-form");
+
+formContainerNews.addEventListener("click", (e) => {
+  if (e.target.id === "email-newsletter_input-submit") {
+    handleEmailNewsInputSubmit(e);
+  }
+
+  if (e.target.id === "email-newsletter_input") {
+    handleEmailNewsInput();
+  }
+});
+
+function createFirstName(name = "Comrade") {
+  const nameStr = name;
+
+  const [firstName, ...rest] = nameStr.split(" ");
+  const firstNameCapital =
+    firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase();
+
+  return firstNameCapital;
+}
+
+function newsletterExistAcc() {
+  if (accountSigned === true) {
+    const emailNewsInputSubmitHTML = `          
+  <input
+    type="email"
+    name="email"
+    id="email-newsletter_input"
+    placeholder="${currentAcc.email}"
+    value="${currentAcc.email}"
+    required
+    autocomplete="off"
+  />
+  <ion-icon
+    id="email-newsletter_input-submit"
+    name="send-outline"
+  ></ion-icon>`;
+    formContainerNews.style.padding = "0 var(--space-4-)";
+
+    formContainerNews.innerHTML = emailNewsInputSubmitHTML;
+  }
+}
+
+function handleInvalidEmail() {
+  const originalPlaceholder = emailNewsInput.placeholder;
+  const originalBackgroundColor = formContainerNews.style.backgroundColor;
+  emailNewsInput.placeholder = "NOT A VALID EMAIL!";
+  emailNewsInput.value = "";
+  formContainerNews.style.backgroundColor = "#9e002f";
+
+  setTimeout(() => {
+    emailNewsInput.placeholder = originalPlaceholder;
+    formContainerNews.style.backgroundColor = originalBackgroundColor || "";
+  }, 2000);
+}
+
+function handleEmailNewsInput() {
+  if (accountSigned === true) {
+    emailNewsInput.value = currentAcc.email;
+  }
+}
+
+function handleEmailNewsInputSubmit(e) {
+  if (accountSigned === true && !emailNewsInput.value) {
+    emailNewsInput.value = currentAcc.email;
+  }
+
+  if (
+    isValidEmail(emailNewsInput.value) ||
+    emailNewsInput.value === currentAcc?.email
+  ) {
+    const formContainer = e.target.closest(".cta-form");
+
+    formContainer.innerHTML = "";
+    const html = `
+  <p class='msg-sent-email'>An email sent to you ${
+    accountSigned === true
+      ? createFirstName(currentAcc.name)
+      : createFirstName()
+  }!</p>
+  <input
+    style="display: none;"
+    id="email-newsletter_input"
+  />
+    <ion-icon
+    id="email-newsletter_input-submit"
+    name="send-outline"
+    style="display: none;"
+  ></ion-icon>
+`;
+    formContainer.style.padding = "var(--space-3-) var(--space-5-)";
+
+    formContainer.insertAdjacentHTML("afterbegin", html);
+  } else {
+    handleInvalidEmail();
+  }
+}

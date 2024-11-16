@@ -258,9 +258,11 @@
 
   .section-newsletter .cta-container div form {
     flex-direction: column;
+    border: 1px solid #fff;
   }
 
-  .section-newsletter .cta-container div form {
+  .section-newsletter .cta-container div form input {
+    border: none;
   }
 }
 
