@@ -933,8 +933,7 @@
   align-items: center;
   justify-content: center;
   /* Background Image */
-  background: url("/landing-page/img/hero-background.jpg") center/cover
-    no-repeat;
+  background: url("img/hero-background.jpg") center/cover no-repeat;
   min-height: 85svh;
   color: var(--pink-white-);
   text-align: center;
@@ -1267,41 +1266,41 @@
   animation-delay: calc(
     var(--logos-hero-seconds) / 8 * (8 - 1) * -1
   ); /* Based on the number of logos and the lap time */
-  background-image: url(/landing-page/img/companies/aflac-logo-white.svg);
+  background-image: url(img/companies/aflac-logo-white.svg);
 }
 
 .delay2 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 2) * -1);
-  background-image: url(/landing-page/img/companies/facebook-logo-white-full-transparent.png);
+  background-image: url(img/companies/facebook-logo-white-full-transparent.png);
 }
 
 .delay3 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 3) * -1);
-  background-image: url(/landing-page/img/companies/fender-logo-white.svg);
+  background-image: url(img/companies/fender-logo-white.svg);
 }
 
 .delay4 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 4) * -1);
-  background-image: url(/landing-page/img/companies/google-white-logo.png);
+  background-image: url(img/companies/google-white-logo.png);
 }
 
 .delay5 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 5) * -1);
-  background-image: url(/landing-page/img/companies/samsung-logo-white.webp);
+  background-image: url(img/companies/samsung-logo-white.webp);
 }
 .delay6 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 6) * -1);
-  background-image: url(/landing-page/img/companies/pngimg.com\ -\ adidas_PNG2.png);
+  background-image: url(img/companies/pngimg.com\ -\ adidas_PNG2.png);
 }
 
 .delay7 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 7) * -1);
-  background-image: url(/landing-page/img/companies/tcs-logo-white.svg);
+  background-image: url(img/companies/tcs-logo-white.svg);
 }
 
 .delay8 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 8) * -1);
-  background-image: url(/landing-page/img/companies/vimeo-logo-white-01.svg);
+  background-image: url(img/companies/vimeo-logo-white-01.svg);
 }
 
 .header-logos {
@@ -1424,7 +1423,6 @@
   justify-content: space-between;
 }
 
-/* todo redefined space and font vars */
 .buttons button {
   padding: 0.4rem;
   border-radius: 50%;
