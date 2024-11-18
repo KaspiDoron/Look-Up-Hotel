@@ -933,7 +933,9 @@
   align-items: center;
   justify-content: center;
   /* Background Image */
-  background: url("img/hero-background.jpg") center/cover no-repeat;
+  background: url("/landing-page/img/hero-background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
   min-height: 85svh;
   color: var(--pink-white-);
   text-align: center;
