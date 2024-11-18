@@ -193,6 +193,27 @@
   .footer-container {
     grid-template-columns: repeat(2, minmax(20rem, 50rem));
   }
+
+  .entire-form-container {
+    left: 39%;
+  }
+
+  .entire-form-container .toggle-password-login {
+    right: 20%;
+  }
+
+  .entire-form-container .toggle-password-create {
+    right: 20%;
+  }
+
+  .modal-explore-loc {
+    left: 39%;
+  }
+
+  .alert {
+    left: 39%;
+    width: 90vw;
+  }
 }
 
 /*****************************************************************************************/

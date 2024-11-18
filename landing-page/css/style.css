@@ -595,7 +595,6 @@
 /*****************************************************************************************/
 .section-form-sign {
   position: relative;
-
   z-index: 20;
 }
 
@@ -612,7 +611,7 @@
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
   overflow: hidden;
   width: 76.8rem;
-  max-width: 95%;
+  max-width: 90vw;
   min-height: 48rem;
 }
 
@@ -863,7 +862,7 @@
   color: var(--pink-primary-);
 }
 
-/* title handlinf toggle password */
+/* title handling toggle password */
 .entire-form-container .password-wrapper {
   width: 100%;
   position: relative;
@@ -932,15 +931,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Background Image */
-  background: url("/landing-page/img/hero-background.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
   min-height: 85svh;
   color: var(--pink-white-);
   text-align: center;
   padding: 0 var(--space-5-);
   position: relative;
+}
+
+.hero-background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
 .hero::before {
@@ -1268,41 +1273,41 @@
   animation-delay: calc(
     var(--logos-hero-seconds) / 8 * (8 - 1) * -1
   ); /* Based on the number of logos and the lap time */
-  background-image: url(img/companies/aflac-logo-white.svg);
+  background-image: url("/img/companies/aflac-logo-white.svg");
 }
 
 .delay2 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 2) * -1);
-  background-image: url(img/companies/facebook-logo-white-full-transparent.png);
+  background-image: url("/img/companies/facebook-logo-white-full-transparent.png");
 }
 
 .delay3 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 3) * -1);
-  background-image: url(img/companies/fender-logo-white.svg);
+  background-image: url("/img/companies/fender-logo-white.svg");
 }
 
 .delay4 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 4) * -1);
-  background-image: url(img/companies/google-white-logo.png);
+  background-image: url("/img/companies/google-white-logo.png");
 }
 
 .delay5 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 5) * -1);
-  background-image: url(img/companies/samsung-logo-white.webp);
+  background-image: url("/img/companies/samsung-logo-white.webp");
 }
 .delay6 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 6) * -1);
-  background-image: url(img/companies/pngimg.com\ -\ adidas_PNG2.png);
+  background-image: url("/img/companies/pngimg.com - adidas_PNG2.png");
 }
 
 .delay7 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 7) * -1);
-  background-image: url(img/companies/tcs-logo-white.svg);
+  background-image: url("/img/companies/tcs-logo-white.svg");
 }
 
 .delay8 {
   animation-delay: calc(var(--logos-hero-seconds) / 8 * (8 - 8) * -1);
-  background-image: url(img/companies/vimeo-logo-white-01.svg);
+  background-image: url("/img/companies/vimeo-logo-white-01.svg");
 }
 
 .header-logos {

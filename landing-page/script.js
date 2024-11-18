@@ -1376,7 +1376,7 @@ const travelersCountValue = document.querySelector("#who");
 const originalMessageHotelAppearHTML = `
         <ion-icon name="sparkles-outline"></ion-icon>
 
-        <h2>Hotel Appears Just Below</h2>
+        <h2>Hotel Appears Below</h2>
         <p>
           If that hotel doesn't meet your needs,
           <mark>simply tap</mark> the search icon again to view a different
@@ -1424,7 +1424,7 @@ const showNoMoreHotel = function (finalFilteredHotels) {
   const messageHotelAppearHTML = `      
         <ion-icon nae="alert-circle-outline"></ion-icon>        
 
-        <h2>No More Matching Hotels Available!</h2>
+        <h2>No Hotels Available!</h2>
         <p>
         ${generateHotelMessage(finalFilteredHotels)}
         </p>
