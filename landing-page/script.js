@@ -519,7 +519,6 @@ const loginHotelFeaturedBtns = document.querySelectorAll(
   ".login-to-see, .login-through-modal"
 );
 
-// TODO: Make a checking fn for if the user tries to exit the form before sumbitting
 const formInputs = document.querySelectorAll(".form-input");
 const passwordInputs = document.querySelectorAll(".input-password");
 
@@ -2062,7 +2061,7 @@ function handleInvalidEmail() {
   setTimeout(() => {
     emailNewsInput.placeholder = originalPlaceholder;
     formContainerNews.style.backgroundColor = originalBackgroundColor || "";
-  }, 2000);
+  }, 1000);
 }
 
 function handleEmailNewsInput() {
@@ -2106,3 +2105,22 @@ function handleEmailNewsInputSubmit(e) {
     handleInvalidEmail();
   }
 }
+
+/*****************************************************************************************/
+/* FOOTER SECTION */
+/*****************************************************************************************/
+
+const footerContainer = document.querySelector(".footer-container");
+
+const handlingFooterEvent = function (e) {
+  if (e.target.classList.contains("cta-btn-footer")) {
+    handleFooterButtonClick(e.target);
+  }
+};
+
+const handleFooterButtonClick = function (button) {
+  openForm();
+  switchToLog();
+};
+
+footerContainer.addEventListener("click", handlingFooterEvent);

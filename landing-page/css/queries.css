@@ -69,6 +69,37 @@
 }
 
 /*****************************************************************************************/
+/* BELOW 1060px (landscape tablets) */
+/*****************************************************************************************/
+@media (max-width: 67em) {
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-6-);
+  }
+
+  .footer-features ul {
+    display: none;
+  }
+
+  .footer-mobile {
+    display: flex !important;
+  }
+
+  .footer-social-media {
+    display: none !important;
+  }
+
+  .footer-container .footer-features .navbar-logo {
+    display: none;
+  }
+
+  .footer-container .upper::before {
+    display: none;
+  }
+}
+/*****************************************************************************************/
 /* BELOW 944px (tablets) */
 /*****************************************************************************************/
 @media (max-width: 59em) {
@@ -147,6 +178,10 @@
 
   .section-featured-hotels .headers-container aside {
     align-items: center;
+  }
+
+  .footer-container {
+    grid-template-columns: repeat(2, minmax(20rem, 50rem));
   }
 }
 
