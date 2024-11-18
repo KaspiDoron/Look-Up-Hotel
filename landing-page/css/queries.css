@@ -66,6 +66,16 @@
   .modals-container {
     grid-template-columns: repeat(1, minmax(25rem, 1fr));
   }
+
+  .user-exist-message p {
+    max-width: 90%;
+    white-space: wrap;
+  }
+
+  .section-custom-alerts .hotel-searched-displayed {
+    padding: var(--space-4-) var(--space-4-) var(--space-6-) var(--space-4-);
+    text-align: center;
+  }
 }
 
 /*****************************************************************************************/

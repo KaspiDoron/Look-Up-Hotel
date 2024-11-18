@@ -475,6 +475,7 @@
 /* title Hotel Diplayed After Search Message */
 .section-custom-alerts .hotel-searched-displayed {
   padding: var(--space-3-) var(--space-6-) var(--space-6-) var(--space-6-);
+  text-align: center;
 }
 
 .section-custom-alerts .hotel-searched-displayed h2 {
