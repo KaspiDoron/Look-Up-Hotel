@@ -2313,3 +2313,180 @@
 .section-newsletter .cta-container .group p mark {
   font-weight: var(--weight-normal-);
 }
+
+/*****************************************************************************************/
+/* FOOTER SECTION */
+/*****************************************************************************************/
+.section-footer {
+  background-color: var(--gray-black-);
+  font-size: clamp(var(--font-3-), 2vw + var(--font-3-), var(--font-4-));
+  color: var(--gray-light-);
+  line-height: 1.2;
+  border-top: 1px solid var(--pink-light-);
+  font-family: var(--font-form-);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 1fr;
+  padding: clamp(var(--space-6-), 2vw + var(--space-6-), var(--space-8-))
+    clamp(var(--space-8-), 2vw + var(--space-8-), var(--space-11-));
+}
+
+.footer-container ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.footer-container .footer-features {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-height: max-content;
+}
+
+.footer-container .footer-features ul li {
+  min-width: min-content;
+}
+
+.footer-container .footer-features ul {
+  gap: clamp(var(--space-6-), 2vw + var(--space-6-), var(--space-8-));
+}
+
+.footer-container .footer-features ul li {
+  transition: var(--transition-normal-);
+}
+
+.footer-container .footer-features ul li:hover,
+.footer-container .footer-features ul li:active {
+  font-weight: var(--weight-normal-);
+  color: var(--pink-primary-);
+  text-decoration: underline;
+}
+
+.footer-container .footer-features .navbar-logo {
+  transform: scale(1.1);
+}
+
+.footer-container .footer-features .navbar-logo:hover,
+.footer-container .footer-features .navbar-logo:active {
+  background-color: var(--pink-black-);
+}
+
+.footer-container .upper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+}
+
+.footer-container .footer-copyright {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2-);
+  font-size: var(--font-3-);
+}
+
+.footer-container .upper::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--gray-primary-);
+  height: 0.1rem;
+  border-radius: 100%;
+  width: 90vw;
+  opacity: 0.7;
+}
+
+.footer-container .footer-copyright a {
+  font-size: var(--font-2-);
+}
+
+.footer-container .footer-copyright i {
+  font-size: var(--font-2-);
+}
+
+.footer-container .footer-social-media {
+  display: flex;
+  gap: var(--space-5-);
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-container .footer-social-media button {
+  background-color: var(--pink-black-);
+  padding: var(--space-3-) var(--space-5-);
+  border-radius: 15rem;
+  box-shadow: 1rem 2rem 3rem rgba(0, 0, 0, 0.3);
+  transition: var(--transition-normal-);
+}
+
+.footer-container .footer-social-media button:hover,
+.footer-container .footer-social-media button:active {
+  background-color: #440a1f;
+}
+
+.footer-container .footer-social-media ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--font-4-);
+}
+
+.footer-container .footer-social-media ion-icon {
+  font-size: var(--icon-XL-big-);
+  transition: var(--transition-normal-);
+}
+
+.footer-container .footer-social-media ion-icon:hover,
+.footer-container .footer-social-media ion-icon:active {
+  color: var(--pink-primary-);
+}
+
+.footer-container .footer-mobile {
+  display: flex;
+  gap: var(--space-5-);
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-container .footer-mobile button {
+  background-color: var(--pink-black-);
+  padding: var(--space-3-) var(--space-5-);
+  border-radius: 15rem;
+  box-shadow: 1rem 2rem 3rem rgba(0, 0, 0, 0.3);
+  transition: var(--transition-normal-);
+}
+
+.footer-container .footer-mobile button:hover,
+.footer-container .footer-mobile button:active {
+  background-color: #440a1f;
+}
+
+.footer-container .footer-mobile ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--font-4-);
+}
+
+.footer-container .footer-mobile ion-icon {
+  font-size: var(--icon-XL-big-);
+  transition: var(--transition-normal-);
+}
+
+.footer-container .footer-mobile ion-icon:hover,
+.footer-container .footer-mobile ion-icon:active {
+  color: var(--pink-primary-);
+}
+
+.footer-mobile {
+  display: none !important;
+}
